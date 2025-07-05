@@ -1,37 +1,76 @@
 {
   "name": "portal",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "build:icons": "tsx src/plugins/iconify/build-icons.ts",
+    "postinstall": "npm run build:icons",
+    "generate-api-client": "openapi-generator-cli generate --generator-key portal-api"
   },
   "dependencies": {
+    "@floating-ui/dom": "1.7.2",
+    "@iconify-json/bxl": "^1.2.2",
+    "@vueuse/core": "^13.5.0",
+    "@vueuse/math": "^13.5.0",
+    "apexcharts": "^4.7.0",
     "pinia": "^3.0.3",
+    "prismjs": "^1.30.0",
+    "roboto-fontface": "^0.10.0",
     "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
+    "vue-flatpickr-component": "12.0.0",
+    "vue-prism-component": "^2.0.0",
+    "vue-router": "^4.5.1",
+    "vue3-apexcharts": "1.8.0",
+    "vue3-perfect-scrollbar": "^2.0.0",
+    "vuetify": "3.8.12",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.2",
-    "@types/node": "^22.15.32",
+    "@iconify-json/ri": "^1.2.5",
+    "@iconify/tools": "^4.1.2",
+    "@iconify/utils": "^2.3.0",
+    "@iconify/vue": "5.0.0",
+    "@openapitools/openapi-generator-cli": "^2.21.0",
+    "@types/node": "^24.0.10",
+    "@types/webfontloader": "^1.6.38",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/eslint-config-prettier": "^10.2.0",
-    "@vue/eslint-config-typescript": "^14.5.1",
+    "@vue/eslint-config-typescript": "^14.6.0",
     "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.29.0",
-    "eslint-plugin-vue": "~10.2.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-vue": "^10.3.0",
     "jiti": "^2.4.2",
     "npm-run-all2": "^8.0.4",
-    "prettier": "3.5.3",
-    "typescript": "~5.8.0",
-    "vite": "^7.0.0",
+    "postcss-html": "^1.8.0",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.6.2",
+    "sass": "~1.89.2",
+    "type-fest": "^4.41.0",
+    "typescript": "^5.8.3",
+    "unplugin-auto-import": "^19.3.0",
+    "unplugin-vue-components": "^28.8.0",
+    "vite": "^7.0.2",
     "vite-plugin-vue-devtools": "^7.7.7",
-    "vue-tsc": "^2.2.10"
+    "vite-plugin-vuetify": "2.1.1",
+    "vite-svg-loader": "^5.1.0",
+    "vue-tsc": "^3.0.1"
+  },
+  "resolutions": {
+    "postcss": "^8",
+    "stylelint-order": "6.0.3",
+    "@types/video.js": "^7"
+  },
+  "overrides": {
+    "postcss": "^8",
+    "@types/video.js": "^7"
+  },
+  "volta": {
+    "node": "22.17.0"
   }
 }
