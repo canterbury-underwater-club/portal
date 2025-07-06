@@ -1,36 +1,25 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify'
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue'
-
+import FirebaseAuthUI from '@/components/FirebaseAuthUI.vue'
 import logo from '@images/logo.svg?raw'
 import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png'
 import authV1MaskLight from '@images/pages/auth-v1-mask-light.png'
-import authV1Tree2 from '@images/pages/auth-v1-tree-2.png'
-import authV1Tree from '@images/pages/auth-v1-tree.png'
-
-const form = ref({
-  email: '',
-  password: '',
-  remember: false,
-})
+import { useTheme } from 'vuetify'
 
 const vuetifyTheme = useTheme()
+
+const route = useRoute()
+const redirectUrl = computed(() => route.query.redirect?.toString())
 
 const authThemeMask = computed(() => {
   return vuetifyTheme.global.name.value === 'light' ? authV1MaskLight : authV1MaskDark
 })
-
-const isPasswordVisible = ref(false)
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html -->
-
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard class="auth-card pa-4 pt-7" max-width="448">
       <VCardItem class="justify-center">
         <RouterLink to="/" class="d-flex align-center gap-3">
-          <!-- eslint-disable vue/no-v-html -->
           <div class="d-flex" v-html="logo" />
           <h2 class="font-weight-medium text-2xl text-uppercase">Materio</h2>
         </RouterLink>
@@ -42,60 +31,9 @@ const isPasswordVisible = ref(false)
       </VCardText>
 
       <VCardText>
-        <VForm @submit.prevent="() => {}">
-          <VRow>
-            <!-- email -->
-            <VCol cols="12">
-              <VTextField v-model="form.email" label="Email" type="email" />
-            </VCol>
-
-            <!-- password -->
-            <VCol cols="12">
-              <VTextField
-                v-model="form.password"
-                label="Password"
-                placeholder="············"
-                :type="isPasswordVisible ? 'text' : 'password'"
-                autocomplete="password"
-                :append-inner-icon="isPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
-                @click:append-inner="isPasswordVisible = !isPasswordVisible"
-              />
-
-              <!-- remember me checkbox -->
-              <div class="d-flex align-center justify-space-between flex-wrap my-6">
-                <VCheckbox v-model="form.remember" label="Remember me" />
-
-                <a class="text-primary" href="javascript:void(0)"> Forgot Password? </a>
-              </div>
-
-              <!-- login button -->
-              <VBtn block type="submit" to="/"> Login </VBtn>
-            </VCol>
-
-            <!-- create account -->
-            <VCol cols="12" class="text-center text-base">
-              <span>New on our platform?</span>
-              <RouterLink class="text-primary ms-2" to="/register"> Create an account </RouterLink>
-            </VCol>
-
-            <VCol cols="12" class="d-flex align-center">
-              <VDivider />
-              <span class="mx-4">or</span>
-              <VDivider />
-            </VCol>
-
-            <!-- auth providers -->
-            <VCol cols="12" class="text-center">
-              <AuthProvider />
-            </VCol>
-          </VRow>
-        </VForm>
+        <FirebaseAuthUI :signInSuccessUrl="redirectUrl" />
       </VCardText>
     </VCard>
-
-    <VImg class="auth-footer-start-tree d-none d-md-block" :src="authV1Tree" :width="250" />
-
-    <VImg :src="authV1Tree2" class="auth-footer-end-tree d-none d-md-block" :width="350" />
 
     <!-- bg img -->
     <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" />

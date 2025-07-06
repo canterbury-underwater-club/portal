@@ -15,15 +15,17 @@ public class Program
         var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
 
         builder.Services
+            .AddFirebaseAuthentication()
             .AddAuthorization()
             .AddCorsPolicy(builder.Environment).AddApiVersioning(options => options.ReportApiVersions = true);
         builder.Services
-            .AddOpenApi()
+            .AddOpenApiWithBearerSecurity()
             .AddAutoMapper(options => options.AddMaps(assembly))
             .AddEndpoints(assembly)
             .AddEndpointsApiExplorer()
             .AddDefaultApiVersioning()
-            .AddProblemDetails();
+            .AddProblemDetails()
+            .AddHttpContextAccessor();
 
         builder.Services.AddDbContext<PortalDbContext>(options =>
         {

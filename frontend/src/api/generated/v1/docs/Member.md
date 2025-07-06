@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [optional] [default to undefined]
+**id** | **string** |  | [default to undefined]
 **firstName** | **string** |  | [default to undefined]
 **lastName** | **string** |  | [default to undefined]
 

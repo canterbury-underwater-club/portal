@@ -15,6 +15,7 @@ public class Endpoint : IEndpoint
                     await handler.HandleAsync(cancellationToken))
             .MapToApiVersion(1)
             .Produces<Contracts.Response>()
-            .WithTags(Tags.Members);
+            .WithTags(Tags.Members)
+            .RequireAuthorization();
     }
 }

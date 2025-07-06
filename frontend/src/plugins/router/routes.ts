@@ -1,3 +1,6 @@
+import { Routes } from './constants'
+import { isAuthenticatedGuard } from './guards/isAuthenticatedGuard'
+
 export const routes = [
   { path: '/', redirect: '/dashboard' },
   {
@@ -5,7 +8,9 @@ export const routes = [
     component: () => import('@/layouts/default.vue'),
     children: [
       {
-        path: 'dashboard',
+        path: 'members',
+        name: Routes.Members,
+        beforeEnter: isAuthenticatedGuard,
         component: () => import('@/pages/dashboard.vue'),
       },
       {
@@ -32,11 +37,8 @@ export const routes = [
     children: [
       {
         path: 'login',
+        name: Routes.Login,
         component: () => import('@/pages/login.vue'),
-      },
-      {
-        path: 'register',
-        component: () => import('@/pages/register.vue'),
       },
       {
         path: '/:pathMatch(.*)*',
