@@ -15,9 +15,6 @@ COPY . .
 # Restore all projects in the solution
 RUN dotnet restore PortalApi.sln
 
-# Build the entire solution
-RUN dotnet build PortalApi.sln -c $BUILD_CONFIGURATION -o /app/build
-
 # === Publish stage ===
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
