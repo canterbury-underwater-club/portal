@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import avatar1 from '@images/avatars/avatar-1.png'
-import avatar4 from '@images/avatars/avatar-4.png'
-import avatar8 from '@images/avatars/avatar-8.png'
 
 const solidCardData = [
   {
@@ -9,7 +7,7 @@ const solidCardData = [
     title: 'Twitter Card',
     icon: 'ri-twitter-line',
     text: '"Turns out semicolon-less style is easier and safer in TS because most gotcha edge cases are type invalid as well."',
-    avatarImg: avatar4,
+    avatarImg: avatar1,
     avatarName: 'Mary Vaughn',
     likes: '1.2k',
     share: '80',
@@ -29,7 +27,7 @@ const solidCardData = [
     title: 'LinkedIn Card',
     icon: 'ri-linkedin-box-line',
     text: 'With the Internet spreading like wildfire and reaching every part of our daily life, more and more traffic is directed.',
-    avatarImg: avatar8,
+    avatarImg: avatar1,
     avatarName: 'Anne Burke1',
     likes: '1.2k',
     share: '80',

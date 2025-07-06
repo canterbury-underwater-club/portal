@@ -1,112 +1,18 @@
 <script setup lang="ts">
-import avatar1 from '@images/avatars/avatar-1.png'
-import avatar2 from '@images/avatars/avatar-2.png'
-import avatar3 from '@images/avatars/avatar-3.png'
-import avatar4 from '@images/avatars/avatar-4.png'
-import eCommerce2 from '@images/eCommerce/2.png'
-import pages1 from '@images/pages/1.png'
-import pages2 from '@images/pages/2.png'
-import pages3 from '@images/pages/3.png'
-import pages5 from '@images/pages/5.jpg'
-import pages6 from '@images/pages/6.jpg'
 
-const avatars = [avatar1, avatar2, avatar3, avatar4]
 
-const isCardDetailsVisible = ref(false)
 </script>
 
 <template>
   <VRow>
-    <!-- Influencing The Influencer -->
-    <VCol cols="12" sm="6" md="4">
-      <VCard>
-        <VImg :src="pages1" cover />
 
-        <VCardItem>
-          <VCardTitle>Influencing The Influencer</VCardTitle>
-        </VCardItem>
-
-        <VCardText>
-          Cancun is back, better than ever! Over a hundred Mexico resorts have reopened and the
-          state tourism minister predicts Cancun will draw as many visitors in 2006 as it did two
-          years ago.
-        </VCardText>
-      </VCard>
-    </VCol>
-
-    <!-- ert Meyer -->
-    <VCol cols="12" sm="6" md="4">
-      <VCard>
-        <VImg :src="pages2" />
-
-        <VCardText class="position-relative">
-          <!-- User Avatar -->
-          <VAvatar size="75" class="avatar-center" :image="avatar1" />
-
-          <!-- Title, Subtitle & Action Button -->
-          <div class="d-flex justify-space-between flex-wrap pt-8">
-            <div class="me-2 mb-2">
-              <VCardTitle class="pa-0"> Robert Meyer </VCardTitle>
-              <VCardSubtitle class="text-caption pa-0"> London, UK </VCardSubtitle>
-            </div>
-            <VBtn>send request</VBtn>
-          </div>
-
-          <!--  Mutual Friends -->
-          <div class="d-flex justify-space-between align-center mt-8">
-            <span class="font-weight-medium">18 mutual friends</span>
-
-            <div class="v-avatar-group">
-              <VAvatar v-for="avatar in avatars" :key="avatar" :image="avatar" size="40" />
-            </div>
-          </div>
-        </VCardText>
-      </VCard>
-    </VCol>
-
-    <!-- ular Uses Of The Internet -->
-    <VCol cols="12" md="4" sm="6">
-      <VCard>
-        <VImg :src="pages3" />
-
-        <VCardItem>
-          <VCardTitle>Popular Uses Of The Internet</VCardTitle>
-        </VCardItem>
-
-        <VCardText>
-          Although cards can support multiple actions, UI controls, and an overflow menu.
-        </VCardText>
-
-        <VCardActions>
-          <VBtn @click="isCardDetailsVisible = !isCardDetailsVisible"> Details </VBtn>
-
-          <VSpacer />
-
-          <VBtn icon size="small" @click="isCardDetailsVisible = !isCardDetailsVisible">
-            <VIcon :icon="isCardDetailsVisible ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" />
-          </VBtn>
-        </VCardActions>
-
-        <VExpandTransition>
-          <div v-show="isCardDetailsVisible">
-            <VDivider />
-            <VCardText>
-              I'm a thing. But, like most politicians, he promised more than he could deliver. You
-              won't have time for sleeping, soldier, not with all the bed making you'll be doing.
-              Then we'll go with that data file! Hey, you add a one and two zeros to that or we
-              walk! You're going to do his laundry? I've got to find a way to escape.
-            </VCardText>
-          </div>
-        </VExpandTransition>
-      </VCard>
-    </VCol>
 
     <!-- le iPhone 11 Pro -->
     <VCol sm="6" cols="12">
       <VCard>
         <div class="d-flex justify-space-between flex-wrap flex-md-nowrap flex-column flex-md-row">
           <div class="ma-auto pa-5">
-            <VImg width="137" height="176" :src="eCommerce2" />
+            <VImg width="137" height="176" />
           </div>
 
           <VDivider :vertical="$vuetify.display.mdAndUp" />
@@ -135,59 +41,6 @@ const isCardDetailsVisible = ref(false)
             </VCardActions>
           </div>
         </div>
-      </VCard>
-    </VCol>
-
-    <!-- mp town Roasters. -->
-    <VCol sm="6" cols="12">
-      <VCard>
-        <div class="d-flex flex-column-reverse flex-md-row">
-          <div>
-            <VCardItem>
-              <VCardTitle>Stumptown Roasters</VCardTitle>
-            </VCardItem>
-
-            <VCardText class="d-flex align-center flex-wrap text-body-1">
-              <VRating :model-value="5" readonly class="me-3" density="compact" />
-              <span>5 Star | 98 reviews</span>
-            </VCardText>
-
-            <VCardText>
-              Before there was a United States of America, there were coffee houses, because how are
-              you supposed to build.
-            </VCardText>
-
-            <VCardActions>
-              <VBtn>Location</VBtn>
-              <VBtn>Reviews</VBtn>
-            </VCardActions>
-          </div>
-
-          <div class="ma-auto pa-5">
-            <VImg :width="176" :src="pages5" class="rounded" />
-          </div>
-        </div>
-      </VCard>
-    </VCol>
-
-    <!-- le Watch card -->
-    <VCol lg="4" sm="6" cols="12">
-      <VCard>
-        <VImg :src="pages6" />
-
-        <VCardItem>
-          <VCardTitle>Apple Watch</VCardTitle>
-        </VCardItem>
-
-        <VCardText>
-          <p class="font-weight-medium text-base">$249.40</p>
-
-          <p class="mb-0">
-            3.1GHz 6-core 10th-generation Intel Core i5 processor, Turbo Boost up to 4.5GHz
-          </p>
-        </VCardText>
-
-        <VBtn block class="rounded-t-0"> Add to cart </VBtn>
       </VCard>
     </VCol>
 
