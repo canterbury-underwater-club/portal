@@ -4,7 +4,7 @@
   "generator-cli": {
     "version": "7.14.0",
     "generators": {
-      "portal-api": {
+      "portal": {
         "generatorName": "typescript-axios",
         "output": "#{cwd}/src/api/generated/v1",
         "inputSpec": "http://localhost:5171/openapi/v1.json"

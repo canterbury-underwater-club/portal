@@ -24,14 +24,6 @@ export const routes = [
         path: 'cards',
         component: () => import('@/pages/cards.vue'),
       },
-      {
-        path: 'tables',
-        component: () => import('@/pages/tables.vue'),
-      },
-      {
-        path: 'form-layouts',
-        component: () => import('@/pages/form-layouts.vue'),
-      },
     ],
   },
   {

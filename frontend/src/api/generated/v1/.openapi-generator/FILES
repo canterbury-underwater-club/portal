@@ -1,11 +1,11 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 base.ts
 common.ts
 configuration.ts
-docs/PortalApiApi.md
-docs/WeatherForecast.md
+docs/Member.md
+docs/MembersApi.md
+docs/Response.md
 git_push.sh
 index.ts

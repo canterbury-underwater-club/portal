@@ -11,7 +11,7 @@
     "format": "prettier --write src/",
     "build:icons": "tsx src/plugins/iconify/build-icons.ts",
     "postinstall": "npm run build:icons",
-    "generate-api-client": "openapi-generator-cli generate --generator-key portal-api"
+    "generate-api-client": "openapi-generator-cli generate --generator-key portal"
   },
   "dependencies": {
     "@floating-ui/dom": "1.7.2",
