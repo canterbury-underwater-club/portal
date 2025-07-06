@@ -54,3 +54,4 @@ TestResult.xml
 nunit-*.xml
 /frontend/components.d.ts
 /backend/.vs
+/backend/node_modules

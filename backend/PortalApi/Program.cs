@@ -1,6 +1,8 @@
 using System.Reflection;
 using CanterburyUnderwater.Endpoints;
+using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.WebAppExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace CanterburyUnderwater.PortalApi;
 
@@ -23,6 +25,11 @@ public class Program
             .AddDefaultApiVersioning()
             .AddProblemDetails();
 
+        builder.Services.AddDbContext<PortalDbContext>(options =>
+        {
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DBConnection"));
+        });
+
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
@@ -40,6 +47,11 @@ public class Program
             .UseCors();
 
         app.AddEndpointWithDefaultApiVersioning();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            scope.ServiceProvider.GetRequiredService<PortalDbContext>().Database.Migrate();
+        }
 
         app.Run();
     }
