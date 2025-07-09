@@ -60,7 +60,9 @@ const handleNavScroll = (evt: Event) => {
         <RouterLink to="/" class="app-logo app-title-wrapper">
           <div class="d-flex" v-html="logo" />
 
-          <h1 class="font-weight-medium leading-normal text-xl text-uppercase">Materio</h1>
+          <h1 class="font-weight-medium leading-normal text-xl text-uppercase">
+            Canterbury Underwater Club
+          </h1>
         </RouterLink>
       </slot>
     </div>

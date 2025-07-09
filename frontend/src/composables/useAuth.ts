@@ -3,7 +3,7 @@ import { User, signOut as fbSignOut, getIdToken, onAuthStateChanged } from 'fire
 import { ref } from 'vue'
 
 export function useAuth() {
-  const _user = ref<User | null>(null)
+  const user = ref<User | null>(null)
   let _isInitialized = false
 
   let _ready: Promise<void> | null = null
@@ -16,7 +16,7 @@ export function useAuth() {
       })
 
       onAuthStateChanged(auth, (fbUser) => {
-        _user.value = fbUser
+        user.value = fbUser
         if (_readyResolver) {
           _readyResolver()
           _readyResolver = null
@@ -35,7 +35,7 @@ export function useAuth() {
 
   const getUser = async (): Promise<User | null> => {
     await waitForAuth()
-    return _user.value
+    return user.value
   }
 
   const getAccessToken = async (): Promise<string | undefined> => {
@@ -51,5 +51,6 @@ export function useAuth() {
     getAccessToken,
     getUser,
     signOut,
+    user,
   }
 }

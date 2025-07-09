@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import NavItems from '@/layouts/components/NavItems.vue'
-import logo from '@images/logo.svg?raw'
+import banner from '@images/banner.jpg'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 
 // Components
@@ -33,18 +33,6 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
         <VSpacer />
 
-        <IconBtn
-          href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <VIcon icon="ri-github-fill" />
-        </IconBtn>
-
-        <IconBtn>
-          <VIcon icon="ri-notification-line" />
-        </IconBtn>
-
         <NavbarThemeSwitcher class="me-2" />
 
         <UserProfile />
@@ -52,12 +40,8 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
     </template>
 
     <template #vertical-nav-header="{ toggleIsOverlayNavActive }">
-      <RouterLink to="/" class="app-logo app-title-wrapper">
-        <!-- eslint-disable vue/no-v-html -->
-        <div class="d-flex" v-html="logo" />
-        <!-- eslint-enable -->
-
-        <h1 class="font-weight-medium leading-normal text-xl text-uppercase">Materio</h1>
+      <RouterLink to="/">
+        <VImg :src="banner" width="260" />
       </RouterLink>
 
       <IconBtn class="d-block d-lg-none" @click="toggleIsOverlayNavActive(false)">

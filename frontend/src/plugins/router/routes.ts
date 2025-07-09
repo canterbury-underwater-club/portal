@@ -8,7 +8,7 @@ export const routes = [
     component: () => import('@/layouts/default.vue'),
     children: [
       {
-        path: 'members',
+        path: 'dashboard',
         name: Routes.Members,
         beforeEnter: isAuthenticatedGuard,
         component: () => import('@/pages/dashboard.vue'),
