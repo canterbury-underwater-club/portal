@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { useAuth } from '@/composables/useAuth'
 import avatar1 from '@images/avatars/avatar-1.png'
+
+const router = useRouter()
+
+const signOut = async () => {
+  await useAuth().signOut()
+  await router.replace({ path: '/', force: true })
+}
 </script>
 
 <template>
@@ -67,7 +75,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
           <VDivider class="my-2" />
 
           <!-- Logout -->
-          <VListItem to="/login">
+          <VListItem @click="signOut">
             <template #prepend>
               <VIcon class="me-2" icon="ri-logout-box-r-line" size="22" />
             </template>

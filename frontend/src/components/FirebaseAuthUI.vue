@@ -23,7 +23,7 @@ onMounted(() => {
   }
   if (firebaseuiRef.value) {
     ui.start(firebaseuiRef.value, {
-      signInFlow: 'popup',
+      signInFlow: 'redirect',
       signInOptions: [
         'google.com',
         // Add others as needed
@@ -33,7 +33,7 @@ onMounted(() => {
           console.log(JSON.stringify(authResult))
           // Use your desired redirect URL (from prop, query, etc.)
           // This could be from props, or your computed value:
-          router.replace(props.signInSuccessUrl ?? redirectUrl ?? '/')
+          router.replace(props.signInSuccessUrl ?? redirectUrl ?? '/members')
           return false // Prevents FirebaseUI from doing its own redirect
         },
       },
