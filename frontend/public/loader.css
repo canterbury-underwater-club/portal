@@ -1,79 +1,106 @@
+html,
 body {
   margin: 0;
-}
-
-html {
+  padding: 0;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  background: var(--initial-loader-bg, #fff);
 }
 
+#app {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+/* Loader Background */
 #loading-bg {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: var(--initial-loader-bg, #fff);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--initial-loader-bg, #fff);
-  block-size: 100%;
-  gap: 1rem 0;
-  inline-size: 100%;
 }
 
-.loading {
+/* Bubbles Loader */
+.bubbles-loader {
   position: relative;
-  box-sizing: border-box;
-  border: 3px solid transparent;
-  border-radius: 50%;
-  block-size: 55px;
-  inline-size: 55px;
+  width: 120px;
+  height: 120px;
+  background: transparent;
+  overflow: visible;
 }
 
-.loading .effect-1,
-.loading .effect-2,
-.loading .effect-3 {
+.bubble {
   position: absolute;
-  box-sizing: border-box;
-  border: 3px solid transparent;
+  bottom: -32px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(80, 173, 160, 0.48);
   border-radius: 50%;
-  block-size: 100%;
-  border-inline-start: 3px solid var(--initial-loader-color, #eee);
-  inline-size: 100%;
+  opacity: 0.75;
+  animation: rise 2.8s linear infinite;
+  box-shadow: 0 0 8px 0 #50ada0a8;
+  will-change: transform, opacity;
+  border: 1.5px solid var(--initial-loader-color, #50ada0);
 }
 
-.loading .effect-1 {
-  animation: rotate 1s ease infinite;
+/* Bubble variations for more realism */
+.bubble:nth-child(1) {
+  left: 15%;
+  width: 13px;
+  height: 13px;
+  animation-delay: 0s;
+}
+.bubble:nth-child(2) {
+  left: 32%;
+  width: 22px;
+  height: 22px;
+  animation-delay: 0.8s;
+}
+.bubble:nth-child(3) {
+  left: 57%;
+  width: 17px;
+  height: 17px;
+  animation-delay: 1.4s;
+}
+.bubble:nth-child(4) {
+  left: 75%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2.1s;
+}
+.bubble:nth-child(5) {
+  left: 49%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 1s;
+}
+.bubble:nth-child(6) {
+  left: 83%;
+  width: 11px;
+  height: 11px;
+  animation-delay: 2.7s;
 }
 
-.loading .effect-2 {
-  animation: rotate-opacity 1s ease infinite 0.1s;
-}
-
-.loading .effect-3 {
-  animation: rotate-opacity 1s ease infinite 0.2s;
-}
-
-.loading .effects {
-  transition: all 0.3s ease;
-}
-
-@keyframes rotate {
+@keyframes rise {
   0% {
-    transform: rotate(0deg);
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
   }
-
+  70% {
+    opacity: 0.6;
+    filter: blur(0.5px);
+  }
   100% {
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes rotate-opacity {
-  0% {
-    opacity: 0.1;
-    transform: rotate(0deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: rotate(1turn);
+    transform: translateY(-120px) scale(1.2);
+    opacity: 0;
+    filter: blur(1.2px);
   }
 }
