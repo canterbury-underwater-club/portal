@@ -1,9 +1,11 @@
 import { auth } from '@/plugins/firebase'
+import { Routes } from '@/plugins/router/constants'
 import { User, signOut as fbSignOut, getIdToken, onAuthStateChanged } from 'firebase/auth'
 import { ref } from 'vue'
 
 export function useAuth() {
   const user = ref<User | null>(null)
+
   let _isInitialized = false
 
   let _ready: Promise<void> | null = null
@@ -45,6 +47,7 @@ export function useAuth() {
 
   const signOut = async () => {
     await fbSignOut(auth)
+    window.location.href = Routes.Login
   }
 
   return {

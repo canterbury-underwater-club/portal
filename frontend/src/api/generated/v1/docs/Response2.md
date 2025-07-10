@@ -1,19 +1,19 @@
-# Response
+# Response2
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**user** | [**UserModel**](UserModel.md) |  | [default to undefined]
+**users** | [**Array&lt;UserModel&gt;**](UserModel.md) |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { Response } from './api';
+import { Response2 } from './api';
 
-const instance: Response = {
-    user,
+const instance: Response2 = {
+    users,
 };
 ```
 

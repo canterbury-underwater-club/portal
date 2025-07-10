@@ -1,26 +1,26 @@
-// stores/user.ts
+import { UserModel } from '@/api/generated/v1'
+import { buildUsersApi } from '@/api/portal-api'
 import { auth } from '@/plugins/firebase'
-import { User as FirebaseUser, getIdToken, onAuthStateChanged } from 'firebase/auth'
+import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-export interface User extends FirebaseUser {
-  roles: string[]
+export interface User extends UserModel {
+  photoURL?: string
 }
 
 export const useUserStore = defineStore('user', () => {
-  // Firebase user
   const firebaseUser = ref<FirebaseUser | null>(null)
-  // API user (roles, etc)
-  const apiUser = ref<{ roles: string[] } | null>(null)
+  const apiUser = ref<UserModel | null>(null)
   const loading = ref(true)
 
-  onAuthStateChanged(auth, async (user) => {
+  onAuthStateChanged(auth, async (fbUser) => {
     loading.value = true
     try {
-      firebaseUser.value = user
-      if (user) {
-        // fetch apiUser goes here later
+      firebaseUser.value = fbUser
+      if (fbUser) {
+        const usersApi = await buildUsersApi()
+        apiUser.value = (await usersApi.v1UsersSignInPost()).data.user
       } else {
         apiUser.value = null
       }
@@ -29,32 +29,23 @@ export const useUserStore = defineStore('user', () => {
     }
   })
 
-  const isAuthenticated = computed(() => !!firebaseUser.value)
-
-  const getAccessToken = async () => {
-    if (!auth.currentUser) return undefined
-    return getIdToken(auth.currentUser)
-  }
-
   const signOut = async () => {
     await auth.signOut()
     apiUser.value = null
   }
 
-  const user = computed<User | null>(() => {
-    if (!firebaseUser.value) return null
-    // Merge roles into FirebaseUser object
+  const user = computed<User | undefined>(() => {
+    if (!apiUser.value) return undefined
+
     return {
-      ...firebaseUser.value,
-      roles: apiUser.value?.roles ?? [],
+      ...apiUser.value,
+      photoURL: firebaseUser.value?.photoURL ?? undefined,
     }
   })
 
   return {
-    user,
-    isAuthenticated,
     loading,
-    getAccessToken,
+    user,
     signOut,
   }
 })

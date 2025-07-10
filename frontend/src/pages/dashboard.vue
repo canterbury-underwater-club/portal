@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { Member } from '@/api/generated/v1'
-import { buildMembersApi } from '@/api/portal-api'
+import { UserModel } from '@/api/generated/v1'
+import { buildUsersApi } from '@/api/portal-api'
 
-const members = ref<Member[]>([])
+const users = ref<UserModel[]>([])
 
-async function loadMembers() {
-  const api = await buildMembersApi()
+async function loadUsers() {
+  const api = await buildUsersApi()
 
-  members.value = (await api.v1MembersGet()).data.members
+  users.value = (await api.v1UsersGet()).data.users
 }
 </script>
 
 <template>
-  <VBtn @click="loadMembers">Load Members</VBtn>
+  <VBtn @click="loadUsers">Load Users</VBtn>
 
   <VRow class="match-height">
-    <VCol v-for="member in members" :key="member.id">
-      {{ member.firstName }}
+    <VCol v-for="user in users" :key="user.id">
+      {{ user.firstName }}
     </VCol>
   </VRow>
 </template>

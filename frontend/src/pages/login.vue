@@ -1,42 +1,55 @@
 <script setup lang="ts">
-import FirebaseAuthUI from '@/components/FirebaseAuthUI.vue'
-import logo from '@images/logo.svg?raw'
-import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png'
-import authV1MaskLight from '@images/pages/auth-v1-mask-light.png'
-import { useTheme } from 'vuetify'
-
-const vuetifyTheme = useTheme()
+import banner from '@images/banner.png'
 
 const route = useRoute()
 const redirectUrl = computed(() => route.query.redirect?.toString())
+const loading = ref(true)
 
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? authV1MaskLight : authV1MaskDark
+let observer: MutationObserver | undefined
+
+onMounted(() => {
+  // Wait for the next tick to ensure FirebaseAuthUI is mounted/rendered
+  setTimeout(() => {
+    const container = document.querySelector('.firebaseui-container')
+    if (!container) return
+
+    observer = new MutationObserver(() => {
+      if (container.querySelector('.firebaseui-idp-button')) {
+        loading.value = false
+        observer?.disconnect()
+      }
+    })
+    observer.observe(container, { childList: true, subtree: true })
+
+    // Edge case: in case button is already rendered before observer attaches
+    if (container.querySelector('.firebaseui-idp-button')) {
+      loading.value = false
+      observer?.disconnect()
+    }
+  }, 0)
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
 })
 </script>
 
 <template>
-  <div class="auth-wrapper d-flex align-center justify-center pa-4">
+  <Loader v-if="loading" />
+  <div v-show="!loading" class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard class="auth-card pa-4 pt-7" max-width="448">
       <VCardItem class="justify-center">
-        <RouterLink to="/" class="d-flex align-center gap-3">
-          <div class="d-flex" v-html="logo" />
-          <h2 class="font-weight-medium text-2xl text-uppercase">Materio</h2>
-        </RouterLink>
+        <VImg :src="banner" width="400" />
       </VCardItem>
 
       <VCardText class="pt-2">
-        <h4 class="text-h4 mb-1">Welcome to Materio! 👋🏻</h4>
-        <p class="mb-0">Please sign-in to your account and start the adventure</p>
+        <h4 class="text-h4 mb-1 text-center">Dive in to continue</h4>
       </VCardText>
 
       <VCardText>
-        <FirebaseAuthUI :signInSuccessUrl="redirectUrl" />
+        <FirebaseAuthUI :redirectUrl="redirectUrl" />
       </VCardText>
     </VCard>
-
-    <!-- bg img -->
-    <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" />
   </div>
 </template>
 

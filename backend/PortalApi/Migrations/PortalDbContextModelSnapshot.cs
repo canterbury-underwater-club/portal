@@ -25,7 +25,7 @@ namespace CanterburyUnderwater.PortalApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CanterburyUnderwater.PortalApi.DataAccess.Entities.Member", b =>
+            modelBuilder.Entity("CanterburyUnderwater.PortalApi.DataAccess.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,23 +34,44 @@ namespace CanterburyUnderwater.PortalApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DateJoined")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(254)
+                        .HasColumnType("character varying(254)");
+
+                    b.Property<string>("FirebaseUserId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("HomePhone")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
-                    b.Property<int>("Status")
+                    b.Property<DateTime>("LastSignedIn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("MembershipEndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("MembershipStartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("MembershipStatus")
                         .HasColumnType("integer");
+
+                    b.Property<string>("MobilePhone")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -60,7 +81,7 @@ namespace CanterburyUnderwater.PortalApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Members");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

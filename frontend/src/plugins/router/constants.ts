@@ -1,4 +1,6 @@
 export const Routes = {
   Login: 'login',
-  Members: 'members',
+  LoginCallback: 'login-callback',
+  AccountSettings: 'account-settings',
+  Dashboard: 'dashboard',
 }

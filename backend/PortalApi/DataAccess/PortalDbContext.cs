@@ -9,7 +9,7 @@ public class PortalDbContext : DbContext
     {
     }
 
-    public DbSet<Member> Members { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -18,7 +18,7 @@ public class PortalDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Member>(entity => { entity.HasEntityDefaults(); });
+        modelBuilder.Entity<User>(entity => { entity.HasEntityDefaults(); });
     }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)

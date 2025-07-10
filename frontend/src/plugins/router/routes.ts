@@ -6,15 +6,16 @@ export const routes = [
   {
     path: '/',
     component: () => import('@/layouts/default.vue'),
+    beforeEnter: isAuthenticatedGuard,
     children: [
       {
-        path: 'dashboard',
-        name: Routes.Members,
-        beforeEnter: isAuthenticatedGuard,
+        path: Routes.Dashboard,
+        name: Routes.Dashboard,
         component: () => import('@/pages/dashboard.vue'),
       },
       {
-        path: 'account-settings',
+        path: Routes.AccountSettings,
+        name: Routes.AccountSettings,
         component: () => import('@/pages/account-settings.vue'),
       },
       {
@@ -36,9 +37,14 @@ export const routes = [
     component: () => import('@/layouts/blank.vue'),
     children: [
       {
-        path: 'login',
+        path: Routes.Login,
         name: Routes.Login,
         component: () => import('@/pages/login.vue'),
+      },
+      {
+        path: Routes.LoginCallback,
+        name: Routes.LoginCallback,
+        component: () => import('@/pages/login-callback.vue'),
       },
       {
         path: '/:pathMatch(.*)*',

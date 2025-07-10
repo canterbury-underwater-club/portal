@@ -4,8 +4,9 @@ api.ts
 base.ts
 common.ts
 configuration.ts
-docs/Member.md
-docs/MembersApi.md
 docs/Response.md
+docs/Response2.md
+docs/UserModel.md
+docs/UsersApi.md
 git_push.sh
 index.ts

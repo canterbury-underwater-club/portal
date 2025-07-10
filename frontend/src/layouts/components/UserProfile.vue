@@ -1,21 +1,15 @@
 <script setup lang="ts">
 import { useAuth } from '@/composables/useAuth'
+import { Routes } from '@/plugins/router/constants'
 import { useUserStore } from '@/stores'
-
-const router = useRouter()
 
 const { user } = storeToRefs(useUserStore())
 const userImage = computed(() => user.value?.photoURL ?? '')
-
-const signOut = async () => {
-  await useAuth().signOut()
-  await router.replace({ path: '/', force: true })
-}
 </script>
 
 <template>
   <VAvatar class="cursor-pointer" color="primary" variant="tonal">
-    <VImg :src="userImage" />
+    <VImg :src="userImage" width="40" />
 
     <!-- SECTION Menu -->
     <VMenu activator="parent" width="230" location="bottom end" offset="14px">
@@ -25,17 +19,19 @@ const signOut = async () => {
           <template #prepend>
             <VListItemAction start>
               <VAvatar color="primary" variant="tonal">
-                <VImg :src="userImage" />
+                <VImg :src="userImage" width="40" />
               </VAvatar>
             </VListItemAction>
           </template>
 
-          <VListItemTitle class="font-weight-semibold"> {{ user?.displayName }} </VListItemTitle>
+          <VListItemTitle class="font-weight-semibold">
+            {{ `${user?.firstName} ${user?.lastName}` }}
+          </VListItemTitle>
         </VListItem>
         <VDivider class="my-2" />
 
         <!-- Profile -->
-        <VListItem link>
+        <VListItem link :to="{ name: Routes.AccountSettings }">
           <template #prepend>
             <VIcon class="me-2" icon="ri-user-line" size="22" />
           </template>
@@ -56,7 +52,7 @@ const signOut = async () => {
         <VDivider class="my-2" />
 
         <!-- Sign out -->
-        <VListItem @click="signOut">
+        <VListItem @click="useAuth().signOut()">
           <template #prepend>
             <VIcon class="me-2" icon="ri-logout-box-r-line" size="22" />
           </template>

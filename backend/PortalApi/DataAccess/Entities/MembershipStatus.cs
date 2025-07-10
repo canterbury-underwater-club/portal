@@ -1,7 +1,10 @@
 ﻿namespace CanterburyUnderwater.PortalApi.DataAccess.Entities;
 
-public enum MemberStatus
+public enum MembershipStatus
 {
+    NonMember,
+    PendingApproval,
+    Denied,
     Regular,
     Associate,
     Life,

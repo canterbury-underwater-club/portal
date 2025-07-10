@@ -1,7 +1,7 @@
 import { useAuth } from '@/composables/useAuth'
 import { settingsService } from '@/utils/settingsService'
 import axiosInstance from './axiosInstance'
-import { Configuration, MembersApi } from './generated/v1'
+import { Configuration, UsersApi } from './generated/v1'
 
 const basePath = settingsService.isDevelopment
   ? 'http://localhost:5171'
@@ -13,5 +13,5 @@ const buildApiConfig = async () => {
   })
 }
 
-export const buildMembersApi = async () =>
-  new MembersApi(await buildApiConfig(), basePath, axiosInstance)
+export const buildUsersApi = async () =>
+  new UsersApi(await buildApiConfig(), basePath, axiosInstance)

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import NavItems from '@/layouts/components/NavItems.vue'
-import banner from '@images/banner.jpg'
+import banner from '@images/banner.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 
 // Components
@@ -18,19 +18,6 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
           <VIcon icon="ri-menu-line" />
         </IconBtn>
 
-        <!-- Search -->
-        <div class="d-flex align-center cursor-pointer" style="user-select: none">
-          <!-- Search Trigger button -->
-          <IconBtn>
-            <VIcon icon="ri-search-line" />
-          </IconBtn>
-
-          <span class="d-none d-md-flex align-center text-disabled">
-            <span class="me-3">Search</span>
-            <span class="meta-key">&#8984;K</span>
-          </span>
-        </div>
-
         <VSpacer />
 
         <NavbarThemeSwitcher class="me-2" />
@@ -41,7 +28,7 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
     <template #vertical-nav-header="{ toggleIsOverlayNavActive }">
       <RouterLink to="/">
-        <VImg :src="banner" width="260" />
+        <VImg :src="banner" width="240" />
       </RouterLink>
 
       <IconBtn class="d-block d-lg-none" @click="toggleIsOverlayNavActive(false)">

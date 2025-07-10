@@ -1,24 +1,22 @@
 ﻿using AutoMapper;
 using CanterburyUnderwater.Endpoints;
 using CanterburyUnderwater.PortalApi.DataAccess;
-using CanterburyUnderwater.PortalApi.Features.Members.Models;
+using CanterburyUnderwater.PortalApi.Features.Users.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace CanterburyUnderwater.PortalApi.Features.Members.List;
+namespace CanterburyUnderwater.PortalApi.Features.Users.List;
 
-public class Handler(PortalDbContext dbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+public class Handler(PortalDbContext dbContext, IMapper mapper)
     : IResponseEndpointHandler<Ok<Contracts.Response>>
 {
     public async Task<Ok<Contracts.Response>> HandleAsync(CancellationToken cancellationToken = default)
     {
-        var user = httpContextAccessor.HttpContext?.User;
-
-        var members = await dbContext.Members.ToListAsync(cancellationToken);
+        var users = await dbContext.Users.ToListAsync(cancellationToken);
 
         return TypedResults.Ok(new Contracts.Response
         {
-            Members = mapper.Map<List<Member>>(members)
+            Users = mapper.Map<List<UserModel>>(users)
         });
     }
 }
