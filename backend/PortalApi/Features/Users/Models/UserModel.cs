@@ -4,7 +4,7 @@ public record UserModel
 {
     public required Guid Id { get; init; }
     public required string FirstName { get; init; }
-    public required string LastName { get; init; }
+    public string? LastName { get; init; }
     public required string EmailAddress { get; init; }
     public string? HomePhone { get; init; }
     public string? MobilePhone { get; init; }

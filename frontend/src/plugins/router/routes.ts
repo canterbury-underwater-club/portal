@@ -14,21 +14,23 @@ export const routes = [
         component: () => import('@/pages/dashboard.vue'),
       },
       {
+        path: Routes.People,
+        name: Routes.People,
+        component: () => import('@/pages/people.vue'),
+      },
+      {
+        path: Routes.Person,
+        redirect: { name: Routes.People }, // Or path: Routes.People
+      },
+      {
+        path: `${Routes.Person}/:id`,
+        name: Routes.Person,
+        component: () => import('@/pages/person.vue'),
+      },
+      {
         path: Routes.AccountSettings,
         name: Routes.AccountSettings,
         component: () => import('@/pages/account-settings.vue'),
-      },
-      {
-        path: 'typography',
-        component: () => import('@/pages/typography.vue'),
-      },
-      {
-        path: 'icons',
-        component: () => import('@/pages/icons.vue'),
-      },
-      {
-        path: 'cards',
-        component: () => import('@/pages/cards.vue'),
       },
     ],
   },

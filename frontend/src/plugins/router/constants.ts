@@ -3,4 +3,6 @@ export const Routes = {
   LoginCallback: 'login-callback',
   AccountSettings: 'account-settings',
   Dashboard: 'dashboard',
+  People: 'people',
+  Person: 'person',
 }

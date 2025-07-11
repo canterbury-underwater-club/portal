@@ -21,9 +21,9 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
   <VerticalNavLink
     :item="{
-      title: 'Account Settings',
-      icon: 'ri-user-settings-line',
-      to: '/account-settings',
+      title: 'People',
+      icon: 'ri-team-line',
+      to: '/people',
     }"
   />
 </template>

@@ -5,11 +5,11 @@ import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-export interface User extends UserModel {
+export interface CurrentUser extends UserModel {
   photoURL?: string
 }
 
-export const useUserStore = defineStore('user', () => {
+export const useCurrentUserStore = defineStore('current-user', () => {
   const firebaseUser = ref<FirebaseUser | null>(null)
   const apiUser = ref<UserModel | null>(null)
   const loading = ref(true)
@@ -34,7 +34,7 @@ export const useUserStore = defineStore('user', () => {
     apiUser.value = null
   }
 
-  const user = computed<User | undefined>(() => {
+  const user = computed<CurrentUser | undefined>(() => {
     if (!apiUser.value) return undefined
 
     return {

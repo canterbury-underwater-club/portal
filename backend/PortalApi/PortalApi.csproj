@@ -30,6 +30,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Features\Users\Create\"/>
         <Folder Include="Migrations\"/>
     </ItemGroup>
 

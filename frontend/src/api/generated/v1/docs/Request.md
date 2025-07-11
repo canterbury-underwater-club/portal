@@ -1,27 +1,25 @@
-# UserModel
+# Request
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [default to undefined]
-**firstName** | **string** |  | [default to undefined]
+**firstName** | **string** |  | [optional] [default to undefined]
 **lastName** | **string** |  | [optional] [default to undefined]
-**emailAddress** | **string** |  | [default to undefined]
+**emailAddress** | **string** |  | [optional] [default to undefined]
 **homePhone** | **string** |  | [optional] [default to undefined]
 **mobilePhone** | **string** |  | [optional] [default to undefined]
-**membershipStatus** | [**MemberStatusModel**](MemberStatusModel.md) |  | [default to undefined]
+**membershipStatus** | [**NullableOfMemberStatusModel**](NullableOfMemberStatusModel.md) |  | [optional] [default to undefined]
 **membershipStartDate** | **string** |  | [optional] [default to undefined]
 **membershipEndDate** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { UserModel } from './api';
+import { Request } from './api';
 
-const instance: UserModel = {
-    id,
+const instance: Request = {
     firstName,
     lastName,
     emailAddress,

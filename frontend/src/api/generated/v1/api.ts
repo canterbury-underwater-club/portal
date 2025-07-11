@@ -26,6 +26,138 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @enum {string}
+ */
+
+export const MemberStatusModel = {
+    NonMember: 'NonMember',
+    PendingApproval: 'PendingApproval',
+    Denied: 'Denied',
+    Regular: 'Regular',
+    Associate: 'Associate',
+    Life: 'Life',
+    Former: 'Former'
+} as const;
+
+export type MemberStatusModel = typeof MemberStatusModel[keyof typeof MemberStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullableOfMemberStatusModel = {
+    NonMember: 'NonMember',
+    PendingApproval: 'PendingApproval',
+    Denied: 'Denied',
+    Regular: 'Regular',
+    Associate: 'Associate',
+    Life: 'Life',
+    Former: 'Former'
+} as const;
+
+export type NullableOfMemberStatusModel = typeof NullableOfMemberStatusModel[keyof typeof NullableOfMemberStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @interface ProblemDetails
+ */
+export interface ProblemDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    'type'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProblemDetails
+     */
+    'status'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    'detail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProblemDetails
+     */
+    'instance'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface Request
+ */
+export interface Request {
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'firstName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'lastName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'emailAddress'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'homePhone'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'mobilePhone'?: string | null;
+    /**
+     * 
+     * @type {NullableOfMemberStatusModel}
+     * @memberof Request
+     */
+    'membershipStatus'?: NullableOfMemberStatusModel | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'membershipStartDate'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Request
+     */
+    'membershipEndDate'?: string | null;
+}
+
+
+/**
+ * 
+ * @export
  * @interface Response
  */
 export interface Response {
@@ -72,7 +204,7 @@ export interface UserModel {
      * @type {string}
      * @memberof UserModel
      */
-    'lastName': string;
+    'lastName'?: string | null;
     /**
      * 
      * @type {string}
@@ -93,10 +225,10 @@ export interface UserModel {
     'mobilePhone'?: string | null;
     /**
      * 
-     * @type {number}
+     * @type {MemberStatusModel}
      * @memberof UserModel
      */
-    'membershipStatus': number;
+    'membershipStatus': MemberStatusModel;
     /**
      * 
      * @type {string}
@@ -110,6 +242,8 @@ export interface UserModel {
      */
     'membershipEndDate'?: string | null;
 }
+
+
 
 /**
  * UsersApi - axios parameter creator
@@ -144,6 +278,49 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Request} request 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1UsersIdPatch: async (id: string, request: Request, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1UsersIdPatch', 'id', id)
+            // verify required parameter 'request' is not null or undefined
+            assertParamExists('v1UsersIdPatch', 'request', request)
+            const localVarPath = `/v1/users/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(request, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -206,6 +383,19 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} id 
+         * @param {Request} request 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1UsersIdPatch(id, request, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.v1UsersIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -235,6 +425,16 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
+         * @param {string} id 
+         * @param {Request} request 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.v1UsersIdPatch(id, request, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -259,6 +459,18 @@ export class UsersApi extends BaseAPI {
      */
     public v1UsersGet(options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).v1UsersGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {Request} request 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).v1UsersIdPatch(id, request, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

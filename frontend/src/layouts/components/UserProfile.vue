@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useAuth } from '@/composables/useAuth'
 import { Routes } from '@/plugins/router/constants'
-import { useUserStore } from '@/stores'
+import { useCurrentUserStore } from '@/stores'
 
-const { user } = storeToRefs(useUserStore())
+const { user } = storeToRefs(useCurrentUserStore())
 const userImage = computed(() => user.value?.photoURL ?? '')
 </script>
 

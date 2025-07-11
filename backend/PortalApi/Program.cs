@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using CanterburyUnderwater.Endpoints;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.WebAppExtensions;
@@ -26,6 +27,12 @@ public class Program
             .AddDefaultApiVersioning()
             .AddProblemDetails()
             .AddHttpContextAccessor();
+
+        builder.Services.ConfigureHttpJsonOptions(options =>
+        {
+            options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
         builder.Services.AddDbContext<PortalDbContext>(options =>
         {

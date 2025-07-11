@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores'
+import { useCurrentUserStore } from '@/stores'
 
 const router = useRouter()
 const route = useRoute()
 const redirectUrl = computed(() => route.query.redirect?.toString() ?? '/')
 
-const { loading, user } = storeToRefs(useUserStore())
+const { loading, user } = storeToRefs(useCurrentUserStore())
 
 watch(loading, (isLoading) => {
   if (!isLoading && user.value) {
