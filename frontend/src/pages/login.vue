@@ -4,34 +4,6 @@ import banner from '@images/banner.png'
 const route = useRoute()
 const redirectUrl = computed(() => route.query.redirect?.toString())
 const loading = ref(true)
-
-let observer: MutationObserver | undefined
-
-onMounted(() => {
-  // Wait for the next tick to ensure FirebaseAuthUI is mounted/rendered
-  setTimeout(() => {
-    const container = document.querySelector('.firebaseui-container')
-    if (!container) return
-
-    observer = new MutationObserver(() => {
-      if (container.querySelector('.firebaseui-idp-button')) {
-        loading.value = false
-        observer?.disconnect()
-      }
-    })
-    observer.observe(container, { childList: true, subtree: true })
-
-    // Edge case: in case button is already rendered before observer attaches
-    if (container.querySelector('.firebaseui-idp-button')) {
-      loading.value = false
-      observer?.disconnect()
-    }
-  }, 0)
-})
-
-onBeforeUnmount(() => {
-  observer?.disconnect()
-})
 </script>
 
 <template>
@@ -47,7 +19,7 @@ onBeforeUnmount(() => {
       </VCardText>
 
       <VCardText>
-        <FirebaseAuthUI :redirectUrl="redirectUrl" />
+        <FirebaseAuthUI :redirectUrl="redirectUrl" @ready="loading = false" />
       </VCardText>
     </VCard>
   </div>
