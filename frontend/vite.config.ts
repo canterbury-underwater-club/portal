@@ -21,7 +21,7 @@ export default defineConfig({
       dirs: ['src/@core/components', 'src/components'],
       dts: true,
       resolvers: [
-        componentName => {
+        (componentName) => {
           // Auto import `VueApexCharts`
           if (componentName === 'VueApexCharts')
             return { name: 'default', from: 'vue3-apexcharts', as: 'VueApexCharts' }
@@ -47,7 +47,9 @@ export default defineConfig({
       '@layouts': fileURLToPath(new URL('./src/@layouts', import.meta.url)),
       '@images': fileURLToPath(new URL('./src/assets/images/', import.meta.url)),
       '@styles': fileURLToPath(new URL('./src/assets/styles/', import.meta.url)),
-      '@configured-variables': fileURLToPath(new URL('./src/assets/styles/variables/_template.scss', import.meta.url)),
+      '@configured-variables': fileURLToPath(
+        new URL('./src/assets/styles/variables/_template.scss', import.meta.url),
+      ),
     },
   },
   build: {
@@ -55,8 +57,16 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['vuetify'],
-    entries: [
-      './src/**/*.vue',
-    ],
+    entries: ['./src/**/*.vue'],
+  },
+  server: {
+    allowedHosts: true,
+    proxy: {
+      // This will proxy /__/auth/* requests to Firebase
+      '^/__\\/auth/.*': {
+        target: 'https://cuc-portal.firebaseapp.com',
+        changeOrigin: true,
+      },
+    },
   },
 })
