@@ -1,28 +1,22 @@
 import { UserModel } from '@/api/generated/v1'
 import { buildUsersApi } from '@/api/portal-api'
 import { auth } from '@/plugins/firebase'
-import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-
-export interface CurrentUser extends UserModel {
-  photoURL?: string
-}
+import { ref } from 'vue'
 
 export const useCurrentUserStore = defineStore('current-user', () => {
-  const firebaseUser = ref<FirebaseUser | null>(null)
-  const apiUser = ref<UserModel | null>(null)
+  const user = ref<UserModel | null>(null)
   const loading = ref(true)
 
   onAuthStateChanged(auth, async (fbUser) => {
     loading.value = true
     try {
-      firebaseUser.value = fbUser
       if (fbUser) {
         const usersApi = await buildUsersApi()
-        apiUser.value = (await usersApi.v1UsersSignInPost()).data.user
+        user.value = (await usersApi.v1UsersSignInPost()).data.user
       } else {
-        apiUser.value = null
+        user.value = null
       }
     } finally {
       loading.value = false
@@ -31,17 +25,8 @@ export const useCurrentUserStore = defineStore('current-user', () => {
 
   const signOut = async () => {
     await auth.signOut()
-    apiUser.value = null
+    user.value = null
   }
-
-  const user = computed<CurrentUser | undefined>(() => {
-    if (!apiUser.value) return undefined
-
-    return {
-      ...apiUser.value,
-      photoURL: firebaseUser.value?.photoURL ?? undefined,
-    }
-  })
 
   return {
     loading,

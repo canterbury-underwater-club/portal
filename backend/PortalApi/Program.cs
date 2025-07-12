@@ -1,8 +1,11 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
 using CanterburyUnderwater.Endpoints;
+using CanterburyUnderwater.PortalApi.Authorization;
 using CanterburyUnderwater.PortalApi.DataAccess;
+using CanterburyUnderwater.PortalApi.Services;
 using CanterburyUnderwater.PortalApi.WebAppExtensions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 
 namespace CanterburyUnderwater.PortalApi;
@@ -39,6 +42,8 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("DBConnection"));
         });
 
+        builder.Services.AddScoped<ICurrentUserAccessor, CurrentUserAccessor>();
+        builder.Services.AddScoped<IClaimsTransformation, UserRolesClaimsTransformation>();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())

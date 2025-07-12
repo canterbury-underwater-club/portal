@@ -11,9 +11,11 @@ Name | Type | Description | Notes
 **emailAddress** | **string** |  | [default to undefined]
 **homePhone** | **string** |  | [optional] [default to undefined]
 **mobilePhone** | **string** |  | [optional] [default to undefined]
+**photoUrl** | **string** |  | [optional] [default to undefined]
 **membershipStatus** | [**MemberStatusModel**](MemberStatusModel.md) |  | [default to undefined]
 **membershipStartDate** | **string** |  | [optional] [default to undefined]
 **membershipEndDate** | **string** |  | [optional] [default to undefined]
+**roles** | **Array&lt;string&gt;** |  | [default to undefined]
 
 ## Example
 
@@ -27,9 +29,11 @@ const instance: UserModel = {
     emailAddress,
     homePhone,
     mobilePhone,
+    photoUrl,
     membershipStatus,
     membershipStartDate,
     membershipEndDate,
+    roles,
 };
 ```
 

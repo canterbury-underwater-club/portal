@@ -225,6 +225,12 @@ export interface UserModel {
     'mobilePhone'?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'photoUrl'?: string | null;
+    /**
+     * 
      * @type {MemberStatusModel}
      * @memberof UserModel
      */
@@ -241,6 +247,12 @@ export interface UserModel {
      * @memberof UserModel
      */
     'membershipEndDate'?: string | null;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserModel
+     */
+    'roles': Array<string>;
 }
 
 

@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CanterburyUnderwater.PortalApi.Features.Users.List;
 
-public class Handler(PortalDbContext dbContext, IMapper mapper)
+public class Handler(PortalDbContext db, IMapper mapper)
     : IResponseEndpointHandler<Ok<Contracts.Response>>
 {
     public async Task<Ok<Contracts.Response>> HandleAsync(CancellationToken cancellationToken = default)
     {
-        var users = await dbContext.Users.ToListAsync(cancellationToken);
+        var users = await db.Users.ToListAsync(cancellationToken);
 
         return TypedResults.Ok(new Contracts.Response
         {

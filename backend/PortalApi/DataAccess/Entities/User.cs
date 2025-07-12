@@ -16,6 +16,8 @@ public class User : EntityDefaults
 
     [MaxLength(32)] public string? MobilePhone { get; set; }
 
+    [MaxLength(2048)] public string? PhotoUrl { get; set; }
+
     public required MembershipStatus MembershipStatus { get; set; } = MembershipStatus.NonMember;
 
     public DateTime? MembershipStartDate { get; set; }
@@ -23,4 +25,6 @@ public class User : EntityDefaults
     public DateTime? MembershipEndDate { get; set; }
 
     public DateTime LastSignedIn { get; set; }
+
+    public virtual ICollection<Role> Roles { get; init; } = [];
 }

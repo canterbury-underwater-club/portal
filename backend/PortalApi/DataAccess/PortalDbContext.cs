@@ -1,4 +1,5 @@
-﻿using CanterburyUnderwater.PortalApi.DataAccess.Entities;
+﻿using CanterburyUnderwater.PortalApi.Authorization;
+using CanterburyUnderwater.PortalApi.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CanterburyUnderwater.PortalApi.DataAccess;
@@ -10,6 +11,7 @@ public class PortalDbContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -19,6 +21,11 @@ public class PortalDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>(entity => { entity.HasEntityDefaults(); });
+
+        modelBuilder.Entity<Role>().HasData(
+            new Role { Id = RoleIds.Admin, Name = RoleNames.Admin },
+            new Role { Id = RoleIds.Committee, Name = RoleNames.Committee }
+        );
     }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)

@@ -25,6 +25,7 @@ export const routes = [
       {
         path: `${Routes.Person}/:id`,
         name: Routes.Person,
+        beforeEnter: isAuthenticatedGuard,
         component: () => import('@/pages/person.vue'),
       },
       {

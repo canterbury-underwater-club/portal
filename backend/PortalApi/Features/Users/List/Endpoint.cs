@@ -1,4 +1,5 @@
 ﻿using CanterburyUnderwater.Endpoints;
+using CanterburyUnderwater.PortalApi.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CanterburyUnderwater.PortalApi.Features.Users.List;
@@ -16,6 +17,6 @@ public class Endpoint : IEndpoint
             .MapToApiVersion(1)
             .Produces<Contracts.Response>()
             .WithTags(Tags.Users)
-            .RequireAuthorization();
+            .RequireRoles(RoleNames.Committee);
     }
 }

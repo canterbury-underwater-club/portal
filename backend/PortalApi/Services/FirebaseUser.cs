@@ -1,10 +1,10 @@
 ﻿using System.Security.Claims;
 
-namespace CanterburyUnderwater.PortalApi.Features.Users.SignIn;
+namespace CanterburyUnderwater.PortalApi.Services;
 
-public class FirebaseUserPrincipal
+public class FirebaseUser
 {
-    private FirebaseUserPrincipal()
+    private FirebaseUser()
     {
     }
 
@@ -12,15 +12,17 @@ public class FirebaseUserPrincipal
     public required string EmailAddress { get; init; }
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
+    public string? PhotoUrl { get; init; }
 
-    public static FirebaseUserPrincipal? FromClaimsPrincipal(ClaimsPrincipal? user)
+    public static FirebaseUser? FromClaimsIdentity(ClaimsIdentity? user)
     {
-        if (user?.Identity?.IsAuthenticated != true)
+        if (user?.IsAuthenticated != true)
             throw new UnauthorizedAccessException("User is not authenticated.");
 
-        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier);
-        var emailAddress = user.FindFirstValue(ClaimTypes.Email);
-        var name = user.FindFirstValue("name");
+        var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var emailAddress = user.FindFirst(ClaimTypes.Email)?.Value;
+        var name = user.FindFirst("name")?.Value;
+        var photoUrl = user.FindFirst("picture")?.Value;
 
         if (string.IsNullOrEmpty(userId))
             throw new UnauthorizedAccessException($"Missing required {ClaimTypes.NameIdentifier} claim.");
@@ -31,12 +33,13 @@ public class FirebaseUserPrincipal
 
         var (firstName, lastName) = SplitFullName(name);
 
-        return new FirebaseUserPrincipal
+        return new FirebaseUser
         {
             UserId = userId,
             EmailAddress = emailAddress,
             FirstName = firstName,
-            LastName = lastName
+            LastName = lastName,
+            PhotoUrl = photoUrl
         };
     }
 

@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CanterburyUnderwater.PortalApi.Features.Users.Update;
 
-public class Handler(PortalDbContext dbContext, IMapper mapper)
+public class Handler(PortalDbContext db, IMapper mapper)
     : IRequestEndpointHandler<Contracts.HandlerRequest, Results<ProblemHttpResult, Ok>>
 {
     public async Task<Results<ProblemHttpResult, Ok>> HandleAsync(Contracts.HandlerRequest request,
         CancellationToken cancellationToken = default)
     {
-        var user = await dbContext.Users.FindAsync([request.Id], cancellationToken);
+        var user = await db.Users.FindAsync([request.Id], cancellationToken);
 
         if (user == null) return ProblemTypedResults.NotFound<User>();
 
@@ -27,7 +27,7 @@ public class Handler(PortalDbContext dbContext, IMapper mapper)
         if (request.MembershipStartDate is not null) user.MembershipStartDate = request.MembershipStartDate;
         if (request.MembershipEndDate is not null) user.MembershipEndDate = request.MembershipEndDate;
 
-        await dbContext.SaveChangesAsync(cancellationToken);
+        await db.SaveChangesAsync(cancellationToken);
 
         return TypedResults.Ok();
     }

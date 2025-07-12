@@ -2,14 +2,15 @@
 import { useAuth } from '@/composables/useAuth'
 import { Routes } from '@/plugins/router/constants'
 import { useCurrentUserStore } from '@/stores'
+import { resolveUserDisplayName, resolveUserPhoto } from '@/utils/userResolver'
 
 const { user } = storeToRefs(useCurrentUserStore())
-const userImage = computed(() => user.value?.photoURL ?? '')
+const userPhoto = computed(() => resolveUserPhoto(user.value))
 </script>
 
 <template>
-  <VAvatar class="cursor-pointer" color="primary" variant="tonal">
-    <VImg :src="userImage" width="40" />
+  <VAvatar class="cursor-pointer" color="primary" :variant="userPhoto ? 'text' : 'tonal'">
+    <VAvatar :image="userPhoto" />
 
     <!-- SECTION Menu -->
     <VMenu activator="parent" width="230" location="bottom end" offset="14px">
@@ -18,14 +19,12 @@ const userImage = computed(() => user.value?.photoURL ?? '')
         <VListItem>
           <template #prepend>
             <VListItemAction start>
-              <VAvatar color="primary" variant="tonal">
-                <VImg :src="userImage" width="40" />
-              </VAvatar>
+              <VAvatar :image="userPhoto" />
             </VListItemAction>
           </template>
 
           <VListItemTitle class="font-weight-semibold">
-            {{ `${user?.firstName} ${user?.lastName}` }}
+            {{ resolveUserDisplayName(user) }}
           </VListItemTitle>
         </VListItem>
         <VDivider class="my-2" />
