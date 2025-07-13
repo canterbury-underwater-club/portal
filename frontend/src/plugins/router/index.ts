@@ -9,11 +9,11 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach(() => (useRouteLoadingStore().isLoading = true))
+router.beforeEach(() => useRouteLoadingStore().start())
 
 router.beforeEach(authGuard)
 
-router.afterEach(() => (useRouteLoadingStore().isLoading = false))
+router.afterEach(() => useRouteLoadingStore().stop())
 
 export default function (app: App) {
   app.use(router)

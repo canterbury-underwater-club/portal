@@ -16,6 +16,16 @@ export function resolveUserMembershipStatus(
   return resolveMembershipStatus(user.membershipStatus)
 }
 
+export function resolveUserIsActiveMember(user: UserModel | null | undefined): boolean {
+  if (!user) return false
+
+  return new Set<MembershipStatusModel>([
+    MembershipStatusModel.Associate,
+    MembershipStatusModel.Regular,
+    MembershipStatusModel.Life,
+  ]).has(user.membershipStatus)
+}
+
 export function resolveMembershipStatus(membershipStatus: MembershipStatusModel) {
   switch (membershipStatus) {
     case MembershipStatusModel.NonMember:

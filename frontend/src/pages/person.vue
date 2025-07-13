@@ -68,78 +68,80 @@ function toggleEdit() {
 </script>
 
 <template>
-  <VForm @submit.prevent>
-    <VRow>
-      <VCol cols="12">
-        <VAvatar :image="resolveUserPhoto(user)" size="64" />
-      </VCol>
-      <VCol cols="12">
-        <EditableTextField
-          v-model="firstName"
-          label="First name"
-          :editing="isEditing"
-          :rules="firstNameRules"
-        />
-      </VCol>
+  <VCard>
+    <VCardText>
+      <VRow>
+        <VCol cols="12">
+          <VAvatar :image="resolveUserPhoto(user)" size="64" />
+        </VCol>
+        <VCol cols="12">
+          <EditableTextField
+            v-model="firstName"
+            label="First name"
+            :editing="isEditing"
+            :rules="firstNameRules"
+          />
+        </VCol>
 
-      <VCol cols="12" v-if="isEditing || lastName">
-        <EditableTextField
-          v-model="lastName"
-          label="Last name"
-          :editing="isEditing"
-          :rules="nameRules"
-        />
-      </VCol>
+        <VCol cols="12" v-if="isEditing || lastName">
+          <EditableTextField
+            v-model="lastName"
+            label="Last name"
+            :editing="isEditing"
+            :rules="nameRules"
+          />
+        </VCol>
 
-      <VCol cols="12">
-        <EditableTextField
-          v-model="emailAddress"
-          label="Email address"
-          type="email"
-          link-type="mailto"
-          :editing="isEditing"
-          :rules="emailRules"
-        />
-      </VCol>
+        <VCol cols="12">
+          <EditableTextField
+            v-model="emailAddress"
+            label="Email address"
+            type="email"
+            link-type="mailto"
+            :editing="isEditing"
+            :rules="emailRules"
+          />
+        </VCol>
 
-      <VCol cols="12" v-if="isEditing || mobilePhone">
-        <EditableTextField
-          v-model="mobilePhone"
-          label="Mobile phone"
-          type="number"
-          link-type="tel"
-          :editing="isEditing"
-          :rules="phoneRules"
-        />
-      </VCol>
+        <VCol cols="12" v-if="isEditing || mobilePhone">
+          <EditableTextField
+            v-model="mobilePhone"
+            label="Mobile phone"
+            type="number"
+            link-type="tel"
+            :editing="isEditing"
+            :rules="phoneRules"
+          />
+        </VCol>
 
-      <VCol cols="12" v-if="isEditing || homePhone">
-        <EditableTextField
-          v-model="homePhone"
-          label="Home phone"
-          type="number"
-          link-type="tel"
-          :editing="isEditing"
-          :rules="phoneRules"
-        />
-      </VCol>
+        <VCol cols="12" v-if="isEditing || homePhone">
+          <EditableTextField
+            v-model="homePhone"
+            label="Home phone"
+            type="number"
+            link-type="tel"
+            :editing="isEditing"
+            :rules="phoneRules"
+          />
+        </VCol>
 
-      <VCol cols="12">
-        <EditableSelect
-          v-model="membershipStatus"
-          label="Membership status"
-          :items="membershipStatusOptions"
-          item-value="value"
-          item-title="text"
-          :editing="isEditing"
-        />
-      </VCol>
+        <VCol cols="12">
+          <EditableSelect
+            v-model="membershipStatus"
+            label="Membership status"
+            :items="membershipStatusOptions"
+            item-value="value"
+            item-title="text"
+            :editing="isEditing"
+          />
+        </VCol>
 
-      <VCol cols="12">
-        <VBtn @click="toggleEdit" color="primary" class="ml-auto">
-          {{ isEditing ? 'Done' : 'Edit' }}
-        </VBtn>
-      </VCol>
-    </VRow>
-  </VForm>
+        <VCol cols="12">
+          <VBtn @click="toggleEdit" color="primary" class="ml-auto">
+            {{ isEditing ? 'Done' : 'Edit' }}
+          </VBtn>
+        </VCol>
+      </VRow>
+    </VCardText>
+  </VCard>
 </template>

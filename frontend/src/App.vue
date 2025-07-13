@@ -4,7 +4,7 @@ import { useRouteLoadingStore } from './stores/routeLoading'
 
 <template>
   <VApp>
-    <Loader v-if="useRouteLoadingStore().isLoading" />
+    <Loader v-if="useRouteLoadingStore().loading" />
     <RouterView />
   </VApp>
 </template>

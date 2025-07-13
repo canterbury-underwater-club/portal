@@ -17,6 +17,10 @@ body {
     // TODO: Use grid gutter variable here
     padding-block: 1.5rem;
   }
+
+  @media (max-width: 600px) {
+    padding-inline: 0.3rem;
+  }
 }
 
 .layout-footer {
