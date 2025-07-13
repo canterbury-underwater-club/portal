@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { MembershipStatusModel } from '@/api/generated/v1'
+import EditableAddressInput from '@/components/EditableAddressInput.vue'
 import { Routes } from '@/plugins/router/constants'
 import { useUsersStore } from '@/stores/usersStore'
 import { resolveMembershipStatus, resolveUserPhoto } from '@/utils/userResolver'
@@ -18,6 +19,7 @@ const lastName = ref('')
 const emailAddress = ref('')
 const mobilePhone = ref('')
 const homePhone = ref('')
+const address = ref('')
 const membershipStatus = ref<MembershipStatusModel | undefined>(undefined)
 
 const fields = {
@@ -26,6 +28,7 @@ const fields = {
   emailAddress,
   mobilePhone,
   homePhone,
+  address,
   membershipStatus,
 }
 
@@ -38,6 +41,7 @@ onMounted(async () => {
     emailAddress.value = user.value.emailAddress
     mobilePhone.value = user.value.mobilePhone ?? ''
     homePhone.value = user.value.homePhone ?? ''
+    address.value = user.value.address ?? ''
     membershipStatus.value = user.value.membershipStatus
   }
 })
@@ -123,6 +127,10 @@ function toggleEdit() {
             :editing="isEditing"
             :rules="phoneRules"
           />
+        </VCol>
+
+        <VCol cols="12">
+          <EditableAddressInput v-model="address" label="Address" :editing="isEditing" />
         </VCol>
 
         <VCol cols="12">

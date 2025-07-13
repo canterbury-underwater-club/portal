@@ -23,7 +23,7 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "skipLibCheck": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "@types/google.maps"]
   },
   "include": [
     "./typed-router.d.ts",
