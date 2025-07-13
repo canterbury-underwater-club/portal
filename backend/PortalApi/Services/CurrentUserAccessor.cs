@@ -56,9 +56,10 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
         else
         {
             user.FirstName = firebaseUser.UserId;
+            user.EmailAddress = firebaseUser.EmailAddress;
             user.FirstName = firebaseUser.FirstName;
-            user.LastName = firebaseUser.LastName;
-            user.PhotoUrl = firebaseUser.PhotoUrl;
+            user.LastName = firebaseUser.LastName ?? user.LastName;
+            user.PhotoUrl = firebaseUser.PhotoUrl ?? user.PhotoUrl;
         }
 
         await db.SaveChangesAsync(cancellationToken);

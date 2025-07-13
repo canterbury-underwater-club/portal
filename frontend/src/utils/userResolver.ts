@@ -1,4 +1,4 @@
-import { MemberStatusModel, UserModel } from '@/api/generated/v1'
+import { MembershipStatusModel, UserModel } from '@/api/generated/v1'
 
 export function resolveUserPhoto(user: UserModel | null | undefined) {
   return user?.photoUrl ?? ''
@@ -13,12 +13,16 @@ export function resolveUserMembershipStatus(
 ): string | undefined {
   if (!user) return
 
-  switch (user.membershipStatus) {
-    case MemberStatusModel.NonMember:
+  return resolveMembershipStatus(user.membershipStatus)
+}
+
+export function resolveMembershipStatus(membershipStatus: MembershipStatusModel) {
+  switch (membershipStatus) {
+    case MembershipStatusModel.NonMember:
       return 'Non-member'
-    case MemberStatusModel.PendingApproval:
+    case MembershipStatusModel.PendingApproval:
       return 'Pending approval'
     default:
-      return user.membershipStatus
+      return membershipStatus
   }
 }

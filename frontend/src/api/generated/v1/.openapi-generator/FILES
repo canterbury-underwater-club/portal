@@ -4,8 +4,8 @@ api.ts
 base.ts
 common.ts
 configuration.ts
-docs/MemberStatusModel.md
-docs/NullableOfMemberStatusModel.md
+docs/MembershipStatusModel.md
+docs/NullableOfMembershipStatusModel.md
 docs/ProblemDetails.md
 docs/Request.md
 docs/Response.md

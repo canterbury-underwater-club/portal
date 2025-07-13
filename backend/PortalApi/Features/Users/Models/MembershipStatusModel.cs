@@ -1,6 +1,6 @@
 ﻿namespace CanterburyUnderwater.PortalApi.Features.Users.Models;
 
-public enum MemberStatusModel
+public enum MembershipStatusModel
 {
     NonMember,
     PendingApproval,

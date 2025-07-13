@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **emailAddress** | **string** |  | [optional] [default to undefined]
 **homePhone** | **string** |  | [optional] [default to undefined]
 **mobilePhone** | **string** |  | [optional] [default to undefined]
-**membershipStatus** | [**NullableOfMemberStatusModel**](NullableOfMemberStatusModel.md) |  | [optional] [default to undefined]
+**membershipStatus** | [**NullableOfMembershipStatusModel**](NullableOfMembershipStatusModel.md) |  | [optional] [default to undefined]
 **membershipStartDate** | **string** |  | [optional] [default to undefined]
 **membershipEndDate** | **string** |  | [optional] [default to undefined]
 

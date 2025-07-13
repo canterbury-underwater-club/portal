@@ -3,6 +3,10 @@ class SettingsService {
     return import.meta.env.MODE === 'development'
   }
 
+  get apiBasePath() {
+    return import.meta.env.VITE_API_BASE_PATH
+  }
+
   get firebaseApiKey() {
     return import.meta.env.VITE_FIREBASE_API_KEY
   }

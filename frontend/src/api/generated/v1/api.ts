@@ -29,7 +29,7 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
  * @enum {string}
  */
 
-export const MemberStatusModel = {
+export const MembershipStatusModel = {
     NonMember: 'NonMember',
     PendingApproval: 'PendingApproval',
     Denied: 'Denied',
@@ -39,7 +39,7 @@ export const MemberStatusModel = {
     Former: 'Former'
 } as const;
 
-export type MemberStatusModel = typeof MemberStatusModel[keyof typeof MemberStatusModel];
+export type MembershipStatusModel = typeof MembershipStatusModel[keyof typeof MembershipStatusModel];
 
 
 /**
@@ -48,7 +48,7 @@ export type MemberStatusModel = typeof MemberStatusModel[keyof typeof MemberStat
  * @enum {string}
  */
 
-export const NullableOfMemberStatusModel = {
+export const NullableOfMembershipStatusModel = {
     NonMember: 'NonMember',
     PendingApproval: 'PendingApproval',
     Denied: 'Denied',
@@ -58,7 +58,7 @@ export const NullableOfMemberStatusModel = {
     Former: 'Former'
 } as const;
 
-export type NullableOfMemberStatusModel = typeof NullableOfMemberStatusModel[keyof typeof NullableOfMemberStatusModel];
+export type NullableOfMembershipStatusModel = typeof NullableOfMembershipStatusModel[keyof typeof NullableOfMembershipStatusModel];
 
 
 /**
@@ -136,10 +136,10 @@ export interface Request {
     'mobilePhone'?: string | null;
     /**
      * 
-     * @type {NullableOfMemberStatusModel}
+     * @type {NullableOfMembershipStatusModel}
      * @memberof Request
      */
-    'membershipStatus'?: NullableOfMemberStatusModel | null;
+    'membershipStatus'?: NullableOfMembershipStatusModel | null;
     /**
      * 
      * @type {string}
@@ -231,10 +231,10 @@ export interface UserModel {
     'photoUrl'?: string | null;
     /**
      * 
-     * @type {MemberStatusModel}
+     * @type {MembershipStatusModel}
      * @memberof UserModel
      */
-    'membershipStatus': MemberStatusModel;
+    'membershipStatus': MembershipStatusModel;
     /**
      * 
      * @type {string}

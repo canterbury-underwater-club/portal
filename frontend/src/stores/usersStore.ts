@@ -9,8 +9,19 @@ export const useUsersStore = defineStore('users', () => {
     users.value = (await usersApi.v1UsersGet()).data.users
   }
 
+  async function updateUserPartial(patch: Partial<UserModel> & { id: string }) {
+    const usersApi = await buildUsersApi()
+    await usersApi.v1UsersIdPatch(patch.id, patch)
+    // Update locally
+    if (users.value) {
+      const idx = users.value.findIndex((u) => u.id === patch.id)
+      if (idx !== -1) users.value[idx] = { ...users.value[idx], ...patch }
+    }
+  }
+
   return {
     users,
     fetchUsers,
+    updateUserPartial,
   }
 })

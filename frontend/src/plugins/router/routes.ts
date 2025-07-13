@@ -1,12 +1,12 @@
+import { UserRoles } from '@/constants/roles'
 import { Routes } from './constants'
-import { isAuthenticatedGuard } from './guards/isAuthenticatedGuard'
 
 export const routes = [
   { path: '/', redirect: '/dashboard' },
   {
     path: '/',
     component: () => import('@/layouts/default.vue'),
-    beforeEnter: isAuthenticatedGuard,
+    meta: { requiredRoles: UserRoles.Committee },
     children: [
       {
         path: Routes.Dashboard,
@@ -20,12 +20,21 @@ export const routes = [
       },
       {
         path: Routes.Person,
-        redirect: { name: Routes.People }, // Or path: Routes.People
+        redirect: { name: Routes.People },
       },
       {
         path: `${Routes.Person}/:id`,
         name: Routes.Person,
-        beforeEnter: isAuthenticatedGuard,
+        component: () => import('@/pages/person.vue'),
+      },
+      {
+        path: `${Routes.Person}/:id`,
+        name: Routes.Person,
+        component: () => import('@/pages/person.vue'),
+      },
+      {
+        path: `${Routes.Person}/:id/edit`,
+        name: Routes.PersonEdit,
         component: () => import('@/pages/person.vue'),
       },
       {
@@ -51,6 +60,7 @@ export const routes = [
       },
       {
         path: '/:pathMatch(.*)*',
+        name: Routes.Error,
         component: () => import('@/pages/[...error].vue'),
       },
     ],

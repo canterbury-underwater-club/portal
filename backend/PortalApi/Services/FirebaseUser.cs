@@ -11,7 +11,7 @@ public class FirebaseUser
     public required string UserId { get; init; }
     public required string EmailAddress { get; init; }
     public required string FirstName { get; init; }
-    public required string LastName { get; init; }
+    public string? LastName { get; init; }
     public string? PhotoUrl { get; init; }
 
     public static FirebaseUser? FromClaimsIdentity(ClaimsIdentity? user)
@@ -43,14 +43,14 @@ public class FirebaseUser
         };
     }
 
-    private static (string FirstName, string LastName) SplitFullName(string fullName)
+    private static (string FirstName, string? LastName) SplitFullName(string fullName)
     {
         if (string.IsNullOrWhiteSpace(fullName))
-            return (string.Empty, string.Empty);
+            return (string.Empty, null);
 
         var parts = fullName.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length == 1)
-            return (parts[0], string.Empty); // Only one name, treat as first name
+            return (parts[0], null); // Only one name, treat as first name
 
         // Combine all but last as first name, last part as last name
         var firstName = string.Join(" ", parts.Take(parts.Length - 1));

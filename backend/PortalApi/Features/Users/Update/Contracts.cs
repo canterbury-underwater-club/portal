@@ -11,7 +11,7 @@ public record Contracts
         public string? EmailAddress { get; init; }
         public string? HomePhone { get; init; }
         public string? MobilePhone { get; init; }
-        public MemberStatusModel? MembershipStatus { get; init; }
+        public MembershipStatusModel? MembershipStatus { get; init; }
         public DateTime? MembershipStartDate { get; init; }
         public DateTime? MembershipEndDate { get; init; }
     }

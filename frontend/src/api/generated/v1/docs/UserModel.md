@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **homePhone** | **string** |  | [optional] [default to undefined]
 **mobilePhone** | **string** |  | [optional] [default to undefined]
 **photoUrl** | **string** |  | [optional] [default to undefined]
-**membershipStatus** | [**MemberStatusModel**](MemberStatusModel.md) |  | [default to undefined]
+**membershipStatus** | [**MembershipStatusModel**](MembershipStatusModel.md) |  | [default to undefined]
 **membershipStartDate** | **string** |  | [optional] [default to undefined]
 **membershipEndDate** | **string** |  | [optional] [default to undefined]
 **roles** | **Array&lt;string&gt;** |  | [default to undefined]

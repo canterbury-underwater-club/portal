@@ -6,15 +6,20 @@ public class User : EntityDefaults
 {
     [MaxLength(128)] public required string FirebaseUserId { get; init; }
 
-    [MaxLength(256)] public required string FirstName { get; set; }
+    [MaxLength(Constants.Validation.MaxNameLength)]
+    public required string FirstName { get; set; }
 
-    [MaxLength(256)] public string? LastName { get; set; }
+    [MaxLength(Constants.Validation.MaxNameLength)]
+    public string? LastName { get; set; }
 
-    [MaxLength(254)] public required string EmailAddress { get; set; }
+    [MaxLength(Constants.Validation.MaxEmailAddressLength)]
+    public required string EmailAddress { get; set; }
 
-    [MaxLength(32)] public string? HomePhone { get; set; }
+    [MaxLength(Constants.Validation.MaxPhoneLength)]
+    public string? HomePhone { get; set; }
 
-    [MaxLength(32)] public string? MobilePhone { get; set; }
+    [MaxLength(Constants.Validation.MaxPhoneLength)]
+    public string? MobilePhone { get; set; }
 
     [MaxLength(2048)] public string? PhotoUrl { get; set; }
 
