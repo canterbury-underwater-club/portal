@@ -83,6 +83,7 @@ function goToPerson(_: unknown, row: { item: UserModel }) {
         :headers="headers"
         :items="userData"
         :search="search"
+        :sort-by="[{ key: 'firstName' }]"
         :items-per-page="50"
         @click:row="goToPerson"
       >
