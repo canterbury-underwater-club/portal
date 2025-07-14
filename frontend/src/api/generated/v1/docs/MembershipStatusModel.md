@@ -9,9 +9,13 @@
 
 * `Denied` (value: `'Denied'`)
 
-* `Regular` (value: `'Regular'`)
-
 * `Associate` (value: `'Associate'`)
+
+* `Junior` (value: `'Junior'`)
+
+* `Senior` (value: `'Senior'`)
+
+* `Couple` (value: `'Couple'`)
 
 * `Life` (value: `'Life'`)
 

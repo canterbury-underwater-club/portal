@@ -23,6 +23,20 @@ public class User : EntityDefaults
 
     [MaxLength(2048)] public string? PhotoUrl { get; set; }
 
+    [MaxLength(Constants.Validation.MaxAddressLength)]
+    public string? Address { get; set; }
+
+    public DateTime? DateOfBirth { get; set; }
+
+    [MaxLength(Constants.Validation.MaxOccupationLength)]
+    public string? Occupation { get; set; }
+
+    [MaxLength(Constants.Validation.MaxNameLength * 2)]
+    public string? EmergencyContactName { get; set; }
+
+    [MaxLength(Constants.Validation.MaxPhoneLength)]
+    public string? EmergencyContactPhone { get; set; }
+
     public required MembershipStatus MembershipStatus { get; set; } = MembershipStatus.NonMember;
 
     public DateTime? MembershipStartDate { get; set; }

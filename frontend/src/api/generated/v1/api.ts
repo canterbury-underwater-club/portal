@@ -33,8 +33,10 @@ export const MembershipStatusModel = {
     NonMember: 'NonMember',
     PendingApproval: 'PendingApproval',
     Denied: 'Denied',
-    Regular: 'Regular',
     Associate: 'Associate',
+    Junior: 'Junior',
+    Senior: 'Senior',
+    Couple: 'Couple',
     Life: 'Life',
     Former: 'Former'
 } as const;
@@ -52,8 +54,10 @@ export const NullableOfMembershipStatusModel = {
     NonMember: 'NonMember',
     PendingApproval: 'PendingApproval',
     Denied: 'Denied',
-    Regular: 'Regular',
     Associate: 'Associate',
+    Junior: 'Junior',
+    Senior: 'Senior',
+    Couple: 'Couple',
     Life: 'Life',
     Former: 'Former'
 } as const;
@@ -229,6 +233,36 @@ export interface UserModel {
      * @memberof UserModel
      */
     'photoUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'address'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'dateOfBirth'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'occupation'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'emergencyContactName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserModel
+     */
+    'emergencyContactPhone'?: string | null;
     /**
      * 
      * @type {MembershipStatusModel}

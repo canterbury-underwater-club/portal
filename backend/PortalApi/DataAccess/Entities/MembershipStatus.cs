@@ -5,8 +5,10 @@ public enum MembershipStatus
     NonMember,
     PendingApproval,
     Denied,
-    Regular,
     Associate,
+    Junior,
+    Senior,
+    Couple,
     Life,
     Former
 }

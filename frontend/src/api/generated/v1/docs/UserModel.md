@@ -12,6 +12,11 @@ Name | Type | Description | Notes
 **homePhone** | **string** |  | [optional] [default to undefined]
 **mobilePhone** | **string** |  | [optional] [default to undefined]
 **photoUrl** | **string** |  | [optional] [default to undefined]
+**address** | **string** |  | [optional] [default to undefined]
+**dateOfBirth** | **string** |  | [optional] [default to undefined]
+**occupation** | **string** |  | [optional] [default to undefined]
+**emergencyContactName** | **string** |  | [optional] [default to undefined]
+**emergencyContactPhone** | **string** |  | [optional] [default to undefined]
 **membershipStatus** | [**MembershipStatusModel**](MembershipStatusModel.md) |  | [default to undefined]
 **membershipStartDate** | **string** |  | [optional] [default to undefined]
 **membershipEndDate** | **string** |  | [optional] [default to undefined]
@@ -30,6 +35,11 @@ const instance: UserModel = {
     homePhone,
     mobilePhone,
     photoUrl,
+    address,
+    dateOfBirth,
+    occupation,
+    emergencyContactName,
+    emergencyContactPhone,
     membershipStatus,
     membershipStartDate,
     membershipEndDate,
