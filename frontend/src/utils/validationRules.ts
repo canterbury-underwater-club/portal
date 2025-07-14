@@ -7,46 +7,47 @@ import {
 import validator from 'validator'
 
 export const emailRules = [
-  (value: string) => {
-    return !validator.isEmpty(value) || 'Email address is required.'
+  (value: string | null | undefined) => {
+    return (value && !validator.isEmpty(value)) || 'Email address is required.'
   },
-  (value: string) => {
-    return validator.isEmail(value) || 'Email address must be valid.'
+  (value: string | null | undefined) => {
+    return (value && validator.isEmail(value)) || 'Email address must be valid.'
   },
 ]
 
 export const nameRules = [
-  (value: string) =>
-    value.length <= MAX_NAME_LENGTH || `Name cannot be longer than ${MAX_NAME_LENGTH} characters.`,
+  (value: string | null | undefined) =>
+    (value ?? '').length <= MAX_NAME_LENGTH ||
+    `Name cannot be longer than ${MAX_NAME_LENGTH} characters.`,
 ]
 
 export const firstNameRules = [
-  (value: string) => {
-    return !validator.isEmpty(value) || 'First name is required.'
+  (value: string | null | undefined) => {
+    return (value && !validator.isEmpty(value)) || 'First name is required.'
   },
   ...nameRules,
 ]
 
 export const phoneRules = [
-  (value: string) =>
-    value.length <= MAX_PHONE_LENGTH ||
+  (value: string | null | undefined) =>
+    (value ?? '').length <= MAX_PHONE_LENGTH ||
     `Phone cannot be longer than ${MAX_PHONE_LENGTH} characters.`,
 ]
 
 export const addressRules = [
-  (value: string) =>
-    value.length <= MAX_ADDRESS_LENGTH ||
+  (value: string | null | undefined) =>
+    (value ?? '').length <= MAX_ADDRESS_LENGTH ||
     `Address cannot be longer than ${MAX_ADDRESS_LENGTH} characters.`,
 ]
 
 export const occupationRules = [
-  (value: string) =>
-    value.length <= MAX_OCCUPATION_LENGTH ||
+  (value: string | null | undefined) =>
+    (value ?? '').length <= MAX_OCCUPATION_LENGTH ||
     `Occupation cannot be longer than ${MAX_OCCUPATION_LENGTH} characters.`,
 ]
 
 export const emergencyContactNameRules = [
-  (value: string) =>
-    value.length <= MAX_NAME_LENGTH * 2 ||
+  (value: string | null | undefined) =>
+    (value ?? '').length <= MAX_NAME_LENGTH * 2 ||
     `Name cannot be longer than ${MAX_NAME_LENGTH * 2} characters.`,
 ]

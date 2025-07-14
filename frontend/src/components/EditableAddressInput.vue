@@ -7,7 +7,7 @@ interface SuggestionOption {
   value: google.maps.places.PlacePrediction | null
 }
 
-const model = defineModel<string | undefined>()
+const model = defineModel<string | null | undefined>()
 defineProps<{
   editing: boolean
 }>()
@@ -32,7 +32,7 @@ async function startSearchSession() {
   }
 }
 
-const getSuggestions = debounce(async (search?: string) => {
+const getSuggestions = debounce(async (search: string | null | undefined) => {
   if (!search || search.length < 3) {
     suggestionOptions.value = []
     loading.value = false

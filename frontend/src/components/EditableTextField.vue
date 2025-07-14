@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const model = defineModel<unknown | undefined>()
+const model = defineModel<string | null | undefined>()
 const props = defineProps<{
   editing: boolean
   linkType?: 'mailto' | 'tel' | null
