@@ -4,7 +4,7 @@ namespace CanterburyUnderwater.PortalApi.DataAccess.Entities;
 
 public class User : EntityDefaults
 {
-    [MaxLength(128)] public required string FirebaseUserId { get; init; }
+    [MaxLength(128)] public string? FirebaseUserId { get; init; }
 
     [MaxLength(Constants.Validation.MaxNameLength)]
     public required string FirstName { get; set; }
@@ -43,7 +43,7 @@ public class User : EntityDefaults
 
     public DateTime? MembershipEndDate { get; set; }
 
-    public DateTime LastSignedIn { get; set; }
+    public DateTime? LastSignedIn { get; set; }
 
     public virtual ICollection<Role> Roles { get; init; } = [];
 }
