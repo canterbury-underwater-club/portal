@@ -22,17 +22,19 @@ const userId = computed(() => route.params.id as string)
 const isEditing = computed(() => route.path.endsWith('/edit'))
 const user = computed(() => usersStore.users?.find((u) => u.id === userId.value))
 
-const firstName = ref<string|null|undefined>(undefined)
-const lastName = ref<string|null|undefined>(undefined)
-const emailAddress = ref<string|null|undefined>(undefined)
-const mobilePhone = ref<string|null|undefined>(undefined)
-const homePhone = ref<string|null|undefined>(undefined)
-const address = ref<string|null|undefined>(undefined)
-const dateOfBirth = ref<string|null|undefined>(undefined)
-const occupation = ref<string|null|undefined>(undefined)
-const emergencyContactName = ref<string|null|undefined>(undefined)
-const emergencyContactPhone = ref<string|null|undefined>(undefined)
+const firstName = ref<string | null | undefined>(undefined)
+const lastName = ref<string | null | undefined>(undefined)
+const emailAddress = ref<string | null | undefined>(undefined)
+const mobilePhone = ref<string | null | undefined>(undefined)
+const homePhone = ref<string | null | undefined>(undefined)
+const address = ref<string | null | undefined>(undefined)
+const dateOfBirth = ref<string | null | undefined>(undefined)
+const occupation = ref<string | null | undefined>(undefined)
+const emergencyContactName = ref<string | null | undefined>(undefined)
+const emergencyContactPhone = ref<string | null | undefined>(undefined)
 const membershipStatus = ref<MembershipStatusModel | undefined>(undefined)
+const membershipStartDate = ref<string | null | undefined>(undefined)
+const membershipEndDate = ref<string | null | undefined>(undefined)
 
 const fields = {
   firstName,
@@ -46,23 +48,27 @@ const fields = {
   emergencyContactName,
   emergencyContactPhone,
   membershipStatus,
+  membershipStartDate,
+  membershipEndDate,
 }
 
 onMounted(async () => {
   if (!usersStore.users) await usersStore.fetchUsers()
 
   if (user.value) {
-    firstName.value = user.value.firstName
-    lastName.value = user.value.lastName
-    emailAddress.value = user.value.emailAddress
-    mobilePhone.value = user.value.mobilePhone
-    homePhone.value = user.value.homePhone
-    address.value = user.value.address
-    dateOfBirth.value = user.value.dateOfBirth
-    occupation.value = user.value.occupation
-    emergencyContactName.value = user.value.emergencyContactName
-    emergencyContactPhone.value = user.value.emergencyContactPhone
-    membershipStatus.value = user.value.membershipStatus
+    firstName.value = user.value.firstName ?? ''
+    lastName.value = user.value.lastName ?? ''
+    emailAddress.value = user.value.emailAddress ?? ''
+    mobilePhone.value = user.value.mobilePhone ?? ''
+    homePhone.value = user.value.homePhone ?? ''
+    address.value = user.value.address ?? ''
+    dateOfBirth.value = user.value.dateOfBirth ?? ''
+    occupation.value = user.value.occupation ?? ''
+    emergencyContactName.value = user.value.emergencyContactName ?? ''
+    emergencyContactPhone.value = user.value.emergencyContactPhone ?? ''
+    membershipStatus.value = user.value.membershipStatus ?? MembershipStatusModel.NonMember
+    membershipStartDate.value = user.value.membershipStartDate ?? ''
+    membershipEndDate.value = user.value.membershipEndDate ?? ''
   }
 })
 
@@ -194,6 +200,10 @@ function toggleEdit() {
           />
         </VCol>
 
+        <VCol cols="12" v-if="isEditing || dateOfBirth">
+          <EditableDatePicker v-model="dateOfBirth" label="Date of birth" :editing="isEditing" />
+        </VCol>
+
         <VCol cols="12">
           <EditableSelect
             v-model="membershipStatus"
@@ -201,6 +211,22 @@ function toggleEdit() {
             :items="membershipStatusOptions"
             item-value="value"
             item-title="text"
+            :editing="isEditing"
+          />
+        </VCol>
+
+        <VCol cols="12" v-if="isEditing || membershipStartDate">
+          <EditableDatePicker
+            v-model="membershipStartDate"
+            label="Membership start date"
+            :editing="isEditing"
+          />
+        </VCol>
+
+        <VCol cols="12" v-if="isEditing || membershipEndDate">
+          <EditableDatePicker
+            v-model="membershipEndDate"
+            label="Membership end date"
             :editing="isEditing"
           />
         </VCol>

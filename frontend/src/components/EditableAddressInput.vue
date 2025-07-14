@@ -81,7 +81,6 @@ watch(model, async (val) => {
   <VCombobox
     v-model="model"
     :items="suggestionOptions"
-    label="Address"
     :loading="editing && loading"
     hide-no-data
     :variant="editing ? undefined : 'plain'"
