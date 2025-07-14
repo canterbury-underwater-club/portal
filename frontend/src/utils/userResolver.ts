@@ -21,7 +21,9 @@ export function resolveUserIsActiveMember(user: UserModel | null | undefined): b
 
   return new Set<MembershipStatusModel>([
     MembershipStatusModel.Associate,
-    MembershipStatusModel.Regular,
+    MembershipStatusModel.Junior,
+    MembershipStatusModel.Senior,
+    MembershipStatusModel.Couple,
     MembershipStatusModel.Life,
   ]).has(user.membershipStatus)
 }

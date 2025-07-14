@@ -4,7 +4,15 @@ import EditableAddressInput from '@/components/EditableAddressInput.vue'
 import { Routes } from '@/plugins/router/constants'
 import { useUsersStore } from '@/stores/usersStore'
 import { resolveMembershipStatus, resolveUserPhoto } from '@/utils/userResolver'
-import { emailRules, firstNameRules, nameRules, phoneRules } from '@/utils/validationRules'
+import {
+  addressRules,
+  emailRules,
+  emergencyContactNameRules,
+  firstNameRules,
+  nameRules,
+  occupationRules,
+  phoneRules,
+} from '@/utils/validationRules'
 import { debounce } from 'lodash-es'
 
 const route = useRoute()
@@ -20,6 +28,9 @@ const emailAddress = ref('')
 const mobilePhone = ref('')
 const homePhone = ref('')
 const address = ref('')
+const occupation = ref('')
+const emergencyContactName = ref('')
+const emergencyContactPhone = ref('')
 const membershipStatus = ref<MembershipStatusModel | undefined>(undefined)
 
 const fields = {
@@ -29,6 +40,9 @@ const fields = {
   mobilePhone,
   homePhone,
   address,
+  occupation,
+  emergencyContactName,
+  emergencyContactPhone,
   membershipStatus,
 }
 
@@ -42,6 +56,9 @@ onMounted(async () => {
     mobilePhone.value = user.value.mobilePhone ?? ''
     homePhone.value = user.value.homePhone ?? ''
     address.value = user.value.address ?? ''
+    occupation.value = user.value.occupation ?? ''
+    emergencyContactName.value = user.value.emergencyContactName ?? ''
+    emergencyContactPhone.value = user.value.emergencyContactPhone ?? ''
     membershipStatus.value = user.value.membershipStatus
   }
 })
@@ -76,8 +93,13 @@ function toggleEdit() {
     <VCardText>
       <VRow>
         <VCol cols="12">
-          <VAvatar :image="resolveUserPhoto(user)" size="64" />
+          <div class="d-flex justify-space-between" style="max-width: 300px">
+            <VAvatar :image="resolveUserPhoto(user)" size="64" />
+            <VBtn v-if="!isEditing" @click="toggleEdit" color="primary" text="Edit" class="ms-10" />
+          </div>
         </VCol>
+      </VRow>
+      <VRow>
         <VCol cols="12">
           <EditableTextField
             v-model="firstName"
@@ -129,8 +151,42 @@ function toggleEdit() {
           />
         </VCol>
 
-        <VCol cols="12">
-          <EditableAddressInput v-model="address" label="Address" :editing="isEditing" />
+        <VCol cols="12" v-if="isEditing || address">
+          <EditableAddressInput
+            v-model="address"
+            label="Address"
+            :editing="isEditing"
+            :rules="addressRules"
+          />
+        </VCol>
+
+        <VCol cols="12" v-if="isEditing || occupation">
+          <EditableTextField
+            v-model="occupation"
+            label="Occupation"
+            :editing="isEditing"
+            :rules="occupationRules"
+          />
+        </VCol>
+
+        <VCol cols="12" v-if="isEditing || emergencyContactName">
+          <EditableTextField
+            v-model="emergencyContactName"
+            label="Emergency contact"
+            :editing="isEditing"
+            :rules="emergencyContactNameRules"
+          />
+        </VCol>
+
+        <VCol cols="12" v-if="isEditing || emergencyContactPhone">
+          <EditableTextField
+            v-model="emergencyContactPhone"
+            label="Emergency contact phone"
+            type="number"
+            link-type="tel"
+            :editing="isEditing"
+            :rules="phoneRules"
+          />
         </VCol>
 
         <VCol cols="12">
@@ -145,9 +201,7 @@ function toggleEdit() {
         </VCol>
 
         <VCol cols="12">
-          <VBtn @click="toggleEdit" color="primary" class="ml-auto">
-            {{ isEditing ? 'Done' : 'Edit' }}
-          </VBtn>
+          <VBtn v-if="isEditing" @click="toggleEdit" color="primary" text="Done" class="ml-auto" />
         </VCol>
       </VRow>
     </VCardText>

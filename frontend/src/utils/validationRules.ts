@@ -1,4 +1,9 @@
-import { MAX_NAME_LENGTH, MAX_PHONE_LENGTH } from '@/constants/validation'
+import {
+  MAX_ADDRESS_LENGTH,
+  MAX_NAME_LENGTH,
+  MAX_OCCUPATION_LENGTH,
+  MAX_PHONE_LENGTH,
+} from '@/constants/validation'
 import validator from 'validator'
 
 export const emailRules = [
@@ -26,4 +31,22 @@ export const phoneRules = [
   (value: string) =>
     value.length <= MAX_PHONE_LENGTH ||
     `Phone cannot be longer than ${MAX_PHONE_LENGTH} characters.`,
+]
+
+export const addressRules = [
+  (value: string) =>
+    value.length <= MAX_ADDRESS_LENGTH ||
+    `Address cannot be longer than ${MAX_ADDRESS_LENGTH} characters.`,
+]
+
+export const occupationRules = [
+  (value: string) =>
+    value.length <= MAX_OCCUPATION_LENGTH ||
+    `Occupation cannot be longer than ${MAX_OCCUPATION_LENGTH} characters.`,
+]
+
+export const emergencyContactNameRules = [
+  (value: string) =>
+    value.length <= MAX_NAME_LENGTH * 2 ||
+    `Name cannot be longer than ${MAX_NAME_LENGTH * 2} characters.`,
 ]
