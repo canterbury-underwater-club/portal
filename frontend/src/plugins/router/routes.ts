@@ -2,7 +2,7 @@ import { UserRoles } from '@/constants/roles'
 import { Routes } from './constants'
 
 export const routes = [
-  { path: '/', redirect: '/dashboard' },
+  { path: '/', redirect: '/people' },
   {
     path: '/',
     component: () => import('@/layouts/default.vue'),

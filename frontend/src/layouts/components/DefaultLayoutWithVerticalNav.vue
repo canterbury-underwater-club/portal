@@ -22,7 +22,7 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
         <NavbarThemeSwitcher class="me-2" />
 
-        <UserProfile />
+        <UserProfile class="me-2" />
       </div>
     </template>
 
