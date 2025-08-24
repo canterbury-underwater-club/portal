@@ -17,5 +17,6 @@ public record UserModel
     public required MembershipStatusModel MembershipStatus { get; init; }
     public DateTime? MembershipStartDate { get; init; }
     public DateTime? MembershipEndDate { get; init; }
+    public int? MembershipNumber { get; init; }
     public required ICollection<string> Roles { get; init; }
 }

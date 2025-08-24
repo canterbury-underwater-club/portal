@@ -43,6 +43,8 @@ public class User : EntityDefaults
 
     public DateTime? MembershipEndDate { get; set; }
 
+    public int? MembershipNumber { get; set; }
+
     public DateTime? LastSignedIn { get; set; }
 
     public virtual ICollection<Role> Roles { get; init; } = [];
