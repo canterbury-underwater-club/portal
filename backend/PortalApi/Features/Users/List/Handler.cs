@@ -10,9 +10,9 @@ namespace CanterburyUnderwater.PortalApi.Features.Users.List;
 public class Handler(PortalDbContext db, IMapper mapper)
     : IResponseEndpointHandler<Ok<Contracts.Response>>
 {
-    public async Task<Ok<Contracts.Response>> HandleAsync(CancellationToken cancellationToken = default)
+    public async Task<Ok<Contracts.Response>> HandleAsync(CancellationToken ct = default)
     {
-        var users = await db.Users.ToListAsync(cancellationToken);
+        var users = await db.Users.ToListAsync(ct);
 
         return TypedResults.Ok(new Contracts.Response
         {

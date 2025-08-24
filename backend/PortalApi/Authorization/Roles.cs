@@ -3,6 +3,7 @@
 public static class RoleNames
 {
     public const string Admin = "Admin";
+    public const string BookingAdmin = "BookingAdmin";
     public const string Committee = "Committee";
 }
 

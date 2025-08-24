@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.Builder;
 using CanterburyUnderwater.Endpoints;
+using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
 
 namespace CanterburyUnderwater.PortalApi.WebAppExtensions;
 
@@ -41,6 +42,7 @@ public static class DefaultApiVersioningExtensions
     private static RouteGroupBuilder DefaultMapGroup(this WebApplication app, ApiVersionSet apiVersionSet)
     {
         return app.MapGroup("v{version:apiVersion}")
-            .WithApiVersionSet(apiVersionSet);
+            .WithApiVersionSet(apiVersionSet)
+            .AddFluentValidationAutoValidation();
     }
 }

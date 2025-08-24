@@ -123,10 +123,10 @@ public class PortalDbContext : DbContext
     }
 
     public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-        CancellationToken cancellationToken = default)
+        CancellationToken ct = default)
     {
         SetEntityDetails();
-        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, ct);
     }
 
     private void SetEntityDetails()

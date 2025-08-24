@@ -12,8 +12,8 @@ public class Endpoint : IEndpoint
                 "users",
                 async Task<IResult> (
                         IResponseEndpointHandler<Ok<Contracts.Response>> handler,
-                        CancellationToken cancellationToken) =>
-                    await handler.HandleAsync(cancellationToken))
+                        CancellationToken ct) =>
+                    await handler.HandleAsync(ct))
             .MapToApiVersion(1)
             .Produces<Contracts.Response>()
             .WithTags(Tags.Users)

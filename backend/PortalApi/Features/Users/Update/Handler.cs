@@ -11,9 +11,9 @@ public class Handler(PortalDbContext db, IMapper mapper)
     : IRequestEndpointHandler<Contracts.HandlerRequest, Results<ProblemHttpResult, Ok>>
 {
     public async Task<Results<ProblemHttpResult, Ok>> HandleAsync(Contracts.HandlerRequest request,
-        CancellationToken cancellationToken = default)
+        CancellationToken ct = default)
     {
-        var user = await db.Users.FindAsync([request.Id], cancellationToken);
+        var user = await db.Users.FindAsync([request.Id], ct);
 
         if (user == null) return ProblemTypedResults.NotFound<User>();
 
@@ -33,7 +33,7 @@ public class Handler(PortalDbContext db, IMapper mapper)
         if (request.MembershipStartDate is not null) user.MembershipStartDate = request.MembershipStartDate;
         if (request.MembershipEndDate is not null) user.MembershipEndDate = request.MembershipEndDate;
 
-        await db.SaveChangesAsync(cancellationToken);
+        await db.SaveChangesAsync(ct);
 
         return TypedResults.Ok();
     }

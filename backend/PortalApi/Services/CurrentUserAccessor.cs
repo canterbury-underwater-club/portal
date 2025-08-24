@@ -7,21 +7,21 @@ namespace CanterburyUnderwater.PortalApi.Services;
 
 public interface ICurrentUserAccessor
 {
-    Task<User?> GetCurrentUserAsync(CancellationToken cancellationToken = default);
-    Task<User?> GetCurrentUserAsync(ClaimsIdentity? identity, CancellationToken cancellationToken = default);
+    Task<User?> GetCurrentUserAsync(CancellationToken ct = default);
+    Task<User?> GetCurrentUserAsync(ClaimsIdentity? identity, CancellationToken ct = default);
 }
 
 public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, PortalDbContext db) : ICurrentUserAccessor
 {
     private User? _cachedUser;
 
-    public Task<User?> GetCurrentUserAsync(CancellationToken cancellationToken = default)
+    public Task<User?> GetCurrentUserAsync(CancellationToken ct = default)
     {
-        return GetCurrentUserAsync(null, cancellationToken);
+        return GetCurrentUserAsync(null, ct);
     }
 
     public async Task<User?> GetCurrentUserAsync(ClaimsIdentity? identity,
-        CancellationToken cancellationToken = default)
+        CancellationToken ct = default)
     {
         if (_cachedUser != null)
             return _cachedUser;
@@ -37,7 +37,7 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
             .Include(u => u.Roles)
             .SingleOrDefaultAsync(
                 u => u.FirebaseUserId == firebaseUser.UserId || u.EmailAddress == firebaseUser.EmailAddress,
-                cancellationToken);
+                ct);
 
         if (user == null)
         {
@@ -51,7 +51,7 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
                 PhotoUrl = firebaseUser.PhotoUrl
             };
 
-            await db.Users.AddAsync(user, cancellationToken);
+            await db.Users.AddAsync(user, ct);
         }
         else
         {
@@ -62,7 +62,7 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
             user.PhotoUrl = firebaseUser.PhotoUrl ?? user.PhotoUrl;
         }
 
-        await db.SaveChangesAsync(cancellationToken);
+        await db.SaveChangesAsync(ct);
 
         _cachedUser = user;
         return user;

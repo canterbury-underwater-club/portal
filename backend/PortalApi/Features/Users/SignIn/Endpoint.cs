@@ -11,8 +11,8 @@ public class Endpoint : IEndpoint
                 "users/sign-in",
                 async Task<IResult> (
                         IResponseEndpointHandler<Results<UnauthorizedHttpResult, Ok<Contracts.Response>>> handler,
-                        CancellationToken cancellationToken) =>
-                    await handler.HandleAsync(cancellationToken))
+                        CancellationToken ct) =>
+                    await handler.HandleAsync(ct))
             .MapToApiVersion(1)
             .Produces<Contracts.Response>()
             .WithTags(Tags.Users)

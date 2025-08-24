@@ -11,9 +11,9 @@ public static class ProblemTypedResults
         return TypedResults.Problem(reason, statusCode: StatusCodes.Status400BadRequest);
     }
 
-    public static ProblemHttpResult NotFound()
+    public static ProblemHttpResult NotFound(string? detail = null)
     {
-        return TypedResults.Problem(statusCode: StatusCodes.Status404NotFound);
+        return TypedResults.Problem(detail, statusCode: StatusCodes.Status404NotFound);
     }
 
     public static ProblemHttpResult NotFound<T>(Guid? id)
@@ -28,9 +28,9 @@ public static class ProblemTypedResults
         return TypedResults.Problem(sb.ToString(), statusCode: StatusCodes.Status404NotFound);
     }
 
-    public static ProblemHttpResult Conflict()
+    public static ProblemHttpResult Conflict(string? title = null, string? detail = null)
     {
-        return TypedResults.Problem(statusCode: StatusCodes.Status409Conflict);
+        return TypedResults.Problem(detail, title: title, statusCode: StatusCodes.Status409Conflict);
     }
 
     public static ProblemHttpResult Forbidden(string? reason = null)

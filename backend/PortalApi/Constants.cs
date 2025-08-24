@@ -16,5 +16,7 @@ public static class Constants
         public const int MaxBookingRatePlanNameLength = 256;
         public const int MinBookingFeeNameLength = 3;
         public const int MaxBookingFeeNameLength = 256;
+
+        public static readonly int[] RoomNumbers = [1, 2, 3, 4, 5, 6, 11, 12, 13, 14, 15];
     }
 }

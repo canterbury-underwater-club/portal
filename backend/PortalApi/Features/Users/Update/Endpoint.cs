@@ -16,10 +16,10 @@ public class Endpoint : IEndpoint
                     Contracts.Request request,
                     IRequestEndpointHandler<Contracts.HandlerRequest, Results<ProblemHttpResult, Ok>> handler,
                     IMapper mapper,
-                    CancellationToken cancellationToken) =>
+                    CancellationToken ct) =>
                 {
                     var handlerRequest = mapper.Map<Contracts.HandlerRequest>(request) with { Id = id };
-                    return await handler.HandleAsync(handlerRequest, cancellationToken);
+                    return await handler.HandleAsync(handlerRequest, ct);
                 })
             .MapToApiVersion(1)
             .Produces<Ok>()

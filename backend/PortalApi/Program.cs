@@ -5,8 +5,10 @@ using CanterburyUnderwater.PortalApi.Authorization;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.Services;
 using CanterburyUnderwater.PortalApi.WebAppExtensions;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
 
 namespace CanterburyUnderwater.PortalApi;
 
@@ -21,7 +23,8 @@ public class Program
         builder.Services
             .AddFirebaseAuthentication()
             .AddAuthorization()
-            .AddCorsPolicy(builder.Environment).AddApiVersioning(options => options.ReportApiVersions = true);
+            .AddCorsPolicy(builder.Environment)
+            .AddApiVersioning(options => options.ReportApiVersions = true);
         builder.Services
             .AddOpenApiWithBearerSecurity()
             .AddAutoMapper(options => options.AddMaps(assembly))
@@ -29,6 +32,8 @@ public class Program
             .AddEndpointsApiExplorer()
             .AddDefaultApiVersioning()
             .AddProblemDetails()
+            .AddValidatorsFromAssembly(assembly)
+            .AddFluentValidationAutoValidation()
             .AddHttpContextAccessor();
 
         builder.Services.ConfigureHttpJsonOptions(options =>
@@ -44,6 +49,7 @@ public class Program
 
         builder.Services.AddScoped<ICurrentUserAccessor, CurrentUserAccessor>();
         builder.Services.AddScoped<IClaimsTransformation, UserRolesClaimsTransformation>();
+        builder.Services.AddScoped<IBookingService, BookingService>();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())

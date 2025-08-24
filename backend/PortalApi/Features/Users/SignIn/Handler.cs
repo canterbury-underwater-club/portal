@@ -11,13 +11,13 @@ public class Handler(PortalDbContext db, ICurrentUserAccessor currentUserAccesso
     : IResponseEndpointHandler<Results<UnauthorizedHttpResult, Ok<Contracts.Response>>>
 {
     public async Task<Results<UnauthorizedHttpResult, Ok<Contracts.Response>>> HandleAsync(
-        CancellationToken cancellationToken = default)
+        CancellationToken ct = default)
     {
-        var user = await currentUserAccessor.GetCurrentUserAsync(cancellationToken);
+        var user = await currentUserAccessor.GetCurrentUserAsync(ct);
         if (user == null) return TypedResults.Unauthorized();
 
         user.LastSignedIn = DateTime.UtcNow;
-        await db.SaveChangesAsync(cancellationToken);
+        await db.SaveChangesAsync(ct);
 
         return TypedResults.Ok(new Contracts.Response
         {

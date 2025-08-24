@@ -8,7 +8,11 @@ public static class OpenApiExtensions
 {
     public static IServiceCollection AddOpenApiWithBearerSecurity(this IServiceCollection services)
     {
-        services.AddOpenApi(options => { options.AddDocumentTransformer<BearerSecuritySchemeTransformer>(); });
+        services.AddOpenApi(options =>
+        {
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+            options.AddSchemaTransformer<UniqueSchemaIdsSchemaTransformer>();
+        });
 
         return services;
     }
@@ -18,7 +22,7 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
     : IOpenApiDocumentTransformer
 {
     public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context,
-        CancellationToken cancellationToken)
+        CancellationToken ct)
     {
         var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
         if (authenticationSchemes.Any(authScheme => authScheme.Name == "Bearer"))
@@ -45,5 +49,31 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
                         Array.Empty<string>()
                 });
         }
+    }
+}
+
+internal sealed class UniqueSchemaIdsSchemaTransformer : IOpenApiSchemaTransformer
+{
+    private const string RootNamespace = "CanterburyUnderwater.PortalApi.Features.";
+
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken ct)
+    {
+        var type = context.JsonTypeInfo.Type;
+
+        if (type.Namespace == null || !type.Namespace.StartsWith(RootNamespace))
+            return Task.CompletedTask;
+
+        var schemaId = BuildSchemaId(type);
+        schema.Annotations["x-schema-id"] = schemaId;
+
+        return Task.CompletedTask;
+    }
+
+    private static string BuildSchemaId(Type type)
+    {
+        var id = (type.FullName ?? type.Name).Replace("+", "."); // nested types
+
+        if (id.StartsWith(RootNamespace, StringComparison.Ordinal)) id = id[RootNamespace.Length..];
+        return id;
     }
 }
