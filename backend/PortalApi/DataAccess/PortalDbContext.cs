@@ -90,6 +90,8 @@ public class PortalDbContext : DbContext
                 .WithOne(f => f.BookingRatePlan)
                 .HasForeignKey(f => f.BookingRatePlanId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            e.HasIndex(ch => new { ch.Name }).IsUnique();
         });
 
         modelBuilder.Entity<BookingRate>(e =>

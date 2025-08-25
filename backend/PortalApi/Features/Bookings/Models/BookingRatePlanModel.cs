@@ -7,6 +7,8 @@ public record BookingRatePlanModel
     public required DateOnly EffectiveFrom { get; init; }
     public required List<BookingRateModel> Rates { get; init; } = [];
     public required List<BookingFeeModel> Fees { get; init; } = [];
+
+    public required bool IsCurrent { get; set; }
 }
 
 public enum BookingRateTypeModel
