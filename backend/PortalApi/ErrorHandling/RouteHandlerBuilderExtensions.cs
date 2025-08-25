@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-
-namespace CanterburyUnderwater.ErrorHandling.Extensions;
+﻿namespace CanterburyUnderwater.PortalApi.ErrorHandling;
 
 public static class RouteHandlerBuilderExtensions
 {

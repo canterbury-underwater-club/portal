@@ -1,8 +1,9 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
-using CanterburyUnderwater.Endpoints;
 using CanterburyUnderwater.PortalApi.Authorization;
 using CanterburyUnderwater.PortalApi.DataAccess;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
+using CanterburyUnderwater.PortalApi.ErrorHandling;
 using CanterburyUnderwater.PortalApi.Services;
 using CanterburyUnderwater.PortalApi.WebAppExtensions;
 using FluentValidation;
@@ -34,7 +35,8 @@ public class Program
             .AddProblemDetails()
             .AddValidatorsFromAssembly(assembly)
             .AddFluentValidationAutoValidation()
-            .AddHttpContextAccessor();
+            .AddHttpContextAccessor()
+            .AddExceptionHandler<PostgreSqlExceptionHandler>();
 
         builder.Services.ConfigureHttpJsonOptions(options =>
         {
@@ -57,12 +59,9 @@ public class Program
             app.MapOpenApi();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/openapi/v1.json", "v1"));
         }
-        else
-        {
-            app.UseExceptionHandler();
-        }
 
-        app.UseStatusCodePages()
+        app.UseExceptionHandler()
+            .UseStatusCodePages()
             .UseAuthorization()
             .UseCors();
 

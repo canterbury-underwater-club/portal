@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
 
-namespace CanterburyUnderwater.Endpoints;
+namespace CanterburyUnderwater.PortalApi.EndpointHandling;
 
 public static class EndpointConventionBuilderExtensions
 {

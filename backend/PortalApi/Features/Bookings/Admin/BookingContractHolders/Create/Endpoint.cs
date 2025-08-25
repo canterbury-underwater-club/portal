@@ -1,5 +1,5 @@
-﻿using CanterburyUnderwater.Endpoints;
-using CanterburyUnderwater.PortalApi.Authorization;
+﻿using CanterburyUnderwater.PortalApi.Authorization;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.BookingContractHolders.Create;

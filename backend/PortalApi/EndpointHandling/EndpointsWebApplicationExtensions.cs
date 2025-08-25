@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace CanterburyUnderwater.Endpoints;
+﻿namespace CanterburyUnderwater.PortalApi.EndpointHandling;
 
 public static class EndpointsWebApplicationExtensions
 {

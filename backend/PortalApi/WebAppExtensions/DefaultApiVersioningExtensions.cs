@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.Builder;
-using CanterburyUnderwater.Endpoints;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
 using SharpGrip.FluentValidation.AutoValidation.Endpoints.Extensions;
 
 namespace CanterburyUnderwater.PortalApi.WebAppExtensions;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CanterburyUnderwater.Endpoints;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.DataAccess.Entities;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.Features.Bookings.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 

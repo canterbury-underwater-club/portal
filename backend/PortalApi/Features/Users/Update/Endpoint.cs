@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CanterburyUnderwater.Endpoints;
-using CanterburyUnderwater.ErrorHandling.Extensions;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
+using CanterburyUnderwater.PortalApi.ErrorHandling;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CanterburyUnderwater.PortalApi.Features.Users.Update;

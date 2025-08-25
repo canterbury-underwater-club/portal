@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace CanterburyUnderwater.Configuration;
+﻿namespace CanterburyUnderwater.PortalApi.Configuration;
 
 public abstract class Settings
 {

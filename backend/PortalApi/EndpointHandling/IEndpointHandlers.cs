@@ -1,4 +1,4 @@
-﻿namespace CanterburyUnderwater.Endpoints;
+﻿namespace CanterburyUnderwater.PortalApi.EndpointHandling;
 
 public interface IRequestEndpointHandler<in TRequest, TResponse>
 {

@@ -1,4 +1,4 @@
-﻿using CanterburyUnderwater.Endpoints;
+﻿using CanterburyUnderwater.PortalApi.EndpointHandling;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CanterburyUnderwater.PortalApi.Features.Users.SignIn;

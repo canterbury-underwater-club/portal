@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CanterburyUnderwater.Endpoints;
 using CanterburyUnderwater.PortalApi.DataAccess;
+using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.Features.Users.Models;
 using CanterburyUnderwater.PortalApi.Services;
 using Microsoft.AspNetCore.Http.HttpResults;

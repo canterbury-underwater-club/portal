@@ -1,8 +1,7 @@
 ﻿using System.Text;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace CanterburyUnderwater.ErrorHandling;
+namespace CanterburyUnderwater.PortalApi.ErrorHandling;
 
 public static class ProblemTypedResults
 {

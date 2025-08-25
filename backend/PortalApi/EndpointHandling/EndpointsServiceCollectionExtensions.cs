@@ -1,8 +1,7 @@
 ﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace CanterburyUnderwater.Endpoints;
+namespace CanterburyUnderwater.PortalApi.EndpointHandling;
 
 public static class EndpointsServiceCollectionExtensions
 {

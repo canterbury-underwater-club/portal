@@ -27,12 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\AspNetCore.Endpoints\AspNetCore.Endpoints.csproj"/>
-        <ProjectReference Include="..\AspNetCore.ErrorHandling\AspNetCore.ErrorHandling.csproj"/>
-        <ProjectReference Include="..\Configuration\Configuration.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Folder Include="Features\Bookings\Admin\Bookings\"/>
         <Folder Include="Features\Bookings\Keys\"/>
         <Folder Include="Features\Bookings\Mine\"/>
