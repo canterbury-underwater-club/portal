@@ -12,5 +12,6 @@ public class EntityToModelMappingProfile : Profile
         CreateMap<BookingRatePlan, BookingRatePlanModel>();
         CreateMap<BookingRate, BookingRateModel>();
         CreateMap<BookingFee, BookingFeeModel>();
+        CreateMap<BookingAttendee, BookingAttendeeModel>();
     }
 }

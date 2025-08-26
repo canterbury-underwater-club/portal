@@ -3,11 +3,12 @@ using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.DataAccess.Entities;
 using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.ErrorHandling;
+using CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Models;
 using CanterburyUnderwater.PortalApi.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
-namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.CreateBooking;
+namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Create;
 
 public class Handler(PortalDbContext db, IBookingService bookingService, IMapper mapper)
     : IRequestEndpointHandler<Contracts.Request,
@@ -36,8 +37,20 @@ public class Handler(PortalDbContext db, IBookingService bookingService, IMapper
         var booking = mapper.Map<Booking>(request);
         booking.BookingRatePlanId = ratePlan.Id;
 
-        // Validate availability
-        // Create booking
-        return ProblemTypedResults.NotFound<User>();
+        var conflicts = await bookingService.GetConflictsAsync(booking, ct);
+        if (conflicts.HasConflicts)
+            return ProblemTypedResults.Conflict("Requested rooms are unavailable for the selected dates.",
+                conflicts.Description);
+
+        await db.Bookings.AddAsync(booking, ct);
+
+        await db.SaveChangesAsync(ct);
+
+        var response = new Contracts.Response
+        {
+            Booking = mapper.Map<BookingModel>(booking)
+        };
+
+        return TypedResults.Created($"/bookings/admin/bookings/{booking.Id}", response);
     }
 }

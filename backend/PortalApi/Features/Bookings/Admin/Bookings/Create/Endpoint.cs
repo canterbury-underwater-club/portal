@@ -2,7 +2,7 @@
 using CanterburyUnderwater.PortalApi.EndpointHandling;
 using Microsoft.AspNetCore.Http.HttpResults;
 
-namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.CreateBooking;
+namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Create;
 
 public class Endpoint : IEndpoint
 {

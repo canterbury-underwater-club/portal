@@ -4,15 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CanterburyUnderwater.PortalApi.Services;
 
-public record BookingConflict
-{
-    public required DateOnly Date { get; init; }
-    public required int Room { get; init; }
-}
-
 public interface IBookingService
 {
-    Task<IReadOnlyCollection<BookingConflict>> GetConflictsAsync(Booking booking,
+    Task<BookingConflicts> GetConflictsAsync(Booking booking,
         CancellationToken ct = default);
 
     Task<BookingRatePlan> GetCurrentRatePlanAsync(CancellationToken ct = default);
@@ -20,7 +14,7 @@ public interface IBookingService
 
 public class BookingService(PortalDbContext db) : IBookingService
 {
-    public async Task<IReadOnlyCollection<BookingConflict>> GetConflictsAsync(Booking booking,
+    public async Task<BookingConflicts> GetConflictsAsync(Booking booking,
         CancellationToken ct = default)
     {
         var from = booking.CheckInDate;
@@ -48,7 +42,7 @@ public class BookingService(PortalDbContext db) : IBookingService
                     conflicts.Add(new BookingConflict { Date = date, Room = room });
         }
 
-        return conflicts;
+        return new BookingConflicts(conflicts);
     }
 
     public async Task<BookingRatePlan> GetCurrentRatePlanAsync(CancellationToken ct = default)

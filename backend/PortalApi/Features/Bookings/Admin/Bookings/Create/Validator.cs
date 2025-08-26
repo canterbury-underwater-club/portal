@@ -3,7 +3,7 @@ using CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Models;
 using CanterburyUnderwater.PortalApi.Features.Bookings.Models;
 using FluentValidation;
 
-namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.CreateBooking;
+namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Create;
 
 public class Validator : AbstractValidator<Contracts.Request>
 {

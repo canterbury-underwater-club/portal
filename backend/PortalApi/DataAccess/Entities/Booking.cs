@@ -27,7 +27,7 @@ public class Booking : EntityDefaults
     [MaxLength(Constants.Validation.MaxBookingGroupNameLength)]
     public string? GroupName { get; set; }
 
-    public required HashSet<int> Rooms { get; set; } = [];
+    public required List<int> Rooms { get; set; } = [];
 
     public required Guid PrimaryContactId { get; set; }
     public virtual User? PrimaryContact { get; set; }
