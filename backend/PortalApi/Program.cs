@@ -42,6 +42,7 @@ public class Program
         {
             options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.SerializerOptions.Converters.Add(new OptionalConverterFactory());
         });
 
         builder.Services.AddDbContext<PortalDbContext>(options =>

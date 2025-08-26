@@ -27,7 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Features\Bookings\Admin\Bookings\"/>
         <Folder Include="Features\Bookings\Keys\"/>
         <Folder Include="Features\Bookings\Mine\"/>
         <Folder Include="Features\Bookings\Public\Availability\"/>

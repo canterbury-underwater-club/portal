@@ -1,10 +1,11 @@
-﻿using FluentValidation;
+﻿using CanterburyUnderwater.PortalApi.DataAccess.Entities;
+using FluentValidation;
 
-namespace CanterburyUnderwater.PortalApi.Features.Bookings.Models;
+namespace CanterburyUnderwater.PortalApi.DataAccess.Validators;
 
-public class BookingAttendeeModelValidator : AbstractValidator<BookingAttendeeModel>
+public class BookingAttendeeValidator : AbstractValidator<BookingAttendee>
 {
-    public BookingAttendeeModelValidator()
+    public BookingAttendeeValidator()
     {
         RuleFor(a => a.FirstName)
             .NotEmpty()

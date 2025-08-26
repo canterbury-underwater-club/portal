@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.DataAccess.Entities;
+using CanterburyUnderwater.PortalApi.DataAccess.Validators;
 using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.ErrorHandling;
 using CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Models;
@@ -12,9 +13,10 @@ namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Create
 
 public class Handler(PortalDbContext db, IBookingService bookingService, IMapper mapper)
     : IRequestEndpointHandler<Contracts.Request,
-        Results<ProblemHttpResult, Created<Contracts.Response>>>
+        Results<ProblemHttpResult, ValidationProblem, Created<Contracts.Response>>>
 {
-    public async Task<Results<ProblemHttpResult, Created<Contracts.Response>>> HandleAsync(Contracts.Request request,
+    public async Task<Results<ProblemHttpResult, ValidationProblem, Created<Contracts.Response>>> HandleAsync(
+        Contracts.Request request,
         CancellationToken ct = default)
     {
         var primaryContactExists = await db.Users
@@ -36,6 +38,9 @@ public class Handler(PortalDbContext db, IBookingService bookingService, IMapper
 
         var booking = mapper.Map<Booking>(request);
         booking.BookingRatePlanId = ratePlan.Id;
+
+        var validationResult = await new BookingValidator().ValidateAsync(booking, ct);
+        if (!validationResult.IsValid) return ProblemTypedResults.Validation(validationResult);
 
         var conflicts = await bookingService.GetConflictsAsync(booking, ct);
         if (conflicts.HasConflicts)

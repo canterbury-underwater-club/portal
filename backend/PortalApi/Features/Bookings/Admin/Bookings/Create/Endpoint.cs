@@ -13,10 +13,11 @@ public class Endpoint : IEndpoint
                 async Task<IResult> (
                         Contracts.Request request,
                         IRequestEndpointHandler<Contracts.Request,
-                            Results<ProblemHttpResult, Created<Contracts.Response>>> handler,
+                            Results<ProblemHttpResult, ValidationProblem, Created<Contracts.Response>>> handler,
                         CancellationToken ct) =>
                     await handler.HandleAsync(request, ct))
             .Produces<Contracts.Response>(StatusCodes.Status201Created)
+            .ProducesValidationProblem()
             .WithTags(Tags.BookingsAdminBookings)
             .RequireRoles(RoleNames.BookingAdmin);
     }

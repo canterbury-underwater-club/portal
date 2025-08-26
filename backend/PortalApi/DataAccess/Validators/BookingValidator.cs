@@ -1,13 +1,12 @@
 ﻿using System.Text.Json;
-using CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Models;
-using CanterburyUnderwater.PortalApi.Features.Bookings.Models;
+using CanterburyUnderwater.PortalApi.DataAccess.Entities;
 using FluentValidation;
 
-namespace CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Create;
+namespace CanterburyUnderwater.PortalApi.DataAccess.Validators;
 
-public class Validator : AbstractValidator<Contracts.Request>
+public class BookingValidator : AbstractValidator<Booking>
 {
-    public Validator()
+    public BookingValidator()
     {
         RuleFor(m => m.CheckInDate)
             .NotEmpty();
@@ -16,7 +15,7 @@ public class Validator : AbstractValidator<Contracts.Request>
             .NotEmpty()
             .Must((m, to) => to > m.CheckInDate)
             .WithMessage(
-                $"{nameof(CreateBookingModel.CheckOutDate)} must be later than {nameof(CreateBookingModel.CheckInDate)}.");
+                $"{nameof(Booking.CheckOutDate)} must be later than {nameof(Booking.CheckInDate)}.");
 
         RuleFor(m => m.PrimaryContactId)
             .NotEmpty();
@@ -39,7 +38,7 @@ public class Validator : AbstractValidator<Contracts.Request>
             .Must(a => a.Count > 0).WithMessage("At least one attendee is required.");
 
         RuleForEach(m => m.Attendees)
-            .SetValidator(new BookingAttendeeModelValidator());
+            .SetValidator(new BookingAttendeeValidator());
 
         When(m => m.ContractHolderId != null, () =>
         {
@@ -47,10 +46,10 @@ public class Validator : AbstractValidator<Contracts.Request>
             {
                 a.RuleFor(x => x.AttendeeType)
                     .Null().WithMessage(
-                        $"{nameof(BookingAttendeeModel.AttendeeType)} must be null for contract bookings.");
+                        $"{nameof(BookingAttendee.AttendeeType)} must be null for contract bookings.");
                 a.RuleFor(x => x.AgeBracket)
                     .Null().WithMessage(
-                        $"{nameof(BookingAttendeeModel.AgeBracket)} must be null for contract bookings.");
+                        $"{nameof(BookingAttendee.AgeBracket)} must be null for contract bookings.");
             });
         });
 
@@ -60,11 +59,11 @@ public class Validator : AbstractValidator<Contracts.Request>
             {
                 a.RuleFor(x => x.AttendeeType)
                     .NotNull().WithMessage(
-                        $"{nameof(BookingAttendeeModel.AttendeeType)} is required for standard bookings.")
+                        $"{nameof(BookingAttendee.AttendeeType)} is required for standard bookings.")
                     .IsInEnum();
                 a.RuleFor(x => x.AgeBracket)
                     .NotNull().WithMessage(
-                        $"{nameof(BookingAttendeeModel.AgeBracket)} is required for standard bookings.")
+                        $"{nameof(BookingAttendee.AgeBracket)} is required for standard bookings.")
                     .IsInEnum();
             });
         });
