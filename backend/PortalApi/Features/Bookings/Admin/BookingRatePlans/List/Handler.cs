@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.Features.Bookings.Models;
@@ -14,17 +15,17 @@ public class Handler(PortalDbContext db, IBookingService bookingService, IMapper
     public async Task<Ok<Contracts.Response>> HandleAsync(CancellationToken ct = default)
     {
         var ratePlans = await db.BookingRatePlans
+            .AsNoTracking()
             .OrderByDescending(rp => rp.EffectiveFrom)
+            .ProjectTo<BookingRatePlanModel>(mapper.ConfigurationProvider)
             .ToListAsync(ct);
 
         var current = await bookingService.GetCurrentRatePlanAsync(ct);
 
-        var models = mapper.Map<List<BookingRatePlanModel>>(ratePlans);
+        foreach (var plan in ratePlans)
+            plan.IsCurrent = plan.Id == current.Id;
 
-        foreach (var m in models)
-            m.IsCurrent = m.Id == current.Id;
-
-        var response = new Contracts.Response { RatePlans = models };
+        var response = new Contracts.Response { RatePlans = ratePlans };
         return TypedResults.Ok(response);
     }
 }

@@ -21,7 +21,6 @@ public class Endpoint : IEndpoint
                     var handlerRequest = mapper.Map<Contracts.HandlerRequest>(request) with { Id = id };
                     return await handler.HandleAsync(handlerRequest, ct);
                 })
-            .MapToApiVersion(1)
             .Produces<Ok>()
             .ProducesNotFoundProblem()
             .WithTags(Tags.Users)

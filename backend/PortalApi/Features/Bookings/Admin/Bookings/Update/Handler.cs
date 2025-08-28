@@ -50,7 +50,6 @@ public class Handler(PortalDbContext db, IBookingService bookingService, IMapper
                 ? []
                 : mapper.Map<List<BookingAttendee>>(request.Attendees.Value);
 
-
         var validationResult = await new BookingValidator().ValidateAsync(booking, ct);
         if (!validationResult.IsValid) return ProblemTypedResults.Validation(validationResult);
 

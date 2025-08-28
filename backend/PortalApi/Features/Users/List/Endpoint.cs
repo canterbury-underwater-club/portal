@@ -14,7 +14,6 @@ public class Endpoint : IEndpoint
                         IResponseEndpointHandler<Ok<Contracts.Response>> handler,
                         CancellationToken ct) =>
                     await handler.HandleAsync(ct))
-            .MapToApiVersion(1)
             .Produces<Contracts.Response>()
             .WithTags(Tags.Users)
             .RequireRoles(RoleNames.Committee);

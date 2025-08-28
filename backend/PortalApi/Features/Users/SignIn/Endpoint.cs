@@ -13,7 +13,6 @@ public class Endpoint : IEndpoint
                         IResponseEndpointHandler<Results<UnauthorizedHttpResult, Ok<Contracts.Response>>> handler,
                         CancellationToken ct) =>
                     await handler.HandleAsync(ct))
-            .MapToApiVersion(1)
             .Produces<Contracts.Response>()
             .WithTags(Tags.Users)
             .RequireAuthorization();
