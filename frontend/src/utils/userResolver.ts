@@ -1,4 +1,7 @@
-import { MembershipStatusModel, UserModel } from '@/api/generated/v1'
+import {
+  UsersModelsMembershipStatusModel as MembershipStatus,
+  UsersModelsUserModel as UserModel,
+} from '@/api/generated/v1'
 
 export function resolveUserPhoto(user: UserModel | null | undefined): string {
   if (user?.photoUrl && user.photoUrl.trim() !== '') return user.photoUrl
@@ -26,20 +29,20 @@ export function resolveUserMembershipStatus(
 export function resolveUserIsActiveMember(user: UserModel | null | undefined): boolean {
   if (!user) return false
 
-  return new Set<MembershipStatusModel>([
-    MembershipStatusModel.Associate,
-    MembershipStatusModel.Junior,
-    MembershipStatusModel.Senior,
-    MembershipStatusModel.Couple,
-    MembershipStatusModel.Life,
+  return new Set<MembershipStatus>([
+    MembershipStatus.Associate,
+    MembershipStatus.Junior,
+    MembershipStatus.Senior,
+    MembershipStatus.Couple,
+    MembershipStatus.Life,
   ]).has(user.membershipStatus)
 }
 
-export function resolveMembershipStatus(membershipStatus: MembershipStatusModel) {
+export function resolveMembershipStatus(membershipStatus: MembershipStatus) {
   switch (membershipStatus) {
-    case MembershipStatusModel.NonMember:
+    case MembershipStatus.NonMember:
       return 'Non-member'
-    case MembershipStatusModel.PendingApproval:
+    case MembershipStatus.PendingApproval:
       return 'Pending approval'
     default:
       return membershipStatus

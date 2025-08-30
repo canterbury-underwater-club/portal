@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// import { MemberStatusModel } from '@/api/generated/v1'
-import { UserModel } from '@/api/generated/v1'
+import { UsersModelsUserModel as UserModel } from '@/api/generated/v1'
 import { Routes } from '@/plugins/router/constants'
 import { useUsersStore } from '@/stores/usersStore'
 import {

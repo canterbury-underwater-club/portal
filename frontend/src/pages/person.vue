@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MembershipStatusModel } from '@/api/generated/v1'
+import { UsersModelsMembershipStatusModel as MembershipStatus } from '@/api/generated/v1'
 import EditableAddressInput from '@/components/EditableAddressInput.vue'
 import { Routes } from '@/plugins/router/constants'
 import { useUsersStore } from '@/stores/usersStore'
@@ -32,7 +32,7 @@ const dateOfBirth = ref<string | null | undefined>(undefined)
 const occupation = ref<string | null | undefined>(undefined)
 const emergencyContactName = ref<string | null | undefined>(undefined)
 const emergencyContactPhone = ref<string | null | undefined>(undefined)
-const membershipStatus = ref<MembershipStatusModel | undefined>(undefined)
+const membershipStatus = ref<MembershipStatus | undefined>(undefined)
 const membershipStartDate = ref<string | null | undefined>(undefined)
 const membershipEndDate = ref<string | null | undefined>(undefined)
 
@@ -66,7 +66,7 @@ onMounted(async () => {
     occupation.value = user.value.occupation ?? ''
     emergencyContactName.value = user.value.emergencyContactName ?? ''
     emergencyContactPhone.value = user.value.emergencyContactPhone ?? ''
-    membershipStatus.value = user.value.membershipStatus ?? MembershipStatusModel.NonMember
+    membershipStatus.value = user.value.membershipStatus ?? MembershipStatus.NonMember
     membershipStartDate.value = user.value.membershipStartDate ?? ''
     membershipEndDate.value = user.value.membershipEndDate ?? ''
   }
@@ -83,9 +83,9 @@ Object.entries(fields).forEach(([field, refVal]) => {
   )
 })
 
-const membershipStatusOptions = Object.keys(MembershipStatusModel).map((key) => ({
-  value: MembershipStatusModel[key as keyof typeof MembershipStatusModel],
-  text: resolveMembershipStatus(MembershipStatusModel[key as keyof typeof MembershipStatusModel]),
+const membershipStatusOptions = Object.keys(MembershipStatus).map((key) => ({
+  value: MembershipStatus[key as keyof typeof MembershipStatus],
+  text: resolveMembershipStatus(MembershipStatus[key as keyof typeof MembershipStatus]),
 }))
 
 function toggleEdit() {

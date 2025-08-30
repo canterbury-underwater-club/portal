@@ -26,22 +26,652 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface BookingsAdminBookingContractHoldersCreateContractsRequest
+ */
+export interface BookingsAdminBookingContractHoldersCreateContractsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingContractHoldersCreateContractsRequest
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingContractHoldersCreateContractsResponse
+ */
+export interface BookingsAdminBookingContractHoldersCreateContractsResponse {
+    /**
+     * 
+     * @type {BookingsAdminBookingContractHoldersModelsBookingContractHolderModel}
+     * @memberof BookingsAdminBookingContractHoldersCreateContractsResponse
+     */
+    'contractHolder': BookingsAdminBookingContractHoldersModelsBookingContractHolderModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingContractHoldersListContractsResponse
+ */
+export interface BookingsAdminBookingContractHoldersListContractsResponse {
+    /**
+     * 
+     * @type {Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel>}
+     * @memberof BookingsAdminBookingContractHoldersListContractsResponse
+     */
+    'contractHolders': Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingContractHoldersModelsBookingContractHolderModel
+ */
+export interface BookingsAdminBookingContractHoldersModelsBookingContractHolderModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel
+     */
+    'isActive': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingRatePlansCreateContractsRequest
+ */
+export interface BookingsAdminBookingRatePlansCreateContractsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingRatePlansCreateContractsRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingRatePlansCreateContractsRequest
+     */
+    'effectiveFrom': string;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingRateModel>}
+     * @memberof BookingsAdminBookingRatePlansCreateContractsRequest
+     */
+    'rates': Array<BookingsModelsBookingRateModel>;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingFeeModel>}
+     * @memberof BookingsAdminBookingRatePlansCreateContractsRequest
+     */
+    'fees': Array<BookingsModelsBookingFeeModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingRatePlansCreateContractsResponse
+ */
+export interface BookingsAdminBookingRatePlansCreateContractsResponse {
+    /**
+     * 
+     * @type {BookingsModelsBookingRatePlanModel}
+     * @memberof BookingsAdminBookingRatePlansCreateContractsResponse
+     */
+    'ratePlan': BookingsModelsBookingRatePlanModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingRatePlansGetContractsResponse
+ */
+export interface BookingsAdminBookingRatePlansGetContractsResponse {
+    /**
+     * 
+     * @type {BookingsModelsBookingRatePlanModel}
+     * @memberof BookingsAdminBookingRatePlansGetContractsResponse
+     */
+    'ratePlan': BookingsModelsBookingRatePlanModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingRatePlansListContractsResponse
+ */
+export interface BookingsAdminBookingRatePlansListContractsResponse {
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingRatePlanModel>}
+     * @memberof BookingsAdminBookingRatePlansListContractsResponse
+     */
+    'ratePlans': Array<BookingsModelsBookingRatePlanModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsCreateContractsRequest
+ */
+export interface BookingsAdminBookingsCreateContractsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'checkInDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'checkOutDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'primaryContactId': string;
+    /**
+     * 
+     * @type {BookingsModelsBookingStatusModel}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'bookingStatus': BookingsModelsBookingStatusModel;
+    /**
+     * 
+     * @type {BookingsModelsBookingBondStatusModel}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'bondStatus': BookingsModelsBookingBondStatusModel;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'groupName'?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'rooms'?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsAdminBookingsCreateContractsRequest
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsCreateContractsResponse
+ */
+export interface BookingsAdminBookingsCreateContractsResponse {
+    /**
+     * 
+     * @type {BookingsAdminBookingsModelsBookingModel}
+     * @memberof BookingsAdminBookingsCreateContractsResponse
+     */
+    'booking': BookingsAdminBookingsModelsBookingModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsGetContractsResponse
+ */
+export interface BookingsAdminBookingsGetContractsResponse {
+    /**
+     * 
+     * @type {BookingsAdminBookingsModelsBookingModel}
+     * @memberof BookingsAdminBookingsGetContractsResponse
+     */
+    'booking': BookingsAdminBookingsModelsBookingModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsListContractsResponse
+ */
+export interface BookingsAdminBookingsListContractsResponse {
+    /**
+     * 
+     * @type {Array<BookingsAdminBookingsModelsBookingModel>}
+     * @memberof BookingsAdminBookingsListContractsResponse
+     */
+    'bookings': Array<BookingsAdminBookingsModelsBookingModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsModelsBookingModel
+ */
+export interface BookingsAdminBookingsModelsBookingModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'checkInDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'checkOutDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'primaryContactId': string;
+    /**
+     * 
+     * @type {BookingsModelsBookingStatusModel}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'bookingStatus': BookingsModelsBookingStatusModel;
+    /**
+     * 
+     * @type {BookingsModelsBookingBondStatusModel}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'bondStatus': BookingsModelsBookingBondStatusModel;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'groupName'?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'rooms'?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingsUpdateContractsRequest
+ */
+export interface BookingsAdminBookingsUpdateContractsRequest {
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'checkInDate'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'checkOutDate'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'primaryContactId'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'bookingStatus'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'bondStatus'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'groupName'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'rooms'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'contractHolderId'?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof BookingsAdminBookingsUpdateContractsRequest
+     */
+    'attendees'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsModelsBookingAttendeeModel
+ */
+export interface BookingsModelsBookingAttendeeModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'firstName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'lastName': string;
+    /**
+     * 
+     * @type {NullableOfBookingAttendeeTypeModel}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'attendeeType'?: NullableOfBookingAttendeeTypeModel | null;
+    /**
+     * 
+     * @type {NullableOfBookingAgeBracketModel}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'ageBracket'?: NullableOfBookingAgeBracketModel | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'membershipNumber'?: number | null;
+}
+
+
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
-export const MembershipStatusModel = {
-    NonMember: 'NonMember',
-    PendingApproval: 'PendingApproval',
-    Denied: 'Denied',
-    Associate: 'Associate',
-    Junior: 'Junior',
-    Senior: 'Senior',
-    Couple: 'Couple',
-    Life: 'Life',
-    Former: 'Former'
+export const BookingsModelsBookingBondStatusModel = {
+    NotRequired: 'NotRequired',
+    Required: 'Required',
+    Received: 'Received',
+    Returned: 'Returned'
 } as const;
 
-export type MembershipStatusModel = typeof MembershipStatusModel[keyof typeof MembershipStatusModel];
+export type BookingsModelsBookingBondStatusModel = typeof BookingsModelsBookingBondStatusModel[keyof typeof BookingsModelsBookingBondStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BookingsModelsBookingFeeBasisModel = {
+    PerAttendeePerBooking: 'PerAttendeePerBooking',
+    PerBookingFlat: 'PerBookingFlat'
+} as const;
+
+export type BookingsModelsBookingFeeBasisModel = typeof BookingsModelsBookingFeeBasisModel[keyof typeof BookingsModelsBookingFeeBasisModel];
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsModelsBookingFeeModel
+ */
+export interface BookingsModelsBookingFeeModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingFeeModel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {BookingsModelsBookingFeeBasisModel}
+     * @memberof BookingsModelsBookingFeeModel
+     */
+    'basis': BookingsModelsBookingFeeBasisModel;
+    /**
+     * 
+     * @type {number}
+     * @memberof BookingsModelsBookingFeeModel
+     */
+    'unitPriceCents': number;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsModelsBookingRateModel
+ */
+export interface BookingsModelsBookingRateModel {
+    /**
+     * 
+     * @type {BookingsModelsBookingRateTypeModel}
+     * @memberof BookingsModelsBookingRateModel
+     */
+    'rateType': BookingsModelsBookingRateTypeModel;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingRateModel
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {NullableOfBookingAttendeeTypeModel}
+     * @memberof BookingsModelsBookingRateModel
+     */
+    'attendeeType'?: NullableOfBookingAttendeeTypeModel | null;
+    /**
+     * 
+     * @type {NullableOfBookingAgeBracketModel}
+     * @memberof BookingsModelsBookingRateModel
+     */
+    'ageBracket'?: NullableOfBookingAgeBracketModel | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BookingsModelsBookingRateModel
+     */
+    'unitPriceCents': number;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsModelsBookingRatePlanModel
+ */
+export interface BookingsModelsBookingRatePlanModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'effectiveFrom': string;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingRateModel>}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'rates': Array<BookingsModelsBookingRateModel>;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingFeeModel>}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'fees': Array<BookingsModelsBookingFeeModel>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BookingsModelsBookingRatePlanModel
+     */
+    'isCurrent': boolean;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BookingsModelsBookingRateTypeModel = {
+    Standard: 'Standard',
+    Contract: 'Contract'
+} as const;
+
+export type BookingsModelsBookingRateTypeModel = typeof BookingsModelsBookingRateTypeModel[keyof typeof BookingsModelsBookingRateTypeModel];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BookingsModelsBookingStatusModel = {
+    Pending: 'Pending',
+    Approved: 'Approved',
+    Cancelled: 'Cancelled'
+} as const;
+
+export type BookingsModelsBookingStatusModel = typeof BookingsModelsBookingStatusModel[keyof typeof BookingsModelsBookingStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @interface HttpValidationProblemDetails
+ */
+export interface HttpValidationProblemDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    'type'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    'title'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof HttpValidationProblemDetails
+     */
+    'status'?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    'detail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof HttpValidationProblemDetails
+     */
+    'instance'?: string | null;
+    /**
+     * 
+     * @type {{ [key: string]: Array<string>; }}
+     * @memberof HttpValidationProblemDetails
+     */
+    'errors'?: { [key: string]: Array<string>; };
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullableOfBookingAgeBracketModel = {
+    Under5: 'Under5',
+    FiveToSeventeen: 'FiveToSeventeen',
+    Adult: 'Adult'
+} as const;
+
+export type NullableOfBookingAgeBracketModel = typeof NullableOfBookingAgeBracketModel[keyof typeof NullableOfBookingAgeBracketModel];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullableOfBookingAttendeeTypeModel = {
+    Member: 'Member',
+    NonMember: 'NonMember'
+} as const;
+
+export type NullableOfBookingAttendeeTypeModel = typeof NullableOfBookingAttendeeTypeModel[keyof typeof NullableOfBookingAttendeeTypeModel];
 
 
 /**
@@ -105,188 +735,1072 @@ export interface ProblemDetails {
 /**
  * 
  * @export
- * @interface Request
+ * @interface UsersListContractsResponse
  */
-export interface Request {
+export interface UsersListContractsResponse {
     /**
      * 
-     * @type {string}
-     * @memberof Request
+     * @type {Array<UsersModelsUserModel>}
+     * @memberof UsersListContractsResponse
      */
-    'firstName'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'lastName'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'emailAddress'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'homePhone'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'mobilePhone'?: string | null;
-    /**
-     * 
-     * @type {NullableOfMembershipStatusModel}
-     * @memberof Request
-     */
-    'membershipStatus'?: NullableOfMembershipStatusModel | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'membershipStartDate'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Request
-     */
-    'membershipEndDate'?: string | null;
+    'users': Array<UsersModelsUserModel>;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const UsersModelsMembershipStatusModel = {
+    NonMember: 'NonMember',
+    PendingApproval: 'PendingApproval',
+    Denied: 'Denied',
+    Associate: 'Associate',
+    Junior: 'Junior',
+    Senior: 'Senior',
+    Couple: 'Couple',
+    Life: 'Life',
+    Former: 'Former'
+} as const;
+
+export type UsersModelsMembershipStatusModel = typeof UsersModelsMembershipStatusModel[keyof typeof UsersModelsMembershipStatusModel];
 
 
 /**
  * 
  * @export
- * @interface Response
+ * @interface UsersModelsUserModel
  */
-export interface Response {
-    /**
-     * 
-     * @type {UserModel}
-     * @memberof Response
-     */
-    'user': UserModel;
-}
-/**
- * 
- * @export
- * @interface Response2
- */
-export interface Response2 {
-    /**
-     * 
-     * @type {Array<UserModel>}
-     * @memberof Response2
-     */
-    'users': Array<UserModel>;
-}
-/**
- * 
- * @export
- * @interface UserModel
- */
-export interface UserModel {
+export interface UsersModelsUserModel {
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'id': string;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'firstName': string;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'lastName'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'emailAddress': string;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'homePhone'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'mobilePhone'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'photoUrl'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'address'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'dateOfBirth'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'occupation'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'emergencyContactName'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'emergencyContactPhone'?: string | null;
     /**
      * 
-     * @type {MembershipStatusModel}
-     * @memberof UserModel
+     * @type {UsersModelsMembershipStatusModel}
+     * @memberof UsersModelsUserModel
      */
-    'membershipStatus': MembershipStatusModel;
+    'membershipStatus': UsersModelsMembershipStatusModel;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'membershipStartDate'?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'membershipEndDate'?: string | null;
     /**
      * 
+     * @type {number}
+     * @memberof UsersModelsUserModel
+     */
+    'membershipNumber'?: number | null;
+    /**
+     * 
      * @type {Array<string>}
-     * @memberof UserModel
+     * @memberof UsersModelsUserModel
      */
     'roles': Array<string>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface UsersSignInContractsResponse
+ */
+export interface UsersSignInContractsResponse {
+    /**
+     * 
+     * @type {UsersModelsUserModel}
+     * @memberof UsersSignInContractsResponse
+     */
+    'user': UsersModelsUserModel;
+}
+/**
+ * 
+ * @export
+ * @interface UsersUpdateContractsRequest
+ */
+export interface UsersUpdateContractsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'firstName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'lastName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'emailAddress'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'homePhone'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'mobilePhone'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'photoUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'address'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'dateOfBirth'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'occupation'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'emergencyContactName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'emergencyContactPhone'?: string | null;
+    /**
+     * 
+     * @type {NullableOfMembershipStatusModel}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'membershipStatus'?: NullableOfMembershipStatusModel | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'membershipStartDate'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UsersUpdateContractsRequest
+     */
+    'membershipEndDate'?: string | null;
+}
+
+
+
+/**
+ * BookingsAdminBookingsApi - axios parameter creator
+ * @export
+ */
+export const BookingsAdminBookingsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsGet: async (from?: string, to?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v1/bookings/admin/bookings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (from !== undefined) {
+                localVarQueryParameter['from'] = (from as any instanceof Date) ?
+                    (from as any).toISOString().substring(0,10) :
+                    from;
+            }
+
+            if (to !== undefined) {
+                localVarQueryParameter['to'] = (to as any instanceof Date) ?
+                    (to as any).toISOString().substring(0,10) :
+                    to;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1BookingsAdminBookingsIdGet', 'id', id)
+            const localVarPath = `/v1/bookings/admin/bookings/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {BookingsAdminBookingsUpdateContractsRequest} bookingsAdminBookingsUpdateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsIdPatch: async (id: string, bookingsAdminBookingsUpdateContractsRequest: BookingsAdminBookingsUpdateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1BookingsAdminBookingsIdPatch', 'id', id)
+            // verify required parameter 'bookingsAdminBookingsUpdateContractsRequest' is not null or undefined
+            assertParamExists('v1BookingsAdminBookingsIdPatch', 'bookingsAdminBookingsUpdateContractsRequest', bookingsAdminBookingsUpdateContractsRequest)
+            const localVarPath = `/v1/bookings/admin/bookings/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(bookingsAdminBookingsUpdateContractsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingsCreateContractsRequest} bookingsAdminBookingsCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsPost: async (bookingsAdminBookingsCreateContractsRequest: BookingsAdminBookingsCreateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'bookingsAdminBookingsCreateContractsRequest' is not null or undefined
+            assertParamExists('v1BookingsAdminBookingsPost', 'bookingsAdminBookingsCreateContractsRequest', bookingsAdminBookingsCreateContractsRequest)
+            const localVarPath = `/v1/bookings/admin/bookings`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(bookingsAdminBookingsCreateContractsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BookingsAdminBookingsApi - functional programming interface
+ * @export
+ */
+export const BookingsAdminBookingsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BookingsAdminBookingsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingsListContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsGet(from, to, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminBookingsApi.v1BookingsAdminBookingsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminBookingsIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingsGetContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminBookingsApi.v1BookingsAdminBookingsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {BookingsAdminBookingsUpdateContractsRequest} bookingsAdminBookingsUpdateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminBookingsIdPatch(id: string, bookingsAdminBookingsUpdateContractsRequest: BookingsAdminBookingsUpdateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsIdPatch(id, bookingsAdminBookingsUpdateContractsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminBookingsApi.v1BookingsAdminBookingsIdPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingsCreateContractsRequest} bookingsAdminBookingsCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest: BookingsAdminBookingsCreateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingsCreateContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminBookingsApi.v1BookingsAdminBookingsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BookingsAdminBookingsApi - factory interface
+ * @export
+ */
+export const BookingsAdminBookingsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BookingsAdminBookingsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingsListContractsResponse> {
+            return localVarFp.v1BookingsAdminBookingsGet(from, to, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsIdGet(id: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingsGetContractsResponse> {
+            return localVarFp.v1BookingsAdminBookingsIdGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {BookingsAdminBookingsUpdateContractsRequest} bookingsAdminBookingsUpdateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsIdPatch(id: string, bookingsAdminBookingsUpdateContractsRequest: BookingsAdminBookingsUpdateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.v1BookingsAdminBookingsIdPatch(id, bookingsAdminBookingsUpdateContractsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingsCreateContractsRequest} bookingsAdminBookingsCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest: BookingsAdminBookingsCreateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingsCreateContractsResponse> {
+            return localVarFp.v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BookingsAdminBookingsApi - object-oriented interface
+ * @export
+ * @class BookingsAdminBookingsApi
+ * @extends {BaseAPI}
+ */
+export class BookingsAdminBookingsApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} [from] 
+     * @param {string} [to] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminBookingsApi
+     */
+    public v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig) {
+        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsGet(from, to, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminBookingsApi
+     */
+    public v1BookingsAdminBookingsIdGet(id: string, options?: RawAxiosRequestConfig) {
+        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {BookingsAdminBookingsUpdateContractsRequest} bookingsAdminBookingsUpdateContractsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminBookingsApi
+     */
+    public v1BookingsAdminBookingsIdPatch(id: string, bookingsAdminBookingsUpdateContractsRequest: BookingsAdminBookingsUpdateContractsRequest, options?: RawAxiosRequestConfig) {
+        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsIdPatch(id, bookingsAdminBookingsUpdateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {BookingsAdminBookingsCreateContractsRequest} bookingsAdminBookingsCreateContractsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminBookingsApi
+     */
+    public v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest: BookingsAdminBookingsCreateContractsRequest, options?: RawAxiosRequestConfig) {
+        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsPost(bookingsAdminBookingsCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BookingsAdminContractHoldersApi - axios parameter creator
+ * @export
+ */
+export const BookingsAdminContractHoldersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminContractHoldersGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v1/bookings/admin/contract-holders`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingContractHoldersCreateContractsRequest} bookingsAdminBookingContractHoldersCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminContractHoldersPost: async (bookingsAdminBookingContractHoldersCreateContractsRequest: BookingsAdminBookingContractHoldersCreateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'bookingsAdminBookingContractHoldersCreateContractsRequest' is not null or undefined
+            assertParamExists('v1BookingsAdminContractHoldersPost', 'bookingsAdminBookingContractHoldersCreateContractsRequest', bookingsAdminBookingContractHoldersCreateContractsRequest)
+            const localVarPath = `/v1/bookings/admin/contract-holders`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(bookingsAdminBookingContractHoldersCreateContractsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BookingsAdminContractHoldersApi - functional programming interface
+ * @export
+ */
+export const BookingsAdminContractHoldersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BookingsAdminContractHoldersApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminContractHoldersGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingContractHoldersListContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminContractHoldersGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminContractHoldersApi.v1BookingsAdminContractHoldersGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingContractHoldersCreateContractsRequest} bookingsAdminBookingContractHoldersCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest: BookingsAdminBookingContractHoldersCreateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingContractHoldersCreateContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminContractHoldersApi.v1BookingsAdminContractHoldersPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BookingsAdminContractHoldersApi - factory interface
+ * @export
+ */
+export const BookingsAdminContractHoldersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BookingsAdminContractHoldersApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminContractHoldersGet(options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingContractHoldersListContractsResponse> {
+            return localVarFp.v1BookingsAdminContractHoldersGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingContractHoldersCreateContractsRequest} bookingsAdminBookingContractHoldersCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest: BookingsAdminBookingContractHoldersCreateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingContractHoldersCreateContractsResponse> {
+            return localVarFp.v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BookingsAdminContractHoldersApi - object-oriented interface
+ * @export
+ * @class BookingsAdminContractHoldersApi
+ * @extends {BaseAPI}
+ */
+export class BookingsAdminContractHoldersApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminContractHoldersApi
+     */
+    public v1BookingsAdminContractHoldersGet(options?: RawAxiosRequestConfig) {
+        return BookingsAdminContractHoldersApiFp(this.configuration).v1BookingsAdminContractHoldersGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {BookingsAdminBookingContractHoldersCreateContractsRequest} bookingsAdminBookingContractHoldersCreateContractsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminContractHoldersApi
+     */
+    public v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest: BookingsAdminBookingContractHoldersCreateContractsRequest, options?: RawAxiosRequestConfig) {
+        return BookingsAdminContractHoldersApiFp(this.configuration).v1BookingsAdminContractHoldersPost(bookingsAdminBookingContractHoldersCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BookingsAdminRatePlansApi - axios parameter creator
+ * @export
+ */
+export const BookingsAdminRatePlansApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v1/bookings/admin/rate-plans`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansIdDelete: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1BookingsAdminRatePlansIdDelete', 'id', id)
+            const localVarPath = `/v1/bookings/admin/rate-plans/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1BookingsAdminRatePlansIdGet', 'id', id)
+            const localVarPath = `/v1/bookings/admin/rate-plans/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingRatePlansCreateContractsRequest} bookingsAdminBookingRatePlansCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansPost: async (bookingsAdminBookingRatePlansCreateContractsRequest: BookingsAdminBookingRatePlansCreateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'bookingsAdminBookingRatePlansCreateContractsRequest' is not null or undefined
+            assertParamExists('v1BookingsAdminRatePlansPost', 'bookingsAdminBookingRatePlansCreateContractsRequest', bookingsAdminBookingRatePlansCreateContractsRequest)
+            const localVarPath = `/v1/bookings/admin/rate-plans`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(bookingsAdminBookingRatePlansCreateContractsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BookingsAdminRatePlansApi - functional programming interface
+ * @export
+ */
+export const BookingsAdminRatePlansApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BookingsAdminRatePlansApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminRatePlansGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingRatePlansListContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminRatePlansGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminRatePlansApi.v1BookingsAdminRatePlansGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminRatePlansIdDelete(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminRatePlansIdDelete(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminRatePlansApi.v1BookingsAdminRatePlansIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminRatePlansIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingRatePlansGetContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminRatePlansIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminRatePlansApi.v1BookingsAdminRatePlansIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingRatePlansCreateContractsRequest} bookingsAdminBookingRatePlansCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest: BookingsAdminBookingRatePlansCreateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingRatePlansCreateContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsAdminRatePlansApi.v1BookingsAdminRatePlansPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BookingsAdminRatePlansApi - factory interface
+ * @export
+ */
+export const BookingsAdminRatePlansApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BookingsAdminRatePlansApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansGet(options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingRatePlansListContractsResponse> {
+            return localVarFp.v1BookingsAdminRatePlansGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansIdDelete(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.v1BookingsAdminRatePlansIdDelete(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansIdGet(id: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingRatePlansGetContractsResponse> {
+            return localVarFp.v1BookingsAdminRatePlansIdGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {BookingsAdminBookingRatePlansCreateContractsRequest} bookingsAdminBookingRatePlansCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest: BookingsAdminBookingRatePlansCreateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingRatePlansCreateContractsResponse> {
+            return localVarFp.v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BookingsAdminRatePlansApi - object-oriented interface
+ * @export
+ * @class BookingsAdminRatePlansApi
+ * @extends {BaseAPI}
+ */
+export class BookingsAdminRatePlansApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminRatePlansApi
+     */
+    public v1BookingsAdminRatePlansGet(options?: RawAxiosRequestConfig) {
+        return BookingsAdminRatePlansApiFp(this.configuration).v1BookingsAdminRatePlansGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminRatePlansApi
+     */
+    public v1BookingsAdminRatePlansIdDelete(id: string, options?: RawAxiosRequestConfig) {
+        return BookingsAdminRatePlansApiFp(this.configuration).v1BookingsAdminRatePlansIdDelete(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminRatePlansApi
+     */
+    public v1BookingsAdminRatePlansIdGet(id: string, options?: RawAxiosRequestConfig) {
+        return BookingsAdminRatePlansApiFp(this.configuration).v1BookingsAdminRatePlansIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {BookingsAdminBookingRatePlansCreateContractsRequest} bookingsAdminBookingRatePlansCreateContractsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsAdminRatePlansApi
+     */
+    public v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest: BookingsAdminBookingRatePlansCreateContractsRequest, options?: RawAxiosRequestConfig) {
+        return BookingsAdminRatePlansApiFp(this.configuration).v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
 
@@ -333,15 +1847,15 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {string} id 
-         * @param {Request} request 
+         * @param {UsersUpdateContractsRequest} usersUpdateContractsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1UsersIdPatch: async (id: string, request: Request, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        v1UsersIdPatch: async (id: string, usersUpdateContractsRequest: UsersUpdateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('v1UsersIdPatch', 'id', id)
-            // verify required parameter 'request' is not null or undefined
-            assertParamExists('v1UsersIdPatch', 'request', request)
+            // verify required parameter 'usersUpdateContractsRequest' is not null or undefined
+            assertParamExists('v1UsersIdPatch', 'usersUpdateContractsRequest', usersUpdateContractsRequest)
             const localVarPath = `/v1/users/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -366,7 +1880,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(request, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(usersUpdateContractsRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -421,7 +1935,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async v1UsersGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response2>> {
+        async v1UsersGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersListContractsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.v1UsersGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.v1UsersGet']?.[localVarOperationServerIndex]?.url;
@@ -430,12 +1944,12 @@ export const UsersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {Request} request 
+         * @param {UsersUpdateContractsRequest} usersUpdateContractsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.v1UsersIdPatch(id, request, options);
+        async v1UsersIdPatch(id: string, usersUpdateContractsRequest: UsersUpdateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1UsersIdPatch(id, usersUpdateContractsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.v1UsersIdPatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -445,7 +1959,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async v1UsersSignInPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async v1UsersSignInPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersSignInContractsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.v1UsersSignInPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UsersApi.v1UsersSignInPost']?.[localVarOperationServerIndex]?.url;
@@ -466,25 +1980,25 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1UsersGet(options?: RawAxiosRequestConfig): AxiosPromise<Response2> {
+        v1UsersGet(options?: RawAxiosRequestConfig): AxiosPromise<UsersListContractsResponse> {
             return localVarFp.v1UsersGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {string} id 
-         * @param {Request} request 
+         * @param {UsersUpdateContractsRequest} usersUpdateContractsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.v1UsersIdPatch(id, request, options).then((request) => request(axios, basePath));
+        v1UsersIdPatch(id: string, usersUpdateContractsRequest: UsersUpdateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.v1UsersIdPatch(id, usersUpdateContractsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1UsersSignInPost(options?: RawAxiosRequestConfig): AxiosPromise<Response> {
+        v1UsersSignInPost(options?: RawAxiosRequestConfig): AxiosPromise<UsersSignInContractsResponse> {
             return localVarFp.v1UsersSignInPost(options).then((request) => request(axios, basePath));
         },
     };
@@ -510,13 +2024,13 @@ export class UsersApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
-     * @param {Request} request 
+     * @param {UsersUpdateContractsRequest} usersUpdateContractsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public v1UsersIdPatch(id: string, request: Request, options?: RawAxiosRequestConfig) {
-        return UsersApiFp(this.configuration).v1UsersIdPatch(id, request, options).then((request) => request(this.axios, this.basePath));
+    public v1UsersIdPatch(id: string, usersUpdateContractsRequest: UsersUpdateContractsRequest, options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).v1UsersIdPatch(id, usersUpdateContractsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost:5171*
 |[**v1UsersSignInPost**](#v1userssigninpost) | **POST** /v1/users/sign-in | |
 
 # **v1UsersGet**
-> Response2 v1UsersGet()
+> UsersListContractsResponse v1UsersGet()
 
 
 ### Example
@@ -32,7 +32,7 @@ This endpoint does not have any parameters.
 
 ### Return type
 
-**Response2**
+**UsersListContractsResponse**
 
 ### Authorization
 
@@ -52,7 +52,7 @@ This endpoint does not have any parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **v1UsersIdPatch**
-> v1UsersIdPatch(request)
+> v1UsersIdPatch(usersUpdateContractsRequest)
 
 
 ### Example
@@ -61,18 +61,18 @@ This endpoint does not have any parameters.
 import {
     UsersApi,
     Configuration,
-    Request
+    UsersUpdateContractsRequest
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new UsersApi(configuration);
 
 let id: string; // (default to undefined)
-let request: Request; //
+let usersUpdateContractsRequest: UsersUpdateContractsRequest; //
 
 const { status, data } = await apiInstance.v1UsersIdPatch(
     id,
-    request
+    usersUpdateContractsRequest
 );
 ```
 
@@ -80,7 +80,7 @@ const { status, data } = await apiInstance.v1UsersIdPatch(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **request** | **Request**|  | |
+| **usersUpdateContractsRequest** | **UsersUpdateContractsRequest**|  | |
 | **id** | [**string**] |  | defaults to undefined|
 
 
@@ -106,7 +106,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **v1UsersSignInPost**
-> Response v1UsersSignInPost()
+> UsersSignInContractsResponse v1UsersSignInPost()
 
 
 ### Example
@@ -129,7 +129,7 @@ This endpoint does not have any parameters.
 
 ### Return type
 
-**Response**
+**UsersSignInContractsResponse**
 
 ### Authorization
 

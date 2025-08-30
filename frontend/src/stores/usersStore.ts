@@ -1,4 +1,4 @@
-import { UserModel } from '@/api/generated/v1'
+import { UsersModelsUserModel as UserModel } from '@/api/generated/v1'
 import { buildUsersApi } from '@/api/portal-api'
 
 export const useUsersStore = defineStore('users', () => {
