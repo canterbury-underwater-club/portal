@@ -398,6 +398,201 @@ export interface BookingsAdminBookingsUpdateContractsRequest {
 /**
  * 
  * @export
+ * @interface BookingsMineCreateContractsRequest
+ */
+export interface BookingsMineCreateContractsRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'checkInDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'checkOutDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'groupName'?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'rooms'?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsMineCreateContractsRequest
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsMineCreateContractsResponse
+ */
+export interface BookingsMineCreateContractsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {BookingsModelsBookingStatusModel}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'bookingStatus': BookingsModelsBookingStatusModel;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'checkInDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'checkOutDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'groupName'?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'rooms'?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsMineGetContractsResponse
+ */
+export interface BookingsMineGetContractsResponse {
+    /**
+     * 
+     * @type {BookingsMineModelsBookingModel}
+     * @memberof BookingsMineGetContractsResponse
+     */
+    'booking': BookingsMineModelsBookingModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsMineListContractsResponse
+ */
+export interface BookingsMineListContractsResponse {
+    /**
+     * 
+     * @type {Array<BookingsAdminBookingsModelsBookingModel>}
+     * @memberof BookingsMineListContractsResponse
+     */
+    'bookings': Array<BookingsAdminBookingsModelsBookingModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsMineModelsBookingModel
+ */
+export interface BookingsMineModelsBookingModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {BookingsModelsBookingStatusModel}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'bookingStatus': BookingsModelsBookingStatusModel;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'checkInDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'checkOutDate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'groupName'?: string | null;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'rooms'?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'contractHolderId'?: string | null;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+}
+
+
+/**
+ * 
+ * @export
  * @interface BookingsModelsBookingAttendeeModel
  */
 export interface BookingsModelsBookingAttendeeModel {
@@ -1800,6 +1995,267 @@ export class BookingsAdminRatePlansApi extends BaseAPI {
      */
     public v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest: BookingsAdminBookingRatePlansCreateContractsRequest, options?: RawAxiosRequestConfig) {
         return BookingsAdminRatePlansApiFp(this.configuration).v1BookingsAdminRatePlansPost(bookingsAdminBookingRatePlansCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BookingsMineApi - axios parameter creator
+ * @export
+ */
+export const BookingsMineApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMineGet: async (from?: string, to?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v1/bookings/mine`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (from !== undefined) {
+                localVarQueryParameter['from'] = (from as any instanceof Date) ?
+                    (from as any).toISOString().substring(0,10) :
+                    from;
+            }
+
+            if (to !== undefined) {
+                localVarQueryParameter['to'] = (to as any instanceof Date) ?
+                    (to as any).toISOString().substring(0,10) :
+                    to;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMineIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('v1BookingsMineIdGet', 'id', id)
+            const localVarPath = `/v1/bookings/mine/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {BookingsMineCreateContractsRequest} bookingsMineCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMinePost: async (bookingsMineCreateContractsRequest: BookingsMineCreateContractsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'bookingsMineCreateContractsRequest' is not null or undefined
+            assertParamExists('v1BookingsMinePost', 'bookingsMineCreateContractsRequest', bookingsMineCreateContractsRequest)
+            const localVarPath = `/v1/bookings/mine`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(bookingsMineCreateContractsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BookingsMineApi - functional programming interface
+ * @export
+ */
+export const BookingsMineApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BookingsMineApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsMineGet(from?: string, to?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsMineListContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsMineGet(from, to, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsMineApi.v1BookingsMineGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsMineIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsMineGetContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsMineIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsMineApi.v1BookingsMineIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {BookingsMineCreateContractsRequest} bookingsMineCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsMinePost(bookingsMineCreateContractsRequest: BookingsMineCreateContractsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsMineCreateContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsMinePost(bookingsMineCreateContractsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsMineApi.v1BookingsMinePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BookingsMineApi - factory interface
+ * @export
+ */
+export const BookingsMineApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BookingsMineApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} [from] 
+         * @param {string} [to] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMineGet(from?: string, to?: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsMineListContractsResponse> {
+            return localVarFp.v1BookingsMineGet(from, to, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMineIdGet(id: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsMineGetContractsResponse> {
+            return localVarFp.v1BookingsMineIdGet(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {BookingsMineCreateContractsRequest} bookingsMineCreateContractsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsMinePost(bookingsMineCreateContractsRequest: BookingsMineCreateContractsRequest, options?: RawAxiosRequestConfig): AxiosPromise<BookingsMineCreateContractsResponse> {
+            return localVarFp.v1BookingsMinePost(bookingsMineCreateContractsRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BookingsMineApi - object-oriented interface
+ * @export
+ * @class BookingsMineApi
+ * @extends {BaseAPI}
+ */
+export class BookingsMineApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} [from] 
+     * @param {string} [to] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsMineApi
+     */
+    public v1BookingsMineGet(from?: string, to?: string, options?: RawAxiosRequestConfig) {
+        return BookingsMineApiFp(this.configuration).v1BookingsMineGet(from, to, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsMineApi
+     */
+    public v1BookingsMineIdGet(id: string, options?: RawAxiosRequestConfig) {
+        return BookingsMineApiFp(this.configuration).v1BookingsMineIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {BookingsMineCreateContractsRequest} bookingsMineCreateContractsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsMineApi
+     */
+    public v1BookingsMinePost(bookingsMineCreateContractsRequest: BookingsMineCreateContractsRequest, options?: RawAxiosRequestConfig) {
+        return BookingsMineApiFp(this.configuration).v1BookingsMinePost(bookingsMineCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

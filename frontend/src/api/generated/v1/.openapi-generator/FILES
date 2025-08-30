@@ -21,6 +21,12 @@ docs/BookingsAdminBookingsModelsBookingModel.md
 docs/BookingsAdminBookingsUpdateContractsRequest.md
 docs/BookingsAdminContractHoldersApi.md
 docs/BookingsAdminRatePlansApi.md
+docs/BookingsMineApi.md
+docs/BookingsMineCreateContractsRequest.md
+docs/BookingsMineCreateContractsResponse.md
+docs/BookingsMineGetContractsResponse.md
+docs/BookingsMineListContractsResponse.md
+docs/BookingsMineModelsBookingModel.md
 docs/BookingsModelsBookingAttendeeModel.md
 docs/BookingsModelsBookingBondStatusModel.md
 docs/BookingsModelsBookingFeeBasisModel.md
