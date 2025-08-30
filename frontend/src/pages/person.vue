@@ -90,11 +90,9 @@ const membershipStatusOptions = Object.keys(MembershipStatus).map((key) => ({
 
 function toggleEdit() {
   if (isEditing.value) {
-    // Done: go to /person/:id
-    router.push({ name: Routes.Person, params: { id: userId.value } })
+    router.push({ name: Routes.PeopleView.name, params: { id: userId.value } })
   } else {
-    // Edit: go to /person/:id/edit
-    router.push({ name: Routes.PersonEdit, params: { id: userId.value } })
+    router.push({ name: Routes.PeopleEdit.name, params: { id: userId.value } })
   }
 }
 </script>

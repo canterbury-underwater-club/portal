@@ -83,7 +83,10 @@ onMounted(async () => {
     const result = await getRedirectResult(auth)
     if (result?.user) {
       sessionStorage.removeItem(REDIRECT_FLAG)
-      await router.replace({ name: Routes.LoginCallback, query: { redirect: redirectParam.value } })
+      await router.replace({
+        name: Routes.LoginCallback.name,
+        query: { redirect: redirectParam.value },
+      })
       return
     }
   } catch (e: unknown) {
@@ -93,7 +96,10 @@ onMounted(async () => {
   unsubscribe = onAuthStateChanged(auth, async (user) => {
     if (user) {
       sessionStorage.removeItem(REDIRECT_FLAG)
-      await router.replace({ name: Routes.LoginCallback, query: { redirect: redirectParam.value } })
+      await router.replace({
+        name: Routes.LoginCallback.name,
+        query: { redirect: redirectParam.value },
+      })
     } else {
       // Not finishing a redirect after all—show the login UI
       loading.value = false

@@ -57,7 +57,7 @@ const pageCount = computed(() => {
 const showPagination = computed(() => userData.value.length > itemsPerPage.value)
 
 function goToPerson(_: unknown, row: { item: UserModel }) {
-  router.push({ name: Routes.Person, params: { id: row.item.id } })
+  router.push({ name: Routes.PeopleView.name, params: { id: row.item.id } })
 }
 </script>
 

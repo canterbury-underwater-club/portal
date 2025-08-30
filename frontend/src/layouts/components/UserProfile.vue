@@ -30,7 +30,7 @@ const userPhoto = computed(() => resolveUserPhoto(user.value))
         <VDivider class="my-2" />
 
         <!-- Profile -->
-        <VListItem link :to="{ name: Routes.AccountSettings }">
+        <VListItem link :to="{ name: Routes.AccountSettings.name }">
           <template #prepend>
             <VIcon class="me-2" icon="ri-user-line" size="22" />
           </template>

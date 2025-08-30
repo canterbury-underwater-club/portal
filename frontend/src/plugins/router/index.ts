@@ -2,7 +2,18 @@ import { useRouteLoadingStore } from '@/stores/routeLoading'
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { authGuard } from './guards/authGuard'
-import { routes } from './routes'
+import { accountRoutes } from './routes/account'
+import { authAndErrorRoutes } from './routes/authAndError'
+import { peopleRoutes } from './routes/people'
+
+const baseRedirect = { path: '/', redirect: '/people' }
+
+export const routes = [
+  baseRedirect,
+  peopleRoutes,
+  accountRoutes,
+  authAndErrorRoutes,
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

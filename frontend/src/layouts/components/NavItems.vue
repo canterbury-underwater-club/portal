@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Routes } from '@/plugins/router/constants'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 </script>
 
@@ -7,7 +8,7 @@ import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
     :item="{
       title: 'People',
       icon: 'ri-team-line',
-      to: '/people',
+      to: Routes.PeopleList.path,
     }"
   />
 </template>

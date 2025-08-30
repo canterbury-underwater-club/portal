@@ -47,7 +47,7 @@ export function useAuth() {
 
   const signOut = async () => {
     await fbSignOut(auth)
-    window.location.href = Routes.Login
+    window.location.href = Routes.Login.path
   }
 
   return {
