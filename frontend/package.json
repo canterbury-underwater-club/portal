@@ -14,6 +14,7 @@
     "generate-api-client": "openapi-generator-cli generate --generator-key portal"
   },
   "dependencies": {
+    "@date-fns/tz": "^1.4.1",
     "@floating-ui/dom": "1.7.2",
     "@iconify-json/bxl": "^1.2.2",
     "@vueuse/core": "^13.5.0",

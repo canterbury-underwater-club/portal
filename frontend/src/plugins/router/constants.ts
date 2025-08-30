@@ -3,6 +3,10 @@ export interface RouteDef {
   path: string
 }
 
+const BaseRoutePaths = {
+  BookingsAdmin: '/bookings/admin',
+} as const
+
 export const Routes = {
   Error: { name: 'error', path: '/:pathMatch(.*)*' },
   Login: { name: 'login', path: '/login' },
@@ -14,4 +18,10 @@ export const Routes = {
   PeopleList: { name: 'people-list', path: '/people' },
   PeopleView: { name: 'people-view', path: '/people/:id' },
   PeopleEdit: { name: 'people-edit', path: '/people/:id/edit' },
+
+  BookingsAdmin: { name: 'bookings-admin', path: BaseRoutePaths.BookingsAdmin },
+  BookingsAdminBookingsList: {
+    name: 'bookings-admin-bookings-list',
+    path: `${BaseRoutePaths.BookingsAdmin}/bookings`,
+  },
 } as const satisfies Record<string, RouteDef>

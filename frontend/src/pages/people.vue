@@ -64,6 +64,16 @@ function goToPerson(_: unknown, row: { item: UserModel }) {
 <template>
   <VSkeletonLoader :loading="loading" type="table">
     <VCard class="w-100 pb-3">
+      <VCardTitle>
+        <div class="d-flex align-center justify-end w-100 mb-2">
+          <!-- TODO: Add Someone -->
+          <!-- <VBtn text="Add Someone" class="text-uppercase" rounded="xl">
+            <template #prepend>
+              <VIcon icon="ri-add-line" size="x-large" />
+            </template>
+          </VBtn> -->
+        </div>
+      </VCardTitle>
       <VCardText class="pb-0">
         <VTextField
           v-model="search"

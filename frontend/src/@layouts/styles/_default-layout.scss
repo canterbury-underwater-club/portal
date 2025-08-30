@@ -7,6 +7,8 @@
 html,
 body {
   min-block-size: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .layout-page-content {

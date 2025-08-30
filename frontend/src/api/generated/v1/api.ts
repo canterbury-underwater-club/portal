@@ -1189,10 +1189,11 @@ export const BookingsAdminBookingsApiAxiosParamCreator = function (configuration
          * 
          * @param {string} [from] 
          * @param {string} [to] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BookingsAdminBookingsGet: async (from?: string, to?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        v1BookingsAdminBookingsGet: async (from?: string, to?: string, count?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/bookings/admin/bookings`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1219,6 +1220,10 @@ export const BookingsAdminBookingsApiAxiosParamCreator = function (configuration
                 localVarQueryParameter['to'] = (to as any instanceof Date) ?
                     (to as any).toISOString().substring(0,10) :
                     to;
+            }
+
+            if (count !== undefined) {
+                localVarQueryParameter['count'] = count;
             }
 
 
@@ -1365,11 +1370,12 @@ export const BookingsAdminBookingsApiFp = function(configuration?: Configuration
          * 
          * @param {string} [from] 
          * @param {string} [to] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingsListContractsResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsGet(from, to, options);
+        async v1BookingsAdminBookingsGet(from?: string, to?: string, count?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsAdminBookingsListContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsAdminBookingsGet(from, to, count, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['BookingsAdminBookingsApi.v1BookingsAdminBookingsGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1425,11 +1431,12 @@ export const BookingsAdminBookingsApiFactory = function (configuration?: Configu
          * 
          * @param {string} [from] 
          * @param {string} [to] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingsListContractsResponse> {
-            return localVarFp.v1BookingsAdminBookingsGet(from, to, options).then((request) => request(axios, basePath));
+        v1BookingsAdminBookingsGet(from?: string, to?: string, count?: number, options?: RawAxiosRequestConfig): AxiosPromise<BookingsAdminBookingsListContractsResponse> {
+            return localVarFp.v1BookingsAdminBookingsGet(from, to, count, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1473,12 +1480,13 @@ export class BookingsAdminBookingsApi extends BaseAPI {
      * 
      * @param {string} [from] 
      * @param {string} [to] 
+     * @param {number} [count] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BookingsAdminBookingsApi
      */
-    public v1BookingsAdminBookingsGet(from?: string, to?: string, options?: RawAxiosRequestConfig) {
-        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsGet(from, to, options).then((request) => request(this.axios, this.basePath));
+    public v1BookingsAdminBookingsGet(from?: string, to?: string, count?: number, options?: RawAxiosRequestConfig) {
+        return BookingsAdminBookingsApiFp(this.configuration).v1BookingsAdminBookingsGet(from, to, count, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

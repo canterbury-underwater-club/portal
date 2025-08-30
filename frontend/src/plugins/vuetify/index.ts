@@ -9,6 +9,7 @@ import { themes } from './theme'
 // Styles
 
 import '@core/scss/template/libs/vuetify/index.scss'
+import { VCalendar } from 'vuetify/labs/VCalendar'
 import 'vuetify/styles'
 
 export default function (app: App) {
@@ -21,6 +22,9 @@ export default function (app: App) {
     theme: {
       defaultTheme: 'light',
       themes,
+    },
+    components: {
+      VCalendar,
     },
   })
 

@@ -8,6 +8,7 @@ public record Contracts
     {
         public DateOnly? From { get; init; }
         public DateOnly? To { get; init; }
+        public int? Count { get; init; }
     }
 
     public record Response

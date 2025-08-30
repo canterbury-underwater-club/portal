@@ -15,6 +15,24 @@ public class Handler(PortalDbContext db, IMapper mapper)
     {
         var query = db.Bookings.AsNoTracking().AsQueryable();
 
+        if (request.Count is { } desired and > 0)
+        {
+            var max = Math.Min(desired, 20);
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+
+            // Upcoming = bookings that have not fully finished before today (overlap or start later)
+            query = query
+                .Where(b => b.CheckOutDate >= today)
+                .OrderBy(b => b.CheckInDate);
+
+            var limited = await query
+                .ProjectTo<BookingModel>(mapper.ConfigurationProvider)
+                .Take(max)
+                .ToListAsync(ct);
+
+            return TypedResults.Ok(new Contracts.Response { Bookings = limited });
+        }
+
         if (request is { From: { } from, To: { } to })
             // overlap with [from, to]
             query = query.Where(b => b.CheckInDate <= to && b.CheckOutDate >= from);

@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { authGuard } from './guards/authGuard'
 import { accountRoutes } from './routes/account'
 import { authAndErrorRoutes } from './routes/authAndError'
+import { bookingsRoutes } from './routes/bookings'
 import { peopleRoutes } from './routes/people'
 
 const baseRedirect = { path: '/', redirect: '/people' }
@@ -12,6 +13,7 @@ export const routes = [
   baseRedirect,
   peopleRoutes,
   accountRoutes,
+  ...bookingsRoutes,
   authAndErrorRoutes,
 ]
 

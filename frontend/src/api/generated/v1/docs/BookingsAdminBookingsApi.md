@@ -26,10 +26,12 @@ const apiInstance = new BookingsAdminBookingsApi(configuration);
 
 let from: string; // (optional) (default to undefined)
 let to: string; // (optional) (default to undefined)
+let count: number; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.v1BookingsAdminBookingsGet(
     from,
-    to
+    to,
+    count
 );
 ```
 
@@ -39,6 +41,7 @@ const { status, data } = await apiInstance.v1BookingsAdminBookingsGet(
 |------------- | ------------- | ------------- | -------------|
 | **from** | [**string**] |  | (optional) defaults to undefined|
 | **to** | [**string**] |  | (optional) defaults to undefined|
+| **count** | [**number**] |  | (optional) defaults to undefined|
 
 
 ### Return type
