@@ -37,12 +37,15 @@
     </template>
 
     <template #day-event="{ event }">
-      <VChip variant="tonal" size="x-large" class="title-chip">
-        <div class="flex items-center gap-1">
-          <VBadge dot inline :color="resolveEventColor(event)" />
-          <strong>{{ event?.title }}</strong>
-        </div>
-        <div class="text-sm ms-6">
+      <VChip
+        label
+        variant="tonal"
+        size="x-large"
+        class="title-chip mb-1"
+        :color="resolveEventColor(event)"
+      >
+        <strong>{{ event?.title }}</strong>
+        <div class="text-sm ms-4">
           {{ resolveEventRooms(event) }}
         </div>
       </VChip>
