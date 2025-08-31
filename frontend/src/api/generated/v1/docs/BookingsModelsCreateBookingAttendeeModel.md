@@ -1,11 +1,10 @@
-# BookingsModelsBookingAttendeeModel
+# BookingsModelsCreateBookingAttendeeModel
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [default to undefined]
 **firstName** | **string** |  | [default to undefined]
 **lastName** | **string** |  | [default to undefined]
 **attendeeType** | [**NullableOfBookingAttendeeTypeModel**](NullableOfBookingAttendeeTypeModel.md) |  | [optional] [default to undefined]
@@ -15,10 +14,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { BookingsModelsBookingAttendeeModel } from './api';
+import { BookingsModelsCreateBookingAttendeeModel } from './api';
 
-const instance: BookingsModelsBookingAttendeeModel = {
-    id,
+const instance: BookingsModelsCreateBookingAttendeeModel = {
     firstName,
     lastName,
     attendeeType,

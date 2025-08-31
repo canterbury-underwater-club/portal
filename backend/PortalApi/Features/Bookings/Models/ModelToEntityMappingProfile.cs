@@ -7,7 +7,7 @@ public class ModelToEntityMappingProfile : Profile
 {
     public ModelToEntityMappingProfile()
     {
-        CreateMap<BookingAttendeeModel, BookingAttendee>()
+        CreateMap<CreateBookingAttendeeModel, BookingAttendee>()
             .ForMember(d => d.BookingId, o => o.Ignore())
             .ForMember(d => d.Booking, o => o.Ignore())
             .ForMember(d => d.LinkedUserId, o => o.Ignore())

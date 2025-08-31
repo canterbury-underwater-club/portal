@@ -4,7 +4,7 @@ using CanterburyUnderwater.PortalApi.DataAccess.Entities;
 using CanterburyUnderwater.PortalApi.DataAccess.Validators;
 using CanterburyUnderwater.PortalApi.EndpointHandling;
 using CanterburyUnderwater.PortalApi.ErrorHandling;
-using CanterburyUnderwater.PortalApi.Features.Bookings.Mine.Models;
+using CanterburyUnderwater.PortalApi.Features.Bookings.Admin.Bookings.Models;
 using CanterburyUnderwater.PortalApi.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;

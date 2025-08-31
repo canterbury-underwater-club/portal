@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **groupName** | **string** |  | [optional] [default to undefined]
 **rooms** | **Array&lt;number&gt;** |  | [optional] [default to undefined]
 **contractHolderId** | **string** |  | [optional] [default to undefined]
-**attendees** | [**Array&lt;BookingsModelsBookingAttendeeModel&gt;**](BookingsModelsBookingAttendeeModel.md) |  | [optional] [default to undefined]
+**attendees** | [**Array&lt;BookingsModelsCreateBookingAttendeeModel&gt;**](BookingsModelsCreateBookingAttendeeModel.md) |  | [optional] [default to undefined]
 
 ## Example
 

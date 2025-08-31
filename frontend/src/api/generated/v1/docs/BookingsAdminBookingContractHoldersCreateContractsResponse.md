@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**contractHolder** | [**BookingsAdminBookingContractHoldersModelsBookingContractHolderModel**](BookingsAdminBookingContractHoldersModelsBookingContractHolderModel.md) |  | [default to undefined]
+**contractHolder** | [**BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2**](BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2.md) |  | [default to undefined]
 
 ## Example
 

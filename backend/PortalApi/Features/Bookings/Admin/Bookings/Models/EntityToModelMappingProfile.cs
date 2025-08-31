@@ -7,6 +7,8 @@ public class EntityToModelMappingProfile : Profile
 {
     public EntityToModelMappingProfile()
     {
-        CreateMap<Booking, BookingModel>();
+        CreateMap<Booking, BookingModel>()
+            .ForMember(d => d.RatePlan, o => o.MapFrom(s => s.BookingRatePlan))
+            .ForMember(d => d.ContractHolder, o => o.MapFrom(s => s.ContractHolder));
     }
 }

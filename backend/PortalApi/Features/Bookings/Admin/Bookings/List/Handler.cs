@@ -13,7 +13,9 @@ public class Handler(PortalDbContext db, IMapper mapper)
 {
     public async Task<Ok<Contracts.Response>> HandleAsync(Contracts.Request request, CancellationToken ct = default)
     {
-        var query = db.Bookings.AsNoTracking().AsQueryable();
+        var query = db.Bookings
+            .AsNoTracking()
+            .AsQueryable();
 
         if (request.Count is { } desired and > 0)
         {

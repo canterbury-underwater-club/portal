@@ -14,5 +14,5 @@ public record CreateBookingModel
     public HashSet<int> Rooms { get; init; } = [];
 
     public Guid? ContractHolderId { get; set; }
-    public List<BookingAttendeeModel> Attendees { get; set; } = [];
+    public List<CreateBookingAttendeeModel> Attendees { get; set; } = [];
 }

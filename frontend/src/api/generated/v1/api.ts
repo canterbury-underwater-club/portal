@@ -44,10 +44,10 @@ export interface BookingsAdminBookingContractHoldersCreateContractsRequest {
 export interface BookingsAdminBookingContractHoldersCreateContractsResponse {
     /**
      * 
-     * @type {BookingsAdminBookingContractHoldersModelsBookingContractHolderModel}
+     * @type {BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2}
      * @memberof BookingsAdminBookingContractHoldersCreateContractsResponse
      */
-    'contractHolder': BookingsAdminBookingContractHoldersModelsBookingContractHolderModel;
+    'contractHolder': BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2;
 }
 /**
  * 
@@ -57,10 +57,10 @@ export interface BookingsAdminBookingContractHoldersCreateContractsResponse {
 export interface BookingsAdminBookingContractHoldersListContractsResponse {
     /**
      * 
-     * @type {Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel>}
+     * @type {Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2>}
      * @memberof BookingsAdminBookingContractHoldersListContractsResponse
      */
-    'contractHolders': Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel>;
+    'contractHolders': Array<BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2>;
 }
 /**
  * 
@@ -84,6 +84,31 @@ export interface BookingsAdminBookingContractHoldersModelsBookingContractHolderM
      * 
      * @type {boolean}
      * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel
+     */
+    'isActive': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2
+ */
+export interface BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2 {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2
+     */
+    'name': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof BookingsAdminBookingContractHoldersModelsBookingContractHolderModel2
      */
     'isActive': boolean;
 }
@@ -213,10 +238,10 @@ export interface BookingsAdminBookingsCreateContractsRequest {
     'contractHolderId'?: string | null;
     /**
      * 
-     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @type {Array<BookingsModelsCreateBookingAttendeeModel>}
      * @memberof BookingsAdminBookingsCreateContractsRequest
      */
-    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+    'attendees'?: Array<BookingsModelsCreateBookingAttendeeModel>;
 }
 
 
@@ -279,6 +304,24 @@ export interface BookingsAdminBookingsModelsBookingModel {
     'createdAt': string;
     /**
      * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+    /**
+     * 
+     * @type {BookingsModelsBookingRatePlanModel}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'ratePlan': BookingsModelsBookingRatePlanModel;
+    /**
+     * 
+     * @type {BookingsAdminBookingContractHoldersModelsBookingContractHolderModel}
+     * @memberof BookingsAdminBookingsModelsBookingModel
+     */
+    'contractHolder'?: BookingsAdminBookingContractHoldersModelsBookingContractHolderModel | null;
+    /**
+     * 
      * @type {string}
      * @memberof BookingsAdminBookingsModelsBookingModel
      */
@@ -325,12 +368,6 @@ export interface BookingsAdminBookingsModelsBookingModel {
      * @memberof BookingsAdminBookingsModelsBookingModel
      */
     'contractHolderId'?: string | null;
-    /**
-     * 
-     * @type {Array<BookingsModelsBookingAttendeeModel>}
-     * @memberof BookingsAdminBookingsModelsBookingModel
-     */
-    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
 }
 
 
@@ -433,10 +470,10 @@ export interface BookingsMineCreateContractsRequest {
     'contractHolderId'?: string | null;
     /**
      * 
-     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @type {Array<BookingsModelsCreateBookingAttendeeModel>}
      * @memberof BookingsMineCreateContractsRequest
      */
-    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+    'attendees'?: Array<BookingsModelsCreateBookingAttendeeModel>;
 }
 /**
  * 
@@ -462,6 +499,18 @@ export interface BookingsMineCreateContractsResponse {
      * @memberof BookingsMineCreateContractsResponse
      */
     'bookingStatus': BookingsModelsBookingStatusModel;
+    /**
+     * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+    /**
+     * 
+     * @type {BookingsModelsBookingRatePlanModel}
+     * @memberof BookingsMineCreateContractsResponse
+     */
+    'ratePlan': BookingsModelsBookingRatePlanModel;
     /**
      * 
      * @type {string}
@@ -492,12 +541,6 @@ export interface BookingsMineCreateContractsResponse {
      * @memberof BookingsMineCreateContractsResponse
      */
     'contractHolderId'?: string | null;
-    /**
-     * 
-     * @type {Array<BookingsModelsBookingAttendeeModel>}
-     * @memberof BookingsMineCreateContractsResponse
-     */
-    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
 }
 
 
@@ -553,6 +596,18 @@ export interface BookingsMineModelsBookingModel {
     'bookingStatus': BookingsModelsBookingStatusModel;
     /**
      * 
+     * @type {Array<BookingsModelsBookingAttendeeModel>}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
+    /**
+     * 
+     * @type {BookingsModelsBookingRatePlanModel}
+     * @memberof BookingsMineModelsBookingModel
+     */
+    'ratePlan': BookingsModelsBookingRatePlanModel;
+    /**
+     * 
      * @type {string}
      * @memberof BookingsMineModelsBookingModel
      */
@@ -581,12 +636,6 @@ export interface BookingsMineModelsBookingModel {
      * @memberof BookingsMineModelsBookingModel
      */
     'contractHolderId'?: string | null;
-    /**
-     * 
-     * @type {Array<BookingsModelsBookingAttendeeModel>}
-     * @memberof BookingsMineModelsBookingModel
-     */
-    'attendees'?: Array<BookingsModelsBookingAttendeeModel>;
 }
 
 
@@ -596,6 +645,12 @@ export interface BookingsMineModelsBookingModel {
  * @interface BookingsModelsBookingAttendeeModel
  */
 export interface BookingsModelsBookingAttendeeModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsBookingAttendeeModel
+     */
+    'id': string;
     /**
      * 
      * @type {string}
@@ -795,6 +850,45 @@ export const BookingsModelsBookingStatusModel = {
 } as const;
 
 export type BookingsModelsBookingStatusModel = typeof BookingsModelsBookingStatusModel[keyof typeof BookingsModelsBookingStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsModelsCreateBookingAttendeeModel
+ */
+export interface BookingsModelsCreateBookingAttendeeModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsCreateBookingAttendeeModel
+     */
+    'firstName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsModelsCreateBookingAttendeeModel
+     */
+    'lastName': string;
+    /**
+     * 
+     * @type {NullableOfBookingAttendeeTypeModel}
+     * @memberof BookingsModelsCreateBookingAttendeeModel
+     */
+    'attendeeType'?: NullableOfBookingAttendeeTypeModel | null;
+    /**
+     * 
+     * @type {NullableOfBookingAgeBracketModel}
+     * @memberof BookingsModelsCreateBookingAttendeeModel
+     */
+    'ageBracket'?: NullableOfBookingAgeBracketModel | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof BookingsModelsCreateBookingAttendeeModel
+     */
+    'membershipNumber'?: number | null;
+}
 
 
 /**
