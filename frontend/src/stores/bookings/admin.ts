@@ -7,16 +7,14 @@ import {
 } from '@/api/generated/v1'
 import { buildAdminBookingsApi } from '@/api/portal-api'
 import { DateRange } from '@/types'
-import { Booking, BookingFromAdmin } from '@/types/booking'
-import { fromServerDate, toServerDate } from '@/utils/dateConverter'
-import { isWithinInterval } from 'date-fns'
+import { toServerDate } from '@/utils/dateConverter'
 
 export const useBookingsAdminStore = defineStore('bookings-admin', () => {
   const byId = ref<Record<string, AdminBooking>>({})
   const loading = ref(false)
   const error = ref<unknown>(null)
 
-  const all = computed(() => Object.values(byId.value) as AdminBooking[])
+  const allBookings = computed(() => Object.values(byId.value) as AdminBooking[])
   const get = (id: string) => byId.value[id]
 
   async function fetchBookings(params: { dateRange?: DateRange; count?: number }) {
@@ -72,46 +70,14 @@ export const useBookingsAdminStore = defineStore('bookings-admin', () => {
     if (opts.refetch) await fetchById(id)
   }
 
-  const nextUpcomingBooking = computed<Booking | undefined>(() => {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0) // normalize to midnight
-
-    const booking = all.value
-      .filter((b) => fromServerDate(b.checkInDate) >= today)
-      .sort(
-        (a, b) => fromServerDate(a.checkInDate).getTime() - fromServerDate(b.checkInDate).getTime(),
-      )
-      .at(0)
-
-    if (booking) return BookingFromAdmin(booking)
-  })
-
-  function bookingsForRange(range: Required<DateRange>): Booking[] {
-    const start = range.from
-    const end = range.to
-    return all.value
-      .filter((b) => {
-        const checkIn = fromServerDate(b.checkInDate)
-        const checkOut = fromServerDate(b.checkOutDate)
-        // overlap if either endpoint is inside, or booking fully spans window
-        return (
-          isWithinInterval(checkIn, { start, end }) ||
-          isWithinInterval(checkOut, { start, end }) ||
-          (checkIn <= start && checkOut >= end)
-        )
-      })
-      .map(BookingFromAdmin)
-  }
-
   return {
     // state
     byId,
     loading,
     error,
     // getters
+    allBookings,
     get,
-    nextUpcomingBooking,
-    bookingsForRange,
     // actions
     fetchBookings,
     fetchById,
