@@ -5,8 +5,7 @@
 <script setup lang="ts">
 import BookingsCalendar from '@/components/bookings/BookingsCalendar.vue'
 import { useBookingsAdminStore } from '@/stores/bookings/admin'
-import { DateRange } from '@/types'
-import { BookingFromAdmin } from '@/types/booking'
+import { BookingFromAdmin, DateRange } from '@/types'
 
 const store = useBookingsAdminStore()
 

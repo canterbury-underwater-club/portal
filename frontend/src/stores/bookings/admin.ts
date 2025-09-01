@@ -30,10 +30,11 @@ export const useBookingsAdminStore = defineStore('bookings-admin', () => {
         params.count,
       )
       const data = res.data as BookingsAdminBookingsListContractsResponse
-
       for (const booking of data.bookings) byId.value[booking.id] = booking
+      return data.bookings // ⬅️ return raw list
     } catch (e) {
       error.value = e
+      return []
     } finally {
       loading.value = false
     }

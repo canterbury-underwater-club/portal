@@ -1,4 +1,4 @@
-import { Booking } from '@/types/booking'
+import { Booking } from '@/types'
 
 export function findNextUpcomingBooking(bookings: Booking[]) {
   const today = new Date()

@@ -7,6 +7,8 @@
     first-day-of-week="1"
     hide-week-number
     :intervals="1"
+    :interval-format="''"
+    :interval-duration="0"
     :interval-height="500"
   >
     <template #header="{ title, clickToday, clickNext, clickPrev }">
@@ -24,6 +26,7 @@
           :items="[
             { title: 'Month', value: 'month' },
             { title: 'Week', value: 'week' },
+            { title: 'Day', value: 'day' },
           ]"
           density="compact"
           style="max-width: 140px"
@@ -52,13 +55,12 @@
 </template>
 
 <script setup lang="ts">
-import type { BookingCalendarEvent, DateRange } from '@/types'
-import type { Booking } from '@/types/booking'
+import type { Booking, BookingCalendarEvent, DateRange } from '@/types'
 import { findNextUpcomingBooking } from '@/utils/bookingsUtils'
 import { min } from 'lodash-es'
 import { VCalendar } from 'vuetify/labs/VCalendar'
 
-type ViewMode = 'month' | 'week'
+type ViewMode = 'month' | 'week' | 'day'
 
 const props = withDefaults(
   defineProps<{
@@ -129,6 +131,18 @@ watch(calendarEvents, (newEvents, oldEvents) => {
 
   :deep(.v-calendar__container) {
     background-color: rgb(var(--v-theme-background));
+
+    .v-calendar-day__row-with-label {
+      display: block;
+
+      .v-calendar-day__row-label {
+        display: none;
+      }
+
+      .v-calendar-day__row-hairline {
+        display: none;
+      }
+    }
   }
 }
 .title-chip {
