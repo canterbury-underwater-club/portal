@@ -28,7 +28,6 @@
 
     <ItemGroup>
         <Folder Include="Features\Bookings\Keys\"/>
-        <Folder Include="Features\Bookings\Public\Availability\"/>
         <Folder Include="Migrations\"/>
     </ItemGroup>
 
