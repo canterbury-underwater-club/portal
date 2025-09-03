@@ -61,11 +61,10 @@ export const bookingsRoutes: RouteRecordRaw[] = [
         ...Routes.BookingsAdminBookingsList,
         component: () => import('@/pages/bookings/admin/bookings/list.vue'),
       },
-      //     {
-      //       path: 'bookings/create',
-      //       name: 'bookings-admin-create',
-      //       component: () => import('@/pages/bookings/admin/bookings/Create.vue'),
-      //     },
+      {
+        ...Routes.BookingsAdminBookingsCreate,
+        component: () => import('@/pages/bookings/admin/bookings/create.vue'),
+      },
       //     {
       //       path: 'bookings/:id',
       //       name: 'bookings-admin-view',

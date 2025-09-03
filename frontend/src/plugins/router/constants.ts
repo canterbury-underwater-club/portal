@@ -24,4 +24,8 @@ export const Routes = {
     name: 'bookings-admin-bookings-list',
     path: `${BaseRoutePaths.BookingsAdmin}/bookings`,
   },
+  BookingsAdminBookingsCreate: {
+    name: 'bookings-admin-bookings-create',
+    path: `${BaseRoutePaths.BookingsAdmin}/bookings/create`,
+  },
 } as const satisfies Record<string, RouteDef>
