@@ -37,6 +37,12 @@ docs/BookingsModelsBookingRatePlanModel.md
 docs/BookingsModelsBookingRateTypeModel.md
 docs/BookingsModelsBookingStatusModel.md
 docs/BookingsModelsCreateBookingAttendeeModel.md
+docs/BookingsPublicApi.md
+docs/BookingsPublicOccupancyContractsResponse.md
+docs/BookingsPublicOccupancyDailyRoomsOccupancyModel.md
+docs/BookingsPublicOccupancyRoomOccupancyModel.md
+docs/BookingsPublicOccupancyRoomOccupancyStatusModel.md
+docs/BookingsPublicOccupancyRoomsOccupancyModel.md
 docs/HttpValidationProblemDetails.md
 docs/NullableOfBookingAgeBracketModel.md
 docs/NullableOfBookingAttendeeTypeModel.md

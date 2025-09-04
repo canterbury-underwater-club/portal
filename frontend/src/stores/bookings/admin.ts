@@ -1,8 +1,6 @@
 import {
   BookingsAdminBookingsModelsBookingModel as AdminBooking,
   BookingsAdminBookingsCreateContractsRequest,
-  BookingsAdminBookingsGetContractsResponse,
-  BookingsAdminBookingsListContractsResponse,
   BookingsAdminBookingsUpdateContractsRequest,
 } from '@/api/generated/v1'
 import { buildAdminBookingsApi } from '@/api/portal-api'
@@ -24,14 +22,15 @@ export const useBookingsAdminStore = defineStore('bookings-admin', () => {
     const to = params.dateRange?.to
     try {
       const api = await buildAdminBookingsApi()
-      const res = await api.v1BookingsAdminBookingsGet(
+      const {
+        data: { bookings },
+      } = await api.v1BookingsAdminBookingsGet(
         from ? toServerDate(from) : undefined,
         to ? toServerDate(to) : undefined,
         params.count,
       )
-      const data = res.data as BookingsAdminBookingsListContractsResponse
-      for (const booking of data.bookings) byId.value[booking.id] = booking
-      return data.bookings // ⬅️ return raw list
+      for (const booking of bookings) byId.value[booking.id] = booking
+      return bookings
     } catch (e) {
       error.value = e
       return []
@@ -42,10 +41,11 @@ export const useBookingsAdminStore = defineStore('bookings-admin', () => {
 
   async function fetchById(id: string) {
     const api = await buildAdminBookingsApi()
-    const res = await api.v1BookingsAdminBookingsIdGet(id)
-    const data = (res.data as BookingsAdminBookingsGetContractsResponse).booking
-    byId.value[id] = data
-    return data
+    const {
+      data: { booking },
+    } = await api.v1BookingsAdminBookingsIdGet(id)
+    byId.value[id] = booking
+    return booking
   }
 
   async function create(payload: BookingsAdminBookingsCreateContractsRequest) {

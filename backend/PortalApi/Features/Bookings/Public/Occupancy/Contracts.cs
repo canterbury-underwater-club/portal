@@ -18,10 +18,10 @@ public record RoomsOccupancyModel
 {
     public required DateOnly From { get; init; }
     public required DateOnly To { get; init; }
-    public required IReadOnlyCollection<DailyRoomsOccupancyModel> Days { get; init; }
+    public required List<DailyRoomsOccupancyModel> Days { get; init; }
 }
 
-public record DailyRoomsOccupancyModel(DateOnly Date, RoomOccupancyModel[] Rooms);
+public record DailyRoomsOccupancyModel(DateOnly Date, List<RoomOccupancyModel> Rooms);
 
 public record RoomOccupancyModel(int Room, RoomOccupancyStatusModel Status);
 

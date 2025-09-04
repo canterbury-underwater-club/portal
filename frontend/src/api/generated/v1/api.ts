@@ -894,6 +894,98 @@ export interface BookingsModelsCreateBookingAttendeeModel {
 /**
  * 
  * @export
+ * @interface BookingsPublicOccupancyContractsResponse
+ */
+export interface BookingsPublicOccupancyContractsResponse {
+    /**
+     * 
+     * @type {BookingsPublicOccupancyRoomsOccupancyModel}
+     * @memberof BookingsPublicOccupancyContractsResponse
+     */
+    'occupancy': BookingsPublicOccupancyRoomsOccupancyModel;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsPublicOccupancyDailyRoomsOccupancyModel
+ */
+export interface BookingsPublicOccupancyDailyRoomsOccupancyModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsPublicOccupancyDailyRoomsOccupancyModel
+     */
+    'date': string;
+    /**
+     * 
+     * @type {Array<BookingsPublicOccupancyRoomOccupancyModel>}
+     * @memberof BookingsPublicOccupancyDailyRoomsOccupancyModel
+     */
+    'rooms': Array<BookingsPublicOccupancyRoomOccupancyModel>;
+}
+/**
+ * 
+ * @export
+ * @interface BookingsPublicOccupancyRoomOccupancyModel
+ */
+export interface BookingsPublicOccupancyRoomOccupancyModel {
+    /**
+     * 
+     * @type {number}
+     * @memberof BookingsPublicOccupancyRoomOccupancyModel
+     */
+    'room': number;
+    /**
+     * 
+     * @type {BookingsPublicOccupancyRoomOccupancyStatusModel}
+     * @memberof BookingsPublicOccupancyRoomOccupancyModel
+     */
+    'status': BookingsPublicOccupancyRoomOccupancyStatusModel;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BookingsPublicOccupancyRoomOccupancyStatusModel = {
+    Booked: 'Booked',
+    Pending: 'Pending'
+} as const;
+
+export type BookingsPublicOccupancyRoomOccupancyStatusModel = typeof BookingsPublicOccupancyRoomOccupancyStatusModel[keyof typeof BookingsPublicOccupancyRoomOccupancyStatusModel];
+
+
+/**
+ * 
+ * @export
+ * @interface BookingsPublicOccupancyRoomsOccupancyModel
+ */
+export interface BookingsPublicOccupancyRoomsOccupancyModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsPublicOccupancyRoomsOccupancyModel
+     */
+    'from': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookingsPublicOccupancyRoomsOccupancyModel
+     */
+    'to': string;
+    /**
+     * 
+     * @type {Array<BookingsPublicOccupancyDailyRoomsOccupancyModel>}
+     * @memberof BookingsPublicOccupancyRoomsOccupancyModel
+     */
+    'days': Array<BookingsPublicOccupancyDailyRoomsOccupancyModel>;
+}
+/**
+ * 
+ * @export
  * @interface HttpValidationProblemDetails
  */
 export interface HttpValidationProblemDetails {
@@ -2358,6 +2450,131 @@ export class BookingsMineApi extends BaseAPI {
      */
     public v1BookingsMinePost(bookingsMineCreateContractsRequest: BookingsMineCreateContractsRequest, options?: RawAxiosRequestConfig) {
         return BookingsMineApiFp(this.configuration).v1BookingsMinePost(bookingsMineCreateContractsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * BookingsPublicApi - axios parameter creator
+ * @export
+ */
+export const BookingsPublicApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} from 
+         * @param {string} to 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsPublicOccupancyGet: async (from: string, to: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'from' is not null or undefined
+            assertParamExists('v1BookingsPublicOccupancyGet', 'from', from)
+            // verify required parameter 'to' is not null or undefined
+            assertParamExists('v1BookingsPublicOccupancyGet', 'to', to)
+            const localVarPath = `/v1/bookings/public/occupancy`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (from !== undefined) {
+                localVarQueryParameter['from'] = (from as any instanceof Date) ?
+                    (from as any).toISOString().substring(0,10) :
+                    from;
+            }
+
+            if (to !== undefined) {
+                localVarQueryParameter['to'] = (to as any instanceof Date) ?
+                    (to as any).toISOString().substring(0,10) :
+                    to;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BookingsPublicApi - functional programming interface
+ * @export
+ */
+export const BookingsPublicApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = BookingsPublicApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} from 
+         * @param {string} to 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async v1BookingsPublicOccupancyGet(from: string, to: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BookingsPublicOccupancyContractsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.v1BookingsPublicOccupancyGet(from, to, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BookingsPublicApi.v1BookingsPublicOccupancyGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * BookingsPublicApi - factory interface
+ * @export
+ */
+export const BookingsPublicApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = BookingsPublicApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} from 
+         * @param {string} to 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        v1BookingsPublicOccupancyGet(from: string, to: string, options?: RawAxiosRequestConfig): AxiosPromise<BookingsPublicOccupancyContractsResponse> {
+            return localVarFp.v1BookingsPublicOccupancyGet(from, to, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * BookingsPublicApi - object-oriented interface
+ * @export
+ * @class BookingsPublicApi
+ * @extends {BaseAPI}
+ */
+export class BookingsPublicApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} from 
+     * @param {string} to 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BookingsPublicApi
+     */
+    public v1BookingsPublicOccupancyGet(from: string, to: string, options?: RawAxiosRequestConfig) {
+        return BookingsPublicApiFp(this.configuration).v1BookingsPublicOccupancyGet(from, to, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

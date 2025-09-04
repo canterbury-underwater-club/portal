@@ -6,6 +6,7 @@ import {
   BookingsAdminContractHoldersApi,
   BookingsAdminRatePlansApi,
   BookingsMineApi,
+  BookingsPublicApi,
   Configuration,
   UsersApi,
 } from './generated/v1'
@@ -18,6 +19,9 @@ const buildApiConfig = async () => {
 
 export const buildUsersApi = async () =>
   new UsersApi(await buildApiConfig(), settingsService.apiBasePath, axiosInstance)
+
+export const buildPublicBookingsApi = async () =>
+  new BookingsPublicApi(await buildApiConfig(), settingsService.apiBasePath, axiosInstance)
 
 export const buildMineBookingsApi = async () =>
   new BookingsMineApi(await buildApiConfig(), settingsService.apiBasePath, axiosInstance)
