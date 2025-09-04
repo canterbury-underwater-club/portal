@@ -76,6 +76,7 @@
 </template>
 
 <script setup lang="ts">
+import { AllRooms } from '@/constants/rooms'
 import { OccupancyStatus, useBookingsPublicStore } from '@/stores/bookings/public'
 import type { DateRange } from '@/types'
 import { addDays, subMinutes } from 'date-fns'
@@ -93,20 +94,19 @@ interface OccupancyCalendarEvent {
 const cal = ref<InstanceType<typeof VCalendar> | null>(null)
 const view = ref<ViewMode>('month')
 const isMonthView = computed(() => view.value === 'month')
-const allRooms = [1, 2, 3, 4, 5, 11, 12, 13, 14, 15, 16]
 const selectedRooms = ref<number[]>([])
 const roomOptions = computed(() =>
-  allRooms.map((r) => ({
+  AllRooms.map((r) => ({
     title: `Room ${r}`,
     value: r,
   })),
 )
 
-const displayedRooms = computed(() => (selectedRooms.value.length ? selectedRooms.value : allRooms))
+const displayedRooms = computed(() => (selectedRooms.value.length ? selectedRooms.value : AllRooms))
 
 const store = useBookingsPublicStore()
 
-const { occupancyByLocalDate, loading } = storeToRefs(store)
+const { loading } = storeToRefs(store)
 
 const exposedDays = computed<Date[]>(() => {
   const days = isMonthView.value ? cal.value?.daysInMonth : cal.value?.daysInWeek
@@ -130,12 +130,9 @@ const calendarEvents = computed<OccupancyCalendarEvent[]>(() => {
   const days = exposedDays.value
   if (!days.length) return []
 
-  const byDate = occupancyByLocalDate.value
-
   return days
     .flatMap((day) => {
-      const key = day.toDateString()
-      const dayOccupancy = byDate[key]
+      const dayOccupancy = store.getOccupancy(day)
 
       return displayedRooms.value.map((room) => {
         let status: OccupancyStatus = OccupancyStatus.Available

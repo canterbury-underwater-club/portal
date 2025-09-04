@@ -10,6 +10,7 @@ import { themes } from './theme'
 
 import '@core/scss/template/libs/vuetify/index.scss'
 import { VCalendar } from 'vuetify/labs/VCalendar'
+import { VDateInput } from 'vuetify/labs/VDateInput'
 import 'vuetify/styles'
 
 export default function (app: App) {
@@ -25,6 +26,7 @@ export default function (app: App) {
     },
     components: {
       VCalendar,
+      VDateInput,
     },
   })
 
