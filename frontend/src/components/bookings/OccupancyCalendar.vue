@@ -2,6 +2,7 @@
   <VProgressLinear :indeterminate="loading" class="mb-3" :class="{ 'hide-loader': !loading }" />
   <VCalendar
     ref="cal"
+    v-model="internalFocusedDate"
     :view-mode="view"
     :events="calendarEvents"
     hide-week-number
@@ -90,6 +91,9 @@ interface OccupancyCalendarEvent {
   room: number
   status: OccupancyStatus
 }
+
+const props = defineProps<{ focusedDate?: Date }>()
+const internalFocusedDate = ref([props.focusedDate])
 
 const cal = ref<InstanceType<typeof VCalendar> | null>(null)
 const view = ref<ViewMode>('month')
