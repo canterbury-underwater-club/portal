@@ -1,5 +1,5 @@
 <template>
-  <VCard title="Kaikōura Lodge Booking Request">
+  <VCard title="Kaikōura Lodge Booking Request" max-width="1000">
     <VCardText>
       <VDateInput
         v-model="selectedDates"
@@ -40,6 +40,65 @@
           @click="showOccupancyCalendar = !showOccupancyCalendar"
         />
       </template>
+
+      <VCard variant="flat">
+        <VCardTitle class="d-flex align-center px-0">
+          <VLabel
+            text="Enter details for the person responsible for the group first"
+            class="text-high-emphasis"
+          />
+          <VSpacer />
+          <VBtn
+            text="Search contacts"
+            prepend-icon="ri-search-line"
+            variant="outlined"
+            @click="showSearchPrimaryContact = true"
+          />
+        </VCardTitle>
+        <VCardText class="px-0">
+          <VRow dense>
+            <VCol cols="8">
+              <VTextField v-model="primaryContactFullName" label="Full name" />
+            </VCol>
+            <VSpacer />
+            <VCol cols="4">
+              <VTextField
+                v-model="primaryContactMembershipNumber"
+                label="Membership number"
+                type="number"
+              />
+            </VCol>
+            <VCol cols="8">
+              <VTextField
+                v-model="primaryContactEmailAddress"
+                label="Email address"
+                :rules="emailRules"
+              />
+            </VCol>
+            <VCol cols="4">
+              <VTextField
+                v-model="primaryContactMobilePhone"
+                label="Mobile phone"
+                type="number"
+                :rules="phoneRules"
+              />
+            </VCol>
+            <VCol cols="12">
+              <EditableAddressInput
+                v-model="primaryContactHomeAddress"
+                label="Home address"
+                :editing="true"
+                :rules="addressRules"
+              />
+            </VCol>
+            <VCol cols="12">
+              <VSelect label="Age bracket" model-value="Adult" readonly />
+            </VCol>
+          </VRow>
+        </VCardText>
+      </VCard>
+
+      <VBtn text="Add person"></VBtn>
     </VCardText>
   </VCard>
 
@@ -61,20 +120,35 @@
       </VCardText>
     </VCard>
   </VDialog>
+
+  <SearchUserDialog v-model="showSearchPrimaryContact" @select-user="onSelectPrimaryContact" />
 </template>
 <script setup lang="ts">
+import { BookingsModelsBookingAttendeeModel, UsersModelsUserModel } from '@/api/generated/v1'
 import { AllRooms } from '@/constants/rooms'
 import { useBookingsPublicStore } from '@/stores/bookings/public'
+import { addressRules, emailRules, phoneRules } from '@/utils/validationRules'
 import { format } from 'date-fns'
 
 const publicStore = useBookingsPublicStore()
 
+const selectedDates = ref<Date[]>([])
+const selectedRooms = ref<number[]>([])
+const primaryContactFullName = ref<string | undefined>()
+const primaryContactMembershipNumber = ref<string | undefined>()
+const primaryContactEmailAddress = ref<string | undefined>()
+const primaryContactMobilePhone = ref<string | undefined>()
+const primaryContactHomeAddress = ref<string | undefined>()
+
+const attendees = ref<BookingsModelsBookingAttendeeModel[]>([])
+
 const checkingAvailability = ref(false)
 const showOccupancyCalendar = ref(false)
-const selectedDates = ref<Date[]>([])
+const showSearchPrimaryContact = ref(false)
+
 const formatCallCount = ref(0)
 const availableRooms = ref<number[]>([])
-const selectedRooms = ref<number[]>([])
+
 const invalidSelectedRooms = ref<number[]>([])
 const invalidRoomsMessage = computed(() => {
   switch (invalidSelectedRooms.value.length) {
@@ -129,6 +203,13 @@ watch(selectedDates, async () => {
     }
   }
 })
+
+function onSelectPrimaryContact(user: UsersModelsUserModel) {
+  primaryContactFullName.value = `${user.firstName} ${user.lastName}`.trim()
+  primaryContactEmailAddress.value = user.emailAddress
+  primaryContactMobilePhone.value = user.mobilePhone ?? user.homePhone ?? undefined
+  primaryContactHomeAddress.value = user.address ?? undefined
+}
 </script>
 
 <style lang="scss" scoped>
