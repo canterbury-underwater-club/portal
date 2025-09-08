@@ -1,5 +1,5 @@
 <template>
-  <VCard title="Kaikōura Lodge Booking Request" max-width="1000">
+  <VCard title="Kaikōura Lodge Booking Request" :max-width="MAX_CARD_WIDTH">
     <VCardText>
       <VDateInput
         v-model="selectedDates"
@@ -58,29 +58,30 @@
         <VCardText class="px-0">
           <VRow dense>
             <VCol cols="8">
-              <VTextField v-model="primaryContactFullName" label="Full name" />
-            </VCol>
-            <VSpacer />
-            <VCol cols="4">
-              <VTextField
-                v-model="primaryContactMembershipNumber"
-                label="Membership number"
-                type="number"
+              <EditableTextField
+                v-model="primaryContactFullName"
+                label="Full name"
+                :editing="true"
               />
             </VCol>
+            <VCol cols="4" align-self="center" justify-self="center">
+              <VSwitch v-model="primaryContactIsMember" label="Is Member" />
+            </VCol>
             <VCol cols="8">
-              <VTextField
+              <EditableTextField
                 v-model="primaryContactEmailAddress"
                 label="Email address"
                 :rules="emailRules"
+                :editing="true"
               />
             </VCol>
             <VCol cols="4">
-              <VTextField
+              <EditableTextField
                 v-model="primaryContactMobilePhone"
                 label="Mobile phone"
                 type="number"
                 :rules="phoneRules"
+                :editing="true"
               />
             </VCol>
             <VCol cols="12">
@@ -98,7 +99,7 @@
         </VCardText>
       </VCard>
 
-      <VBtn text="Add person"></VBtn>
+      <VBtn text="Add another guest"></VBtn>
     </VCardText>
   </VCard>
 
@@ -124,8 +125,8 @@
   <SearchUserDialog v-model="showSearchPrimaryContact" @select-user="onSelectPrimaryContact" />
 </template>
 <script setup lang="ts">
-import { BookingsModelsBookingAttendeeModel, UsersModelsUserModel } from '@/api/generated/v1'
-import { AllRooms } from '@/constants/rooms'
+import { UsersModelsUserModel } from '@/api/generated/v1'
+import { AllRooms, MAX_CARD_WIDTH } from '@/constants'
 import { useBookingsPublicStore } from '@/stores/bookings/public'
 import { addressRules, emailRules, phoneRules } from '@/utils/validationRules'
 import { format } from 'date-fns'
@@ -135,12 +136,12 @@ const publicStore = useBookingsPublicStore()
 const selectedDates = ref<Date[]>([])
 const selectedRooms = ref<number[]>([])
 const primaryContactFullName = ref<string | undefined>()
-const primaryContactMembershipNumber = ref<string | undefined>()
+const primaryContactIsMember = ref<boolean>(false)
 const primaryContactEmailAddress = ref<string | undefined>()
 const primaryContactMobilePhone = ref<string | undefined>()
 const primaryContactHomeAddress = ref<string | undefined>()
 
-const attendees = ref<BookingsModelsBookingAttendeeModel[]>([])
+// const attendees = ref<BookingsModelsBookingAttendeeModel[]>([])
 
 const checkingAvailability = ref(false)
 const showOccupancyCalendar = ref(false)

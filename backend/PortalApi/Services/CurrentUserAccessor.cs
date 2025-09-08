@@ -36,7 +36,8 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
         var user = await db.Users
             .Include(u => u.Roles)
             .SingleOrDefaultAsync(
-                u => u.FirebaseUserId == firebaseUser.UserId || u.EmailAddress == firebaseUser.EmailAddress,
+                u => u.FirebaseUserId == firebaseUser.UserId || u.EmailAddress == firebaseUser.EmailAddress ||
+                     u.SecondaryEmailAddress == firebaseUser.EmailAddress,
                 ct);
 
         if (user == null)
@@ -56,10 +57,11 @@ public class CurrentUserAccessor(IHttpContextAccessor httpContextAccessor, Porta
         else
         {
             user.FirstName = firebaseUser.UserId;
-            user.EmailAddress = firebaseUser.EmailAddress;
             user.FirstName = firebaseUser.FirstName;
             user.LastName = firebaseUser.LastName ?? user.LastName;
             user.PhotoUrl = firebaseUser.PhotoUrl ?? user.PhotoUrl;
+
+            if (user.SecondaryEmailAddress != firebaseUser.EmailAddress) user.EmailAddress = firebaseUser.EmailAddress;
         }
 
         await db.SaveChangesAsync(ct);

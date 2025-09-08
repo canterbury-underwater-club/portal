@@ -15,6 +15,9 @@ public class User : EntityDefaults
     [MaxLength(Constants.Validation.MaxEmailAddressLength)]
     public required string EmailAddress { get; set; }
 
+    [MaxLength(Constants.Validation.MaxEmailAddressLength)]
+    public string? SecondaryEmailAddress { get; set; }
+
     [MaxLength(Constants.Validation.MaxPhoneLength)]
     public string? HomePhone { get; set; }
 
@@ -26,7 +29,7 @@ public class User : EntityDefaults
     [MaxLength(Constants.Validation.MaxAddressLength)]
     public string? Address { get; set; }
 
-    public DateTime? DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
 
     [MaxLength(Constants.Validation.MaxOccupationLength)]
     public string? Occupation { get; set; }
@@ -39,9 +42,9 @@ public class User : EntityDefaults
 
     public required MembershipStatus MembershipStatus { get; set; } = MembershipStatus.NonMember;
 
-    public DateTime? MembershipStartDate { get; set; }
+    public DateOnly? MembershipStartDate { get; set; }
 
-    public DateTime? MembershipEndDate { get; set; }
+    public DateOnly? MembershipEndDate { get; set; }
 
     public int? MembershipNumber { get; set; }
 

@@ -12,7 +12,7 @@ export const useBookingsAdminStore = defineStore('bookings-admin', () => {
   const loading = ref(false)
   const error = ref<unknown>(null)
 
-  const allBookings = computed(() => Object.values(byId.value) as AdminBooking[])
+  const allBookings = computed<AdminBooking[]>(() => Object.values(byId.value))
   const get = (id: string) => byId.value[id]
 
   async function fetchBookings(params: { dateRange?: DateRange; count?: number }) {

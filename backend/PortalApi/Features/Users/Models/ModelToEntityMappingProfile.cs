@@ -8,5 +8,6 @@ public class ModelToEntityMappingProfile : Profile
     public ModelToEntityMappingProfile()
     {
         CreateMap<MembershipStatusModel, MembershipStatus>();
+        CreateMap<CreateUserModel, User>();
     }
 }

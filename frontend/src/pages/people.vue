@@ -1,3 +1,62 @@
+<template>
+  <VSkeletonLoader :loading="loading" type="table">
+    <VCard class="w-100 pb-3">
+      <VCardTitle class="mt-2">
+        <div class="d-flex align-center justify-end w-100 mb-2">
+          <VBtn
+            text="Add Someone"
+            class="text-uppercase"
+            rounded="xl"
+            :to="{ name: Routes.PeopleCreate.name }"
+          >
+            <template #prepend>
+              <VIcon icon="ri-add-line" size="x-large" />
+            </template>
+          </VBtn>
+        </div>
+      </VCardTitle>
+      <VCardText class="pb-0">
+        <VTextField
+          v-model="search"
+          label="Search"
+          prepend-inner-icon="ri-search-line"
+          variant="outlined"
+          hide-details
+          single-line
+        />
+
+        <VSwitch v-model="membersOnly" label="Members only" class="mt-2" />
+      </VCardText>
+
+      <VDataTable
+        v-model:page="page"
+        :headers="headers"
+        :items="userData"
+        :search="search"
+        :sort-by="[{ key: 'firstName' }]"
+        :items-per-page="50"
+        @click:row="goToPerson"
+      >
+        <template #[`item.photo`]="{ item: user }">
+          <VAvatar :image="resolveUserPhoto(user)" />
+        </template>
+        <template #[`item.phoneNumber`]="{ item: user }">
+          {{ user.mobilePhone ?? user.homePhone }}
+        </template>
+        <template #[`item.membershipStatus`]="{ item: user }">
+          {{ resolveUserMembershipStatus(user) }}
+        </template>
+
+        <template v-slot:bottom>
+          <div class="text-center pt-2" v-if="showPagination">
+            <VPagination v-model="page" :length="pageCount" variant="plain"></VPagination>
+          </div>
+        </template>
+      </VDataTable>
+    </VCard>
+  </VSkeletonLoader>
+</template>
+
 <script setup lang="ts">
 import { UsersModelsUserModel as UserModel } from '@/api/generated/v1'
 import { Routes } from '@/plugins/router/constants'
@@ -12,7 +71,7 @@ import { VDataTable } from 'vuetify/components'
 const router = useRouter()
 const usersStore = useUsersStore()
 
-const loading = computed(() => !usersStore.users)
+const loading = computed(() => usersStore.loading)
 
 import { ReadonlyDataTableHeader } from '@/plugins/vuetify/types'
 import { useDisplay } from 'vuetify'
@@ -60,58 +119,3 @@ function goToPerson(_: unknown, row: { item: UserModel }) {
   router.push({ name: Routes.PeopleView.name, params: { id: row.item.id } })
 }
 </script>
-
-<template>
-  <VSkeletonLoader :loading="loading" type="table">
-    <VCard class="w-100 pb-3">
-      <VCardTitle>
-        <div class="d-flex align-center justify-end w-100 mb-2">
-          <!-- TODO: Add Someone -->
-          <!-- <VBtn text="Add Someone" class="text-uppercase" rounded="xl">
-            <template #prepend>
-              <VIcon icon="ri-add-line" size="x-large" />
-            </template>
-          </VBtn> -->
-        </div>
-      </VCardTitle>
-      <VCardText class="pb-0">
-        <VTextField
-          v-model="search"
-          label="Search"
-          prepend-inner-icon="ri-search-line"
-          variant="outlined"
-          hide-details
-          single-line
-        />
-
-        <VCheckbox v-model="membersOnly" label="Members only" class="mt-2"></VCheckbox>
-      </VCardText>
-
-      <VDataTable
-        v-model:page="page"
-        :headers="headers"
-        :items="userData"
-        :search="search"
-        :sort-by="[{ key: 'firstName' }]"
-        :items-per-page="50"
-        @click:row="goToPerson"
-      >
-        <template #[`item.photo`]="{ item: user }">
-          <VAvatar :image="resolveUserPhoto(user)" />
-        </template>
-        <template #[`item.phoneNumber`]="{ item: user }">
-          {{ user.mobilePhone ?? user.homePhone }}
-        </template>
-        <template #[`item.membershipStatus`]="{ item: user }">
-          {{ resolveUserMembershipStatus(user) }}
-        </template>
-
-        <template v-slot:bottom>
-          <div class="text-center pt-2" v-if="showPagination">
-            <VPagination v-model="page" :length="pageCount" variant="plain"></VPagination>
-          </div>
-        </template>
-      </VDataTable>
-    </VCard>
-  </VSkeletonLoader>
-</template>

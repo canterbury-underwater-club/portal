@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { format, isValid, parseISO } from 'date-fns'
 
-const model = defineModel<string | null | undefined>()
+const model = defineModel<Date | null | undefined>()
 const props = defineProps<{
   editing: boolean
 }>()
@@ -14,7 +14,7 @@ const displayValue = computed(() => {
   return isValid(date) ? format(date, 'dd MMMM yyyy') : model.value
 })
 
-function selectDate(val: string | null) {
+function selectDate(val: Date | null) {
   if (!val) return
   model.value = val
   menu.value = false

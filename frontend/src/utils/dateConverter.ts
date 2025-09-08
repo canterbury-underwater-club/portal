@@ -23,7 +23,7 @@ export function fromServerDate(utcDateOnly: string): Date {
  * Interprets the NZ calendar date of the given Date and returns
  * the UTC calendar day containing *NZ midnight* for that day.
  */
-export function toServerDate(nzDate?: Date): string {
+export function toServerDate(nzDate: Date | undefined | null): string {
   const input = nzDate ?? new Date()
   const nzDayStr = format(input, 'yyyy-MM-dd', { in: tz(NZ) })
   const [y, m, d] = nzDayStr.split('-').map(Number)

@@ -49,6 +49,8 @@ docs/NullableOfBookingAttendeeTypeModel.md
 docs/NullableOfMembershipStatusModel.md
 docs/ProblemDetails.md
 docs/UsersApi.md
+docs/UsersCreateContractsRequest.md
+docs/UsersCreateContractsResponse.md
 docs/UsersListContractsResponse.md
 docs/UsersModelsMembershipStatusModel.md
 docs/UsersModelsUserModel.md

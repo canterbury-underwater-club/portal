@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CanterburyUnderwater.PortalApi.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CanterburyUnderwater.PortalApi.Migrations
 {
     [DbContext(typeof(PortalDbContext))]
-    partial class PortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250908003414_AddSecondaryEmailAddress")]
+    partial class AddSecondaryEmailAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -316,8 +319,8 @@ namespace CanterburyUnderwater.PortalApi.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly?>("DateOfBirth")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
@@ -352,14 +355,14 @@ namespace CanterburyUnderwater.PortalApi.Migrations
                     b.Property<DateTime?>("LastSignedIn")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly?>("MembershipEndDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("MembershipEndDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("MembershipNumber")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly?>("MembershipStartDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("MembershipStartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("MembershipStatus")
                         .HasColumnType("integer");

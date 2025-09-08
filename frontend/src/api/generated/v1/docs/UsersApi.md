@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost:5171*
 |------------- | ------------- | -------------|
 |[**v1UsersGet**](#v1usersget) | **GET** /v1/users | |
 |[**v1UsersIdPatch**](#v1usersidpatch) | **PATCH** /v1/users/{id} | |
+|[**v1UsersPost**](#v1userspost) | **POST** /v1/users | |
 |[**v1UsersSignInPost**](#v1userssigninpost) | **POST** /v1/users/sign-in | |
 
 # **v1UsersGet**
@@ -102,6 +103,58 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **v1UsersPost**
+> UsersCreateContractsResponse v1UsersPost(usersCreateContractsRequest)
+
+
+### Example
+
+```typescript
+import {
+    UsersApi,
+    Configuration,
+    UsersCreateContractsRequest
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new UsersApi(configuration);
+
+let usersCreateContractsRequest: UsersCreateContractsRequest; //
+
+const { status, data } = await apiInstance.v1UsersPost(
+    usersCreateContractsRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **usersCreateContractsRequest** | **UsersCreateContractsRequest**|  | |
+
+
+### Return type
+
+**UsersCreateContractsResponse**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**201** | Created |  -  |
+|**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

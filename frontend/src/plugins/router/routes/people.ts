@@ -13,6 +13,10 @@ export const peopleRoutes: RouteRecordRaw = {
       component: () => import('@/pages/people.vue'),
     },
     {
+      ...Routes.PeopleCreate,
+      component: () => import('@/pages/person.vue'),
+    },
+    {
       ...Routes.PeopleView,
       component: () => import('@/pages/person.vue'),
     },

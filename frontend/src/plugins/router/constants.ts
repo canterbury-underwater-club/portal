@@ -16,6 +16,7 @@ export const Routes = {
   Dashboard: { name: 'dashboard', path: '/dashboard' },
 
   PeopleList: { name: 'people-list', path: '/people' },
+  PeopleCreate: { name: 'people-create', path: '/people/create' },
   PeopleView: { name: 'people-view', path: '/people/:id' },
   PeopleEdit: { name: 'people-edit', path: '/people/:id/edit' },
 

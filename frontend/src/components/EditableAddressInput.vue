@@ -60,7 +60,7 @@ const getSuggestions = debounce(async (search: string | null | undefined) => {
   }))
 
   loading.value = false
-}, 200)
+}, 500)
 
 async function onAddressSelected(placePrediction: google.maps.places.PlacePrediction | null) {
   if (!placePrediction) return
